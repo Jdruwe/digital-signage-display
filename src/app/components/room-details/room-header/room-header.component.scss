@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.box:first-child > * {
+  margin-right: auto;
+}
+
+.box:last-child > * {
+  margin-left: auto;
+}
+
+h1 {
+  font-size: 65px;
+  margin: 0;
+}
+
+.logo {
+  height: 55px;
+  width: auto;
+}
