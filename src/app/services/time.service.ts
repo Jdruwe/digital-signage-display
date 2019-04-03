@@ -16,7 +16,6 @@ export class TimeService {
   constructor() {
     this.time = moment();
     this.initClock();
-    console.log(this.time);
   }
 
   initClock() {

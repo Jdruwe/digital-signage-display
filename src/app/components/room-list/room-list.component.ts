@@ -40,13 +40,15 @@ export class RoomListComponent implements OnInit, OnDestroy {
         bufferWhen(() => single$.pipe(debounceTime(250))),
       ).subscribe((events: KeyboardEvent[]) => {
       const registeredKeys = events.map(e => e.key).join('');
-      this.handleKeyPress(+registeredKeys);
+      this.handleRoomChange(+registeredKeys);
     });
   }
 
-  private handleKeyPress(key: number) {
-    if (key) {
-      this.router.navigate(['room', key]);
-    }
+  private handleRoomChange(index: number) {
+    this.router.navigate(['room', this.rooms[index].id]);
+  }
+
+  getIndexOf(room: Room) {
+    return this.rooms.indexOf(room);
   }
 }

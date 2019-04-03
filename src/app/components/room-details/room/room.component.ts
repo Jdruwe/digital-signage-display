@@ -1,8 +1,9 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {TimeService} from '../../../services/time.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {RoomService} from '../../../services/room.service';
 import {Subscription} from 'rxjs';
+import {ScheduleService} from '../../../services/schedule.service';
+import {Schedule} from '../../../models/schedule';
 
 @Component({
   selector: 'app-room',
@@ -12,12 +13,13 @@ import {Subscription} from 'rxjs';
 export class RoomComponent implements OnInit, OnDestroy {
 
   currentTime: Date;
+  schedule: Schedule;
 
   private clockSub: Subscription;
-  private room;
+  private scheduleSub: Subscription;
 
   constructor(private timeService: TimeService,
-              private roomService: RoomService,
+              private scheduleService: ScheduleService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -32,13 +34,25 @@ export class RoomComponent implements OnInit, OnDestroy {
       .subscribe((paramMap: ParamMap) => {
         if (paramMap.has('id')) {
           const id = paramMap.get('id');
-          this.room = this.roomService.getRoom(id);
+          const date = new Date();
+          this.scheduleService.getSchedule(date, id);
+          this.scheduleSub = this.scheduleService.getScheduleUpdateListener()
+            .subscribe(response => {
+              this.schedule = response;
+            });
         }
       });
   }
 
   ngOnDestroy(): void {
     this.clockSub.unsubscribe();
+    this.scheduleSub.unsubscribe();
+  }
+
+  getRoom() {
+    if (this.schedule) {
+      return this.schedule.rooms[0];
+    }
   }
 
   @HostListener('document:keypress', ['$event'])
