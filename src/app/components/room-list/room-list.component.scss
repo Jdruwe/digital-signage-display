@@ -1,0 +1,31 @@
+@import "~src/styles";
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card {
+  border-radius: 0.5rem;
+  margin: 2rem;
+  background-color: $foreground;
+  min-width: 18rem;
+  text-align: center;
+  cursor: pointer;
+
+  h1 {
+    padding: 1rem;
+  }
+
+  p {
+    text-align: right;
+    padding-right: 1rem;
+  }
+
+  &:hover {
+    background-color: lighten($foreground, 10%);
+  }
+}

@@ -1,0 +1,8 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="card" *ngFor="let room of rooms" (click)="handleRoomChange(getIndexOf(room))">
+    <h1>{{room?.name}}</h1>
+    <p>[{{getIndexOf(room)}}]</p>
+  </div>
+</div>
