@@ -1,4 +1,30 @@
+@import "~src/styles";
+
 .container {
-  display: flex;
-  flex-direction: column;
+  //display: flex;
+  //flex-direction: column;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr 30%;
+  grid-template-areas: "header header" "talk timeline";
+}
+
+.header {
+  grid-area: header;
+  margin: 1rem 1rem 0 1rem;
+}
+
+.talk {
+  grid-area: talk;
+  margin: 1rem;
+}
+
+// todo temp
+.timeline {
+  grid-area: timeline;
+  margin: 1rem 1rem 1rem 0;
+  padding: 1rem;
+  border-radius: $border-radius;
+  background-color: $foreground;
 }

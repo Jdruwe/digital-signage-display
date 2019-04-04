@@ -1,0 +1,41 @@
+@import "~src/styles";
+
+:host {
+  border-radius: $border-radius;
+  background-color: $foreground;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+
+  & > * {
+    padding: 0 1.5rem;
+  }
+}
+
+.header {
+  display: block;
+  background-color: $devoxx-orange;
+}
+
+h1 {
+  font-size: 4rem;
+  letter-spacing: 0.1rem;
+  margin: 2rem 0 0 0;
+}
+
+h2 {
+  font-size: 3rem;
+  margin-bottom: 0;
+  color: $devoxx-orange;
+}
+
+h3 {
+  font-size: 2rem;
+  margin: 0 0 2rem 0;
+  font-weight: normal;
+}
+
+p {
+  margin-top: 0;
+  font-size: 2rem;
+}
