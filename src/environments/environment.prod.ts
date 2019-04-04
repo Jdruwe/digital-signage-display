@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  keyPressBufferTime: 250,
   apiUrl: 'http://localhost:8080/api',
   roomEndPoint: '/room',
   scheduleEndPoint: '/schedule'

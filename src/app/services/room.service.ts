@@ -4,7 +4,7 @@ import {environment} from '../../environments/environment';
 import {Room} from '../models/room';
 import {ConnectionService} from './connection.service';
 import {catchError, map} from 'rxjs/operators';
-import {of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class RoomService {
       });
   }
 
-  getRooms() {
+  getRooms(): Observable<Room[]> {
     if (this.isConnected) {
       return this.http.get<Room[]>(`${environment.apiUrl}${environment.roomEndPoint}`)
         .pipe(
@@ -31,11 +31,9 @@ export class RoomService {
             return response;
           }),
           catchError(err => {
-            console.log('error');
             return of(this.getFromLocalStorage());
           }));
     } else {
-      console.log('else');
       return of(this.getFromLocalStorage());
     }
   }

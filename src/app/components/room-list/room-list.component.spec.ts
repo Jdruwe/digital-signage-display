@@ -29,7 +29,7 @@ describe('RoomListComponent', () => {
     fixture = TestBed.createComponent(RoomListComponent);
     component = fixture.componentInstance;
     roomService = TestBed.get(RoomService);
-    spyOn(roomService, 'getRooms').and.returnValue([{id: 1, name: 'Room 1'}]);
+    spyOn(roomService, 'getRooms').and.callThrough();
     fixture.detectChanges();
   });
 

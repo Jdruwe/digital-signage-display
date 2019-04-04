@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {catchError, map} from 'rxjs/operators';
 import {Schedule} from '../models/schedule';
-import {of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class ScheduleService {
       });
   }
 
-  getSchedule(date: Date, roomId: string) {
+  getSchedule(date: Date, roomId: string): Observable<Schedule> {
     // todo use real date
     // const formattedDate = this.formatDate(date);
     const formattedDate = '2018-11-12';

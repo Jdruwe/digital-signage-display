@@ -4,6 +4,7 @@ import {Room} from '../../models/room';
 import {fromEvent, Subscription} from 'rxjs';
 import {bufferWhen, debounceTime} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-room-list',
@@ -36,7 +37,8 @@ export class RoomListComponent implements OnInit, OnDestroy {
     const single$ = fromEvent(window, 'keypress');
     this.keySub = single$
       .pipe(
-        bufferWhen(() => single$.pipe(debounceTime(250))),
+        bufferWhen(() => single$
+          .pipe(debounceTime(environment.keyPressBufferTime))),
       ).subscribe((events: KeyboardEvent[]) => {
         const registeredKeys = events.map(e => e.key).join('');
         this.handleRoomChange(+registeredKeys);
