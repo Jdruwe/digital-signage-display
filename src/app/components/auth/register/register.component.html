@@ -1,0 +1,51 @@
+<div class="container">
+<form class="login-form" (submit)="onRegister(registerForm)" #registerForm="ngForm" ngNativeValidate>
+  <div class="content">
+  <input type="text"
+         name="username"
+         id="username"
+         class="form-control"
+         placeholder="Username*"
+         required
+         [disabled]="isLoading"
+         [ngClass]="usernameForm.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && usernameForm.invalid) ? 'invalid' : ''"
+         ngModel
+         #usernameForm="ngModel">
+
+  <input type="text"
+         name="email"
+         id="email"
+         class="form-control"
+         placeholder="Email*"
+         [disabled]="isLoading"
+         [ngClass]="emailInput.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && emailInput.invalid) ? 'invalid' : ''"
+         ngModel
+         email
+         #emailInput="ngModel">
+
+  <input type="password"
+         name="password"
+         id="passwordRegister"
+         class="form-control"
+         placeholder="Password*"
+         ngModel
+         [disabled]="isLoading"
+         [ngClass]="passwordInput.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && passwordInput.invalid) ? 'invalid' : ''"
+         required
+         #passwordInput="ngModel">
+
+  <button type="submit" class="btn btn-primary btn-block" id="submit">
+        <span *ngIf="isLoading" role="status">
+          <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+          </div>
+        </span>
+    {{isLoading ? '' : 'Register'}}</button>
+  </div>
+</form>
+</div>
+
