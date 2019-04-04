@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RoomService} from '../../services/room.service';
 import {Room} from '../../models/room';
-import {fromEvent, Subscription} from 'rxjs';
+import {fromEvent} from 'rxjs';
 import {bufferWhen, debounceTime} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
@@ -10,11 +10,9 @@ import {Router} from '@angular/router';
   templateUrl: './room-list.component.html',
   styleUrls: ['./room-list.component.scss']
 })
-export class RoomListComponent implements OnInit, OnDestroy {
+export class RoomListComponent implements OnInit {
 
   rooms: Room[];
-
-  private roomsSub: Subscription;
 
   constructor(private roomService: RoomService,
               private router: Router) {
@@ -22,15 +20,10 @@ export class RoomListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.registerKeyListener();
-    this.roomService.getRooms();
-    this.roomsSub = this.roomService.getRoomsUpdateListener()
+    this.roomService.getRooms()
       .subscribe((response: Room[]) => {
         this.rooms = response;
       });
-  }
-
-  ngOnDestroy(): void {
-    this.roomsSub.unsubscribe();
   }
 
   private registerKeyListener() {

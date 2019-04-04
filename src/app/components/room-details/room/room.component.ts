@@ -16,7 +16,6 @@ export class RoomComponent implements OnInit, OnDestroy {
   schedule: Schedule;
 
   private clockSub: Subscription;
-  private scheduleSub: Subscription;
 
   constructor(private timeService: TimeService,
               private scheduleService: ScheduleService,
@@ -35,8 +34,7 @@ export class RoomComponent implements OnInit, OnDestroy {
         if (paramMap.has('id')) {
           const id = paramMap.get('id');
           const date = new Date();
-          this.scheduleService.getSchedule(date, id);
-          this.scheduleSub = this.scheduleService.getScheduleUpdateListener()
+          this.scheduleService.getSchedule(date, id)
             .subscribe(response => {
               this.schedule = response;
             });
@@ -46,7 +44,6 @@ export class RoomComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.clockSub.unsubscribe();
-    this.scheduleSub.unsubscribe();
   }
 
   getRoom() {

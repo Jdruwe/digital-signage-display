@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {Subject} from 'rxjs';
 import {Room} from '../models/room';
 import {ConnectionService} from './connection.service';
+import {catchError, map} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,6 @@ import {ConnectionService} from './connection.service';
 export class RoomService {
 
   private isConnected = false;
-  private roomsUpdated = new Subject<Room[]>();
 
   constructor(private http: HttpClient,
               private connectionService: ConnectionService) {
@@ -23,14 +23,28 @@ export class RoomService {
 
   getRooms() {
     if (this.isConnected) {
-      this.http.get(`${environment.apiUrl}${environment.roomEndPoint}`)
-        .subscribe((response: Room[]) => {
-          this.roomsUpdated.next(response);
-        });
-    } // todo if offline?
+      return this.http.get<Room[]>(`${environment.apiUrl}${environment.roomEndPoint}`)
+        .pipe(
+          map((response: Room[]) => {
+            this.saveToLocalStorage(response);
+            return response;
+          }),
+          catchError(err => {
+            console.log('error');
+            return of(this.getFromLocalStorage());
+          }));
+    } else {
+      console.log('else');
+      return of(this.getFromLocalStorage());
+    }
   }
 
-  getRoomsUpdateListener() {
-    return this.roomsUpdated.asObservable();
+  private saveToLocalStorage(rooms: Room[]) {
+    localStorage.setItem('rooms', JSON.stringify(rooms));
   }
+
+  private getFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('rooms'));
+  }
+
 }

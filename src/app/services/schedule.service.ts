@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {ConnectionService} from './connection.service';
-import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {catchError, map} from 'rxjs/operators';
 import {Schedule} from '../models/schedule';
-import {Subject} from 'rxjs';
+import {of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,6 @@ import {Subject} from 'rxjs';
 export class ScheduleService {
 
   private isConnected = false;
-  private scheduleUpdated = new Subject<Schedule>();
 
   constructor(private http: HttpClient,
               private connectionService: ConnectionService) {
@@ -21,22 +21,32 @@ export class ScheduleService {
       });
   }
 
-  getSchedule(date: Date, roomId: string): Schedule {
+  getSchedule(date: Date, roomId: string) {
+    // todo use real date
+    // const formattedDate = this.formatDate(date);
+    const formattedDate = '2018-11-12';
     if (this.isConnected) {
-      // todo use real date
-      // const formattedDate = this.formatDate(date);
-      const formattedDate = '2018-11-12';
-      this.http.get(`${environment.apiUrl}${environment.scheduleEndPoint}/${formattedDate}/${roomId}`)
-        .subscribe((response: Schedule) => {
-          console.log(response);
-          this.scheduleUpdated.next(response);
-        });
-    } // todo if offline?
-    return null;
+      return this.http.get(`${environment.apiUrl}${environment.scheduleEndPoint}/${formattedDate}/${roomId}`)
+        .pipe(
+          map(((response: Schedule) => {
+              this.saveToLocalStorage(response);
+              return response;
+            })
+          ),
+          catchError(err => {
+            return of(this.getFromLocalStorage());
+          }));
+    } else {
+      return of(this.getFromLocalStorage());
+    }
   }
 
-  getScheduleUpdateListener() {
-    return this.scheduleUpdated.asObservable();
+  private saveToLocalStorage(schedule: Schedule) {
+    localStorage.setItem('schedule', JSON.stringify(schedule));
+  }
+
+  private getFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('schedule'));
   }
 
   private formatDate(date: Date) {
