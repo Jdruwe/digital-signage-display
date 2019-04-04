@@ -37,7 +37,7 @@ describe('RoomListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set the rooms', function () {
+  it('should set the room', function () {
     component.ngOnInit();
     expect(roomService.getRooms).toHaveBeenCalled();
   });

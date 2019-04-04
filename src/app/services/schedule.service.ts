@@ -29,6 +29,7 @@ export class ScheduleService {
       return this.http.get(`${environment.apiUrl}${environment.scheduleEndPoint}/${formattedDate}/${roomId}`)
         .pipe(
           map(((response: Schedule) => {
+              this.clearLocalStorage();
               this.saveToLocalStorage(response);
               return response;
             })
@@ -47,6 +48,10 @@ export class ScheduleService {
 
   private getFromLocalStorage() {
     return JSON.parse(localStorage.getItem('schedule'));
+  }
+
+  private clearLocalStorage() {
+    localStorage.removeItem('schedule');
   }
 
   private formatDate(date: Date) {

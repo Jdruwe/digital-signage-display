@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RoomService} from '../../services/room.service';
 import {Room} from '../../models/room';
-import {fromEvent} from 'rxjs';
+import {fromEvent, Subscription} from 'rxjs';
 import {bufferWhen, debounceTime} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
@@ -10,9 +10,11 @@ import {Router} from '@angular/router';
   templateUrl: './room-list.component.html',
   styleUrls: ['./room-list.component.scss']
 })
-export class RoomListComponent implements OnInit {
+export class RoomListComponent implements OnInit, OnDestroy {
 
   rooms: Room[];
+
+  private keySub: Subscription;
 
   constructor(private roomService: RoomService,
               private router: Router) {
@@ -26,22 +28,29 @@ export class RoomListComponent implements OnInit {
       });
   }
 
+  ngOnDestroy(): void {
+    this.keySub.unsubscribe();
+  }
+
   private registerKeyListener() {
     const single$ = fromEvent(window, 'keypress');
-    single$
+    this.keySub = single$
       .pipe(
         bufferWhen(() => single$.pipe(debounceTime(250))),
       ).subscribe((events: KeyboardEvent[]) => {
-      const registeredKeys = events.map(e => e.key).join('');
-      this.handleRoomChange(+registeredKeys);
-    });
+        const registeredKeys = events.map(e => e.key).join('');
+        this.handleRoomChange(+registeredKeys);
+      });
   }
 
   private handleRoomChange(index: number) {
-    this.router.navigate(['room', this.rooms[index].id]);
+    if (!isNaN(index)) {
+      this.router.navigate(['room', this.rooms[index].id]);
+    }
   }
 
   getIndexOf(room: Room) {
     return this.rooms.indexOf(room);
   }
+
 }

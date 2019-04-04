@@ -46,12 +46,6 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.clockSub.unsubscribe();
   }
 
-  getRoom() {
-    if (this.schedule) {
-      return this.schedule.rooms[0];
-    }
-  }
-
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key.toUpperCase() === 'H') {

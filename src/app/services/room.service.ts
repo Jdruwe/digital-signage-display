@@ -26,6 +26,7 @@ export class RoomService {
       return this.http.get<Room[]>(`${environment.apiUrl}${environment.roomEndPoint}`)
         .pipe(
           map((response: Room[]) => {
+            this.clearLocalStorage();
             this.saveToLocalStorage(response);
             return response;
           }),
@@ -40,11 +41,15 @@ export class RoomService {
   }
 
   private saveToLocalStorage(rooms: Room[]) {
-    localStorage.setItem('rooms', JSON.stringify(rooms));
+    localStorage.setItem('room', JSON.stringify(rooms));
   }
 
   private getFromLocalStorage() {
-    return JSON.parse(localStorage.getItem('rooms'));
+    return JSON.parse(localStorage.getItem('room'));
+  }
+
+  private clearLocalStorage() {
+    return localStorage.removeItem('room');
   }
 
 }
