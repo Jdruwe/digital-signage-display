@@ -10,6 +10,7 @@ import {RoomListComponent} from './components/room-list/room-list.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import {FormsModule} from '@angular/forms';
+import { LoginComponent } from './components/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {FormsModule} from '@angular/forms';
     RoomHeaderComponent,
     RoomListComponent,
     NavbarComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
