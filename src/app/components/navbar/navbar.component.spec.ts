@@ -1,6 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NavbarComponent} from './navbar.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -8,7 +10,11 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NavbarComponent]
+      declarations: [NavbarComponent],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ]
     })
       .compileComponents();
   }));
@@ -32,6 +38,6 @@ describe('NavbarComponent', () => {
   it('should render \'Log in\' in li tag', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('li').innerText).toContain('Log in');
+    expect(compiled.querySelector('li a').innerText).toContain('Log in');
   });
 });
