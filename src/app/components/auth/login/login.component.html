@@ -1,33 +1,21 @@
 <div class="container">
-  <form (submit)="onRegister(registerForm)" #registerForm="ngForm" ngNativeValidate>
+  <form class="login-form" (submit)="onLogin(loginForm)" #loginForm="ngForm" ngNativeValidate>
     <!--TODO error message makes everything jump down -->
     <span *ngIf="errorMessage" class="error-message">
        {{errorMessage}}
       </span>
     <div class="content">
-      <h1>Register</h1>
+      <h1>Login</h1>
       <input type="text"
              name="username"
              id="username"
              class="form-control"
-             placeholder="Username*"
+             placeholder="Username/Email*"
              required
              [disabled]="isLoading"
-             [ngClass]="usernameForm.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && usernameForm.invalid) ? 'invalid' : ''"
+             [ngClass]="usernameForm.invalid && (!loginForm.pristine || loginForm.touched) || (loginForm.submitted && usernameForm.invalid) ? 'invalid' : ''"
              ngModel
              #usernameForm="ngModel">
-
-      <input type="text"
-             name="email"
-             id="email"
-             class="form-control"
-             placeholder="Email*"
-             required
-             [disabled]="isLoading"
-             [ngClass]="emailInput.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && emailInput.invalid) ? 'invalid' : ''"
-             ngModel
-             email
-             #emailInput="ngModel">
 
       <input type="password"
              name="password"
@@ -36,7 +24,7 @@
              placeholder="Password*"
              ngModel
              [disabled]="isLoading"
-             [ngClass]="passwordInput.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && passwordInput.invalid) ? 'invalid' : ''"
+             [ngClass]="passwordInput.invalid && (!loginForm.pristine || loginForm.touched) || (loginForm.submitted && passwordInput.invalid) ? 'invalid' : ''"
              required
              #passwordInput="ngModel">
 
@@ -48,7 +36,7 @@
             <div class="bounce3"></div>
           </div>
         </span>
-        {{isLoading ? '' : 'Register'}}</button>
+        {{isLoading ? '' : 'Login'}}</button>
     </div>
   </form>
 </div>

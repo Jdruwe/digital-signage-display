@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
 
@@ -19,21 +19,20 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onRegister(form: NgForm) {
+  onLogin(form: NgForm) {
     this.isLoading = true;
     if (form.invalid) {
       this.isLoading = false;
       return;
     }
-    this.authService.register(form.value.username, form.value.email, form.value.password)
+    this.authService.login(form.value.username, form.value.password)
       .subscribe(data => {
-        this.isLoading = false;
-        this.router.navigate(['']);
-
+        this.router.navigate(['main']);
       }, error => {
         this.isLoading = false;
         switch (error.status) {
-          case 409:
+          case 401:
+          case 404:
             this.errorMessage = error.error;
             break;
           default:

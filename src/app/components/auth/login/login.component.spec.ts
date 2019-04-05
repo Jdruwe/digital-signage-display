@@ -1,6 +1,6 @@
 import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 
-import { RegisterComponent } from './register.component';
+import {LoginComponent} from './login.component';
 import {FormsModule, NgForm} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -8,29 +8,29 @@ import {DebugElement} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {By} from '@angular/platform-browser';
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
+describe('LoginComponent', () => {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
   let authService: AuthService;
   let debugElement: DebugElement;
-  let registerSpy;
+  let loginSpy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ],
+      declarations: [LoginComponent],
       imports: [FormsModule,
         RouterTestingModule,
         HttpClientTestingModule]
     })
-    .compileComponents();
-    fixture = TestBed.createComponent(RegisterComponent);
+      .compileComponents();
+    fixture = TestBed.createComponent(LoginComponent);
     debugElement = fixture.debugElement;
     authService = debugElement.injector.get(AuthService);
-    registerSpy = spyOn(authService, 'register').and.callThrough();
+    loginSpy = spyOn(authService, 'login').and.callThrough();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterComponent);
+    fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -43,7 +43,7 @@ describe('RegisterComponent', () => {
     expect(fixture.componentInstance.isLoading).toBeFalsy();
   });
 
-  it('#onRegister should change IsLoading variable', () => {
+  it('#onLogin should change IsLoading variable', () => {
     const testForm = <NgForm>{
       value: {
         username: 'Hello',
@@ -52,17 +52,17 @@ describe('RegisterComponent', () => {
       }
     };
     const comp = fixture.componentInstance;
-    comp.onRegister(testForm);
+    comp.onLogin(testForm);
     expect(fixture.componentInstance.isLoading).toBeTruthy();
   });
 
-  it('should call onRegister method', fakeAsync(() => {
-    spyOn(component, 'onRegister');
+  it('should call onLogin method', fakeAsync(() => {
+    spyOn(component, 'onLogin');
     fixture.debugElement.query(By.css('form')).triggerEventHandler('submit', null);
-    expect(component.onRegister).toHaveBeenCalled();
+    expect(component.onLogin).toHaveBeenCalled();
   }));
 
-  it('#onRegister should call auth service method register', () => {
+  it('#onLogin should call auth service method login', () => {
     const testForm = <NgForm>{
       value: {
         username: 'Hello',
@@ -71,7 +71,7 @@ describe('RegisterComponent', () => {
       }
     };
     const comp = fixture.componentInstance;
-    comp.onRegister(testForm);
-    expect(registerSpy).toHaveBeenCalled();
+    comp.onLogin(testForm);
+    expect(loginSpy).toHaveBeenCalled();
   });
 });
