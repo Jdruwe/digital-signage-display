@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="login-form" (submit)="onRegister(registerForm)" #registerForm="ngForm" ngNativeValidate>
+  <form (submit)="onRegister(registerForm)" #registerForm="ngForm" ngNativeValidate>
     <!--TODO error message makes everything jump down -->
     <span *ngIf="errorMessage" class="error-message">
        {{errorMessage}}
