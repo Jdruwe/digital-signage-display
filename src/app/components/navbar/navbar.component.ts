@@ -8,7 +8,7 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  private isAuth = false;
+  isAuth = false;
   private adminName: string;
 
   constructor(private router: Router,
