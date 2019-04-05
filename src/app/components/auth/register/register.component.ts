@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
-import {first} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,8 +10,10 @@ import {first} from 'rxjs/operators';
 })
 export class RegisterComponent implements OnInit {
   isLoading = false;
+  errorMessage: string;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -29,8 +31,18 @@ export class RegisterComponent implements OnInit {
     this.authService.register(form.value.username, form.value.email, form.value.password)
       .subscribe(data => {
         this.isLoading = false;
+        this.router.navigate(['']);
+
       }, error => {
         this.isLoading = false;
+        console.log(error.error);
+        switch (error.status) {
+          case 409:
+            this.errorMessage = error.error;
+            break;
+          default:
+            this.errorMessage = 'Oopsie woopsie, that didn\'t work! Please try again.';
+        }
       });
   }
 
