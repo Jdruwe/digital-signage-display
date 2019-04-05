@@ -1,0 +1,55 @@
+<div class="container">
+  <form class="login-form" (submit)="onRegister(registerForm)" #registerForm="ngForm" ngNativeValidate>
+    <!--TODO error message makes everything jump down -->
+    <span *ngIf="errorMessage" class="error-message">
+       {{errorMessage}}
+      </span>
+    <div class="content">
+      <h1>Register</h1>
+      <input type="text"
+             name="username"
+             id="username"
+             class="form-control"
+             placeholder="Username*"
+             required
+             [disabled]="isLoading"
+             [ngClass]="usernameForm.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && usernameForm.invalid) ? 'invalid' : ''"
+             ngModel
+             #usernameForm="ngModel">
+
+      <input type="text"
+             name="email"
+             id="email"
+             class="form-control"
+             placeholder="Email*"
+             required
+             [disabled]="isLoading"
+             [ngClass]="emailInput.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && emailInput.invalid) ? 'invalid' : ''"
+             ngModel
+             email
+             #emailInput="ngModel">
+
+      <input type="password"
+             name="password"
+             id="passwordRegister"
+             class="form-control"
+             placeholder="Password*"
+             ngModel
+             [disabled]="isLoading"
+             [ngClass]="passwordInput.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && passwordInput.invalid) ? 'invalid' : ''"
+             required
+             #passwordInput="ngModel">
+
+      <button type="submit" class="btn btn-primary btn-block" id="submit">
+        <span *ngIf="isLoading" role="status">
+          <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+        </span>
+        {{isLoading ? '' : 'Register'}}</button>
+    </div>
+  </form>
+</div>
+

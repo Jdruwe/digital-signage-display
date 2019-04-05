@@ -8,6 +8,8 @@ import {RoomHeaderComponent} from './components/room-details/room-header/room-he
 import {HttpClientModule} from '@angular/common/http';
 import {RoomListComponent} from './components/room-list/room-list.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import {NavbarComponent} from './components/navbar/navbar.component';
     RoomComponent,
     RoomHeaderComponent,
     RoomListComponent,
-    NavbarComponent
+    NavbarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
