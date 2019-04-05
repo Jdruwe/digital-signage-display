@@ -11,18 +11,12 @@ import {NgForm} from '@angular/forms';
 export class LoginComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
-  testing: string;
 
   constructor(private authService: AuthService,
               private router: Router) {
   }
 
   ngOnInit() {
-    if (this.authService.isAuth()) {
-      this.testing = 'stsetsetsetset';
-    } else {
-      this.testing = '';
-    }
   }
 
   onLogin(form: NgForm) {

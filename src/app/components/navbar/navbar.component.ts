@@ -8,12 +8,24 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  private isAuth = false;
+  private adminName: string;
 
   constructor(private router: Router,
               private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.checkAuth();
+  }
+
+  private checkAuth() {
+    if (this.authService.isAuth()) {
+      this.isAuth = true;
+      this.adminName = localStorage.getItem('adminName');
+    } else {
+      this.isAuth = false;
+    }
   }
 
   login() {
@@ -23,6 +35,10 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['']);
+  }
+
+  register(){
+    this.router.navigate(['register']);
   }
 
 }

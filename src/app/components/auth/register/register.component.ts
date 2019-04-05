@@ -32,7 +32,6 @@ export class RegisterComponent implements OnInit {
 
       }, error => {
         this.isLoading = false;
-        console.log(error.error);
         switch (error.status) {
           case 409:
             this.errorMessage = error.error;

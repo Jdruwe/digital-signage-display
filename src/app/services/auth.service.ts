@@ -13,7 +13,7 @@ export class AuthService {
 
   private isAuthenticated = false;
   private token: string;
-  private playerName: string;
+  private adminName: string;
   private authUser: Login;
 
   constructor(private http: HttpClient,
@@ -26,7 +26,6 @@ export class AuthService {
       email: email,
       password: password
     };
-    console.log(admin.password);
     return this.http.post(environment.apiUrl + environment.authEndPoint + '/register', admin);
   }
 
@@ -35,29 +34,27 @@ export class AuthService {
       adminNameOrEmail: name,
       password: password
     };
-    console.log(name);
     return this.http.post<{ token: string }>(environment.apiUrl + environment.authEndPoint + '/login', user)
-      .pipe(map((response: { token: string, playerName: string }) => {
+      .pipe(map((response: { token: string, adminName: string }) => {
         this.token = response.token;
-        this.playerName = response.playerName;
-
+        this.adminName = response.adminName;
         if (response.token) {
           this.authUser = user;
           this.isAuthenticated = true;
-          this.saveAuthToken(this.token, this.playerName);
+          this.saveAuthToken(this.token, this.adminName);
         }
       }));
 
   }
 
-  private saveAuthToken(token: string, playerName: string) {
+  private saveAuthToken(token: string, adminName: string) {
     localStorage.setItem('token', token);
-    localStorage.setItem('playerName', playerName);
+    localStorage.setItem('adminName', adminName);
   }
 
   logout() {
     this.token = null;
-    this.playerName = null;
+    this.adminName = null;
     this.isAuthenticated = false;
     this.authUser = null;
 
@@ -68,10 +65,27 @@ export class AuthService {
 
   private clearAuthUser() {
     localStorage.removeItem('token');
-    localStorage.removeItem('playerName');
+    localStorage.removeItem('adminName');
   }
 
   isAuth() {
     return this.isAuthenticated;
+  }
+
+  autoAuthUser() {
+    const storage = this.getAuthUser();
+    this.token = storage.token;
+    this.adminName = storage.adminName;
+    this.isAuthenticated = true;
+  }
+
+  private getAuthUser() {
+    const token = localStorage.getItem('token');
+    const adminName = localStorage.getItem('adminName');
+
+    return {
+      token: token,
+      adminName: adminName
+    };
   }
 }
