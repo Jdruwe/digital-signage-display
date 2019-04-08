@@ -1,0 +1,31 @@
+@import "~src/styles";
+
+.speaker {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h3 {
+  margin-bottom: 0.2rem;
+}
+
+small {
+  color: darken($white, 20%);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  padding-right: 0.2rem;
+
+  &:before {
+    content: '';
+    background-image: url('~src/assets/Twitter_Logo_Blue.svg');
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

@@ -15,7 +15,8 @@
   </div>
 
   <div class="speakers">
-    <app-speaker></app-speaker>
+    <app-speaker *ngFor="let speaker of talk.speakers" [speaker]="speaker">
+    </app-speaker>
   </div>
 
 </div>

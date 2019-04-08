@@ -68,5 +68,6 @@ p {
 }
 
 .speakers {
-
+  display: flex;
+  flex-direction: row;
 }
