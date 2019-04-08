@@ -14,14 +14,15 @@ export class TimeService {
   private clock: Observable<Date>;
 
   constructor() {
-    this.time = moment();
+    // todo change
+    this.time = moment('2018-11-12 13:00', 'YYYY-MM-DD HH:mm');
     this.initClock();
   }
 
   initClock() {
     this.clock = interval(1000)
       .pipe(
-        map(tick => moment().toDate(), share())
+        map(tick => this.time.toDate(), share())
       );
   }
 

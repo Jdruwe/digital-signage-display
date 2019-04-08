@@ -1,17 +1,32 @@
-<div class="header">
-  <h1><span>{{talk.title}}</span></h1>
-  <h3>{{talk.type}}</h3>
+<div class="container center-content" *ngIf="!talk">
+  <div class="empty-state">
+  <div class="animation-container">
+    <div class="bounce"></div>
+    <div class="pebble1"></div>
+    <div class="pebble2"></div>
+    <div class="pebble3"></div>
+  </div>
+  </div>
 </div>
 
-<div class="time">
-  <h2>{{talk.fromTime | trimTime}} - {{talk.toTime | trimTime}}</h2>
-  <span class="box">NOW</span>
-</div>
+<div class="container" *ngIf="talk">
 
-<div class="summary" id="summary-text">
-  <span>{{talk.summary}}</span>
-</div>
+  <div class="header">
+    <h1><span>{{talk.title}}</span></h1>
+    <h3>{{talk.type}}</h3>
+  </div>
 
-<div class="speakers">
-  <app-speaker></app-speaker>
+  <div class="time">
+    <h2>{{talk.fromTime | trimTime}} - {{talk.toTime | trimTime}}</h2>
+    <span class="box">NOW</span>
+  </div>
+
+  <div class="summary" id="summary-text">
+    <span>{{talk.summary}}</span>
+  </div>
+
+  <div class="speakers">
+    <app-speaker></app-speaker>
+  </div>
+
 </div>

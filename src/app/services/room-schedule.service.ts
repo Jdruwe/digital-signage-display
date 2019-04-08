@@ -22,9 +22,7 @@ export class RoomScheduleService {
   }
 
   getSchedule(date: Date, roomId: string): Observable<RoomSchedule> {
-    // todo use real date
-    // const formattedDate = this.formatDate(date);
-    const formattedDate = '2018-11-15';
+    const formattedDate = this.formatDate(date);
     if (this.isConnected) {
       return this.http.get(`${environment.apiUrl}${environment.scheduleEndPoint}/${formattedDate}/${roomId}`)
         .pipe(

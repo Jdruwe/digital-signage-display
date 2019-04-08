@@ -1,11 +1,11 @@
 @import "~src/styles";
 
-:host {
+.container {
   border-radius: $border-radius;
   background-color: $foreground;
   display: flex;
   flex-direction: column;
-  // overflow: auto;
+  height: 100%;
 
   & > * {
     padding: 0 1.5rem;
@@ -70,4 +70,8 @@ p {
 
 .speakers {
 
+}
+
+.center-content {
+  justify-content: center;
 }

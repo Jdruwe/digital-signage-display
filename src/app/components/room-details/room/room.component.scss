@@ -28,3 +28,20 @@
   border-radius: $border-radius;
   background-color: $foreground;
 }
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  img {
+    height: auto;
+    width: 15rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}

@@ -48,9 +48,10 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   getTalkToShow() {
-    const talks = this.sortTalksByDate(this.schedule.talks);
-    // todo remove comment
-    // talks = talks.filter(t => new Date(t.endTime) > this.currentTime);
+    let talks = this.sortTalksByDate(this.schedule.talks);
+    console.log(talks);
+    talks = talks.filter(t => new Date(t.endTime) > this.currentTime);
+    console.log(talks);
     return talks[0];
   }
 
