@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TalkComponent } from './talk.component';
+import {TalkComponent} from './talk.component';
+import {TrimTimePipe} from '../../../pipes/trim-time.pipe';
+import {SpeakerComponent} from '../speaker/speaker.component';
 
 describe('TalkComponent', () => {
   let component: TalkComponent;
@@ -8,9 +10,13 @@ describe('TalkComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TalkComponent ]
+      declarations: [
+        TalkComponent,
+        SpeakerComponent,
+        TrimTimePipe
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

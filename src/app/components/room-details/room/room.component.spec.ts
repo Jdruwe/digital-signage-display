@@ -4,6 +4,9 @@ import {RoomComponent} from './room.component';
 import {RoomHeaderComponent} from '../room-header/room-header.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
+import {TalkComponent} from '../talk/talk.component';
+import {TrimTimePipe} from '../../../pipes/trim-time.pipe';
+import {SpeakerComponent} from '../speaker/speaker.component';
 
 describe('RoomComponent', () => {
   let component: RoomComponent;
@@ -17,7 +20,10 @@ describe('RoomComponent', () => {
       ],
       declarations: [
         RoomComponent,
-        RoomHeaderComponent
+        RoomHeaderComponent,
+        TalkComponent,
+        TrimTimePipe,
+        SpeakerComponent
       ]
     })
       .compileComponents();
