@@ -8,6 +8,7 @@ nav {
   background-color: $foreground;
 
   ul {
+    display: flex;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -19,6 +20,10 @@ nav {
 
   li:hover {
     background-color: lighten($foreground, 10%);
+  }
+
+  li a{
+    cursor: pointer;
   }
 }
 
