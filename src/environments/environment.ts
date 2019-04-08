@@ -7,7 +7,8 @@ export const environment = {
   keyPressBufferTime: 250,
   apiUrl: 'http://localhost:8080/api',
   roomEndPoint: '/room',
-  scheduleEndPoint: '/schedule'
+  scheduleEndPoint: '/schedule',
+  settingsEndPoint: '/settings'
 };
 
 /*

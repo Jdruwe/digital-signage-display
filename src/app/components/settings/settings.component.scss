@@ -9,7 +9,7 @@
 .container {
   background-color: transparentize($foreground, 0.7);
   border-radius: 20px;
-  width: 350px;
+  width: 450px;
   height: 400px;
   position: absolute;
   left: 50%;
@@ -17,6 +17,15 @@
   transform: translate(-50%, -50%);
 }
 
+
+.title {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 26px;
+  margin-top: 10%;
+  margin-bottom: 5px;
+  text-align: center;
+}
 
 .switch {
   position: relative;
@@ -56,6 +65,10 @@
   box-shadow: 1px 1px 1px 0 black;
 }
 
+input{
+  text-align: right;
+}
+
 input:checked + .slider {
   background-color: #bada55;
 }
@@ -77,5 +90,28 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+button {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.2em solid $foreground;
+  margin: 10% 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: white;
+  text-align: center;
+  transition: all 0.3s;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button:hover {
+  color: white;
+  background-color: $foreground;
+  cursor: pointer;
 }
 

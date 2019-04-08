@@ -1,12 +1,30 @@
 <div class="container">
-  <div class="content">
-    <h1>Settings</h1>
-    <input type="number" id="myNumber" value="2">
+  <form (submit)="updateSettings(settingsForm)" #settingsForm="ngForm" ngNativeValidate>
+    <div class="content">
+      <h1>Settings</h1>
 
+      <label for="roomOccupancyCounter" class="title">
+        Minutes before display next session
+      <input type="number"
+             id="roomOccupancyCounter"
+             name="roomOccupancyCounter"
+             [(ngModel)]="settings.minutesBeforeNextSession"
+             ngModel>
+      </label>
 
-    <label class="switch">
-      <input type="checkbox" [(ngModel)]="settings.showOccupancyCounter" (ngModelChange)="updateSettings()">
-      <span class="slider round"></span>
-    </label>
-  </div>
+      <div class="title">
+        Room occupancy counter
+      </div>
+      <label for="showOccupancyCounter" class="switch">
+
+        <input type="checkbox"
+               id="showOccupancyCounter"
+               name="showOccupancyCounter"
+               [(ngModel)]="settings.isRoomOccupancyOn"
+               ngModel>
+        <span class="slider round"></span>
+      </label>
+      <button type="submit" id="submit">save</button>
+    </div>
+  </form>
 </div>

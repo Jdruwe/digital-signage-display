@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.checkAuth();
+    console.log(this.authService.isAuth());
   }
 
   private checkAuth() {
@@ -34,11 +35,16 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.checkAuth();
     this.router.navigate(['']);
   }
 
-  register(){
+  register() {
     this.router.navigate(['register']);
+  }
+
+  settings() {
+    this.router.navigate(['settings']);
   }
 
 }

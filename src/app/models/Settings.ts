@@ -1,3 +1,4 @@
 export class Settings {
-showOccupancyCounter: boolean;
+  minutesBeforeNextSession: number;
+  isRoomOccupancyOn: boolean;
 }
