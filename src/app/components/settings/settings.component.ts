@@ -17,15 +17,13 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
     this.settingsService.getSettings()
       .subscribe(data => {
-        this.settings = data;
-        this.settings.minutesBeforeNextSession = data.minutesBeforeNextSession;
-        this.settings.isRoomOccupancyOn = true;
+        // TODO beautify
+        this.settings.minutesBeforeNextSession = data[0].value;
+        this.settings.isRoomOccupancyOn = data[1].value;
       });
   }
 
   updateSettings(form: NgForm) {
-    console.log(this.settings);
-    console.log(form.value.showOccupancyCounter);
-    this.settingsService.changeSettings(form.value.showOccupancyCounter, form.value.roomOccupancyCounter).subscribe();
+    this.settingsService.changeSettings(form.value.roomOccupancyCounter, form.value.showOccupancyCounter).subscribe();
   }
 }
