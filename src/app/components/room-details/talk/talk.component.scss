@@ -5,7 +5,7 @@
   background-color: $foreground;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  // overflow: auto;
 
   & > * {
     padding: 0 1.5rem;
@@ -15,27 +15,59 @@
 .header {
   display: block;
   background-color: $devoxx-orange;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
 }
 
 h1 {
   font-size: 4rem;
   letter-spacing: 0.1rem;
-  margin: 2rem 0 0 0;
+  margin: 2rem 0 1rem 0;
 }
 
 h2 {
   font-size: 3rem;
   margin-bottom: 0;
-  color: $devoxx-orange;
+  color: $blue;
 }
 
 h3 {
   font-size: 2rem;
   margin: 0 0 2rem 0;
   font-weight: normal;
+  text-transform: uppercase;
 }
 
 p {
   margin-top: 0;
+  font-size: 1rem;
+}
+
+.time {
+  margin: 4rem 0 1rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.box {
   font-size: 2rem;
+  margin-left: 1rem;
+  padding: 0.6rem;
+  color: $blue;
+  border-radius: $border-radius;
+  border: 1px solid $blue;
+}
+
+.summary {
+  //overflow: hidden;
+  flex-grow: 100;
+}
+
+.speakers {
+
 }

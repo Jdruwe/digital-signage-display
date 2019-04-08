@@ -3,13 +3,13 @@ import {ConnectionService} from './connection.service';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {catchError, map} from 'rxjs/operators';
-import {Schedule} from '../models/schedule';
 import {Observable, of} from 'rxjs';
+import {RoomSchedule} from '../models/room-schedule';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ScheduleService {
+export class RoomScheduleService {
 
   private isConnected = false;
 
@@ -21,14 +21,14 @@ export class ScheduleService {
       });
   }
 
-  getSchedule(date: Date, roomId: string): Observable<Schedule> {
+  getSchedule(date: Date, roomId: string): Observable<RoomSchedule> {
     // todo use real date
     // const formattedDate = this.formatDate(date);
-    const formattedDate = '2018-11-12';
+    const formattedDate = '2018-11-15';
     if (this.isConnected) {
       return this.http.get(`${environment.apiUrl}${environment.scheduleEndPoint}/${formattedDate}/${roomId}`)
         .pipe(
-          map(((response: Schedule) => {
+          map(((response: RoomSchedule) => {
               this.clearLocalStorage();
               this.saveToLocalStorage(response);
               return response;
@@ -42,7 +42,7 @@ export class ScheduleService {
     }
   }
 
-  private saveToLocalStorage(schedule: Schedule) {
+  private saveToLocalStorage(schedule: RoomSchedule) {
     localStorage.setItem('schedule', JSON.stringify(schedule));
   }
 

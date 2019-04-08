@@ -1,7 +1,17 @@
 <div class="header">
-  <h1>{{title}}</h1>
-  <h3>{{type}}</h3>
+  <h1><span>{{talk.title}}</span></h1>
+  <h3>{{talk.type}}</h3>
 </div>
-<h2>{{fromTime | trimTime}} - {{toTime | trimTime}}</h2>
-<p>{{summary}}</p>
-<app-speaker></app-speaker>
+
+<div class="time">
+  <h2>{{talk.fromTime | trimTime}} - {{talk.toTime | trimTime}}</h2>
+  <span class="box">NOW</span>
+</div>
+
+<div class="summary" id="summary-text">
+  <span>{{talk.summary}}</span>
+</div>
+
+<div class="speakers">
+  <app-speaker></app-speaker>
+</div>

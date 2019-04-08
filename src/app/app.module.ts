@@ -10,7 +10,7 @@ import {RoomListComponent} from './components/room-list/room-list.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {TalkComponent} from './components/room-details/talk/talk.component';
 import {SpeakerComponent} from './components/room-details/speaker/speaker.component';
-import {TrimTimePipe} from './components/pipes/trim-time.pipe';
+import {TrimTimePipe} from './pipes/trim-time.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import {TrimTimePipe} from './components/pipes/trim-time.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

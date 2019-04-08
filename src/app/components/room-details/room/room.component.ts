@@ -2,8 +2,9 @@ import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {TimeService} from '../../../services/time.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {ScheduleService} from '../../../services/schedule.service';
-import {Schedule} from '../../../models/schedule';
+import {RoomScheduleService} from '../../../services/room-schedule.service';
+import {RoomSchedule} from '../../../models/room-schedule';
+import {Talk} from '../../../models/talk';
 
 @Component({
   selector: 'app-room',
@@ -13,12 +14,12 @@ import {Schedule} from '../../../models/schedule';
 export class RoomComponent implements OnInit, OnDestroy {
 
   currentTime: Date;
-  schedule: Schedule;
+  schedule: RoomSchedule;
 
   private clockSub: Subscription;
 
   constructor(private timeService: TimeService,
-              private scheduleService: ScheduleService,
+              private scheduleService: RoomScheduleService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -46,10 +47,31 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.clockSub.unsubscribe();
   }
 
+  getTalkToShow() {
+    const talks = this.sortTalksByDate(this.schedule.talks);
+    // todo remove comment
+    // talks = talks.filter(t => new Date(t.endTime) > this.currentTime);
+    return talks[0];
+  }
+
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key.toUpperCase() === 'H') {
       this.router.navigate(['']);
     }
+  }
+
+  private sortTalksByDate(talks: Talk[]): Talk[] {
+    return talks.sort((a, b) => {
+      const dateA = new Date(a.startTime);
+      const dateB = new Date(b.startTime);
+      if (dateA > dateB) {
+        return 1;
+      }
+      if (dateA < dateB) {
+        return -1;
+      }
+      return 0;
+    });
   }
 }

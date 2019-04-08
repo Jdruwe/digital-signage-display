@@ -5,12 +5,9 @@
     class="header"></app-room-header>
 
   <app-talk
-    [title]="schedule.room.talks[0].title"
-    [type]="schedule.room.talks[0].type"
-    [fromTime]="schedule.room.talks[0].fromTime"
-    [toTime]="schedule.room.talks[0].toTime"
-    [summary]="schedule.room.talks[0].summary"
-    class="talk"></app-talk>
+    [talk]="getTalkToShow()"
+    class="talk">
+  </app-talk>
 
   <div class="timeline"><p>Session timeline goes here!</p></div>
 </div>
