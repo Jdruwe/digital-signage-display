@@ -8,9 +8,12 @@ import {RoomHeaderComponent} from './components/room-details/room-header/room-he
 import {HttpClientModule} from '@angular/common/http';
 import {RoomListComponent} from './components/room-list/room-list.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
-import { RegisterComponent } from './components/auth/register/register.component';
+import {RegisterComponent} from './components/auth/register/register.component';
 import {FormsModule} from '@angular/forms';
-import { LoginComponent } from './components/auth/login/login.component';
+import {LoginComponent} from './components/auth/login/login.component';
+import {TalkComponent} from './components/room-details/talk/talk.component';
+import {SpeakerComponent} from './components/room-details/speaker/speaker.component';
+import {TrimTimePipe} from './pipes/trim-time.pipe';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,17 @@ import { LoginComponent } from './components/auth/login/login.component';
     RoomListComponent,
     NavbarComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    TalkComponent,
+    SpeakerComponent,
+    TrimTimePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

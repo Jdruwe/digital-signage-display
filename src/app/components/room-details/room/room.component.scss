@@ -1,4 +1,66 @@
+@import "~src/styles";
+
 .container {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr 30%;
+  grid-template-areas: "header header" "talk timeline";
+}
+
+.header {
+  grid-area: header;
+  margin: 1rem 1rem 0 1rem;
+}
+
+.talk {
+  grid-area: talk;
+  margin: 1rem;
+}
+
+// todo temp
+.timeline {
+  grid-area: timeline;
+  margin: 1rem 1rem 1rem 0;
+  padding: 1rem;
+  border-radius: $border-radius;
+  background-color: $foreground;
+}
+
+.timeline {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  img {
+    height: auto;
+    width: 15rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+.empty-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  img {
+    height: auto;
+    width: 20rem;
+  }
 }

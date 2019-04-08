@@ -1,11 +1,15 @@
 $background: rgb(23, 24, 28);
 $foreground: rgb(58, 56, 55);
+$white: #DFDFDF;
+$devoxx-orange: #dd9933;
+$blue: #3399dd;
+$border-radius: 0.5rem;
 
 body, html {
   height: 100%;
   background-color: $background;
   font-family: 'Roboto', sans-serif;
-  color: #DFDFDF;
+  color: $white;
 
   margin: 0;
   padding: 0;
