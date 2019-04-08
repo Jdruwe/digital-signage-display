@@ -17,8 +17,8 @@ export class RoomComponent implements OnInit, OnDestroy {
   currentTime: Date;
   talkToShow: Talk;
   nextTalks: Talk[];
+  schedule: RoomSchedule;
 
-  private schedule: RoomSchedule;
   private clockSub: Subscription;
 
   constructor(private timeService: TimeService,
