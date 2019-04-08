@@ -1,14 +1,22 @@
-<div class="container">
+<div class="container" [ngClass]="!(nextTalks && talkToShow) ? 'empty-container' : 'container'">
   <app-room-header
     [roomName]="schedule?.room.name"
     [time]="currentTime"
     class="header"></app-room-header>
 
+  <div class="empty-state"
+       *ngIf="!(nextTalks && talkToShow)">
+    <img src="../../../../assets/ackbar.png" [alt]="">
+    <h1>It's a wrap!</h1>
+  </div>
+
   <app-talk
-    [talk]="getTalkToShow()"
+    [talk]="talkToShow"
+    [time]="currentTime"
+    *ngIf="talkToShow"
     class="talk">
   </app-talk>
 
-  <div class="timeline"><img src="../../../../assets/calendar.svg">
+  <div class="timeline" *ngIf="nextTalks.length > 0"><img src="../../../../assets/calendar.svg" alt="">
     <h1>No more sessions!</h1></div>
 </div>

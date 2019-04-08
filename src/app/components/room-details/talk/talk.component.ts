@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Talk} from '../../../models/talk';
-// import * as $ from 'jquery';
+import * as moment from 'moment';
 
 declare var $: JQuery;
 
@@ -20,6 +20,7 @@ declare global {
 export class TalkComponent implements OnInit {
 
   @Input() talk: Talk;
+  @Input() time: Date;
 
   ngOnInit(): void {
     $(document).ready(function () {
@@ -28,6 +29,14 @@ export class TalkComponent implements OnInit {
         maxFontPixels: 32
       });
     });
+  }
+
+  isNow() {
+    if (this.talk) {
+      return moment(this.time).isBetween(this.talk.startTime, this.talk.endTime);
+    } else {
+      return false;
+    }
   }
 
 }

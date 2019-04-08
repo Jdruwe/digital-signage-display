@@ -1,11 +1,11 @@
 <div class="container center-content" *ngIf="!talk">
   <div class="empty-state">
-  <div class="animation-container">
-    <div class="bounce"></div>
-    <div class="pebble1"></div>
-    <div class="pebble2"></div>
-    <div class="pebble3"></div>
-  </div>
+    <div class="animation-container">
+      <div class="bounce"></div>
+      <div class="pebble1"></div>
+      <div class="pebble2"></div>
+      <div class="pebble3"></div>
+    </div>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
 
   <div class="time">
     <h2>{{talk.fromTime | trimTime}} - {{talk.toTime | trimTime}}</h2>
-    <span class="box">NOW</span>
+    <span class="box" *ngIf="isNow()">NOW</span>
   </div>
 
   <div class="summary" id="summary-text">
