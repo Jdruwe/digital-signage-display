@@ -4,11 +4,13 @@ import {RoomComponent} from './components/room-details/room/room.component';
 import {RoomListComponent} from './components/room-list/room-list.component';
 import {RegisterComponent} from './components/auth/register/register.component';
 import {LoginComponent} from './components/auth/login/login.component';
+import {SettingsComponent} from './components/settings/settings.component';
 
 const routes: Routes = [
   {path: '', component: RoomListComponent},
   {path: 'room/:id', component: RoomComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'settings', component: SettingsComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: RoomListComponent}
 ];

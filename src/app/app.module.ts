@@ -11,6 +11,7 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import {FormsModule} from '@angular/forms';
 import { LoginComponent } from './components/auth/login/login.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoginComponent } from './components/auth/login/login.component';
     RoomListComponent,
     NavbarComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

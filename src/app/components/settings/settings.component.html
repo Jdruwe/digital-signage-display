@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="content">
+    <h1>Settings</h1>
+    <input type="number" id="myNumber" value="2">
+
+
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="settings.showOccupancyCounter" (ngModelChange)="updateSettings()">
+      <span class="slider round"></span>
+    </label>
+  </div>
+</div>
