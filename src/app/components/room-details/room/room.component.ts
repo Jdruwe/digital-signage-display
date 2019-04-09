@@ -44,7 +44,9 @@ export class RoomComponent implements OnInit, OnDestroy {
           this.scheduleService.getSchedule(date, id)
             .subscribe(response => {
               this.schedule = response;
-              this.setTalks();
+              if (this.schedule) {
+                this.setTalks();
+              }
             });
         }
       });

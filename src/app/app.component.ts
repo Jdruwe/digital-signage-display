@@ -17,6 +17,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.autoAuthUser();
-    this.router.navigate(['room', this.roomScheduleService.autoInitRoom()]);
+    const roomId = this.roomScheduleService.autoInitRoom();
+    if (roomId) {
+      this.router.navigate(['room', roomId]);
+    }
   }
 }

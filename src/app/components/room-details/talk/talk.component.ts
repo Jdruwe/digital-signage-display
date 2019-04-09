@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Talk} from '../../../models/talk';
 import * as moment from 'moment';
 
@@ -17,10 +17,16 @@ declare global {
   templateUrl: './talk.component.html',
   styleUrls: ['./talk.component.scss']
 })
-export class TalkComponent implements OnInit {
+export class TalkComponent implements OnInit, AfterViewInit {
 
   @Input() talk: Talk;
   @Input() time: Date;
+
+  @ViewChild('speakers') speakers;
+  enableMarquee = false;
+
+  constructor(private cd: ChangeDetectorRef) {
+  }
 
   ngOnInit(): void {
     $(document).ready(function () {
@@ -28,6 +34,12 @@ export class TalkComponent implements OnInit {
         maxFontPixels: 32
       });
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.enableMarquee = this.checkOverflow(this.speakers.nativeElement);
+    // Detect changes to prevent expression changed after it was checked exception
+    this.cd.detectChanges();
   }
 
   isNow() {
