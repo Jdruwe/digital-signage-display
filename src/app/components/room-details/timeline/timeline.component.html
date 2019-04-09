@@ -5,5 +5,5 @@
 
 <div class="container" *ngIf="talks?.length > 0">
   <h1>Up next</h1>
-  <app-session *ngFor="let talk of talks.slice(0, 3)" [talk]="talk"></app-session>
+  <app-session *ngFor="let talk of talks.slice(0, 2)" [talk]="talk"></app-session>
 </div>
