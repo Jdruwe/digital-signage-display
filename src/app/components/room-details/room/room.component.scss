@@ -18,28 +18,11 @@
   margin: 1rem;
 }
 
-// todo temp
 .timeline {
   grid-area: timeline;
   margin: 1rem 1rem 1rem 0;
-  padding: 1rem;
   border-radius: $border-radius;
   background-color: $foreground;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  img {
-    height: auto;
-    width: 12rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
 }
 
 .empty-state {

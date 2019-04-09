@@ -14,6 +14,8 @@ import {LoginComponent} from './components/auth/login/login.component';
 import {TalkComponent} from './components/room-details/talk/talk.component';
 import {SpeakerComponent} from './components/room-details/speaker/speaker.component';
 import {TrimTimePipe} from './pipes/trim-time.pipe';
+import { TimelineComponent } from './components/room-details/timeline/timeline.component';
+import { SessionComponent } from './components/room-details/session/session.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {TrimTimePipe} from './pipes/trim-time.pipe';
     LoginComponent,
     TalkComponent,
     SpeakerComponent,
-    TrimTimePipe
+    TrimTimePipe,
+    TimelineComponent,
+    SessionComponent
   ],
   imports: [
     BrowserModule,

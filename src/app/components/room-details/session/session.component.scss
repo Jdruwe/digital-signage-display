@@ -1,0 +1,21 @@
+@import "~src/styles";
+
+:host {
+  margin-top: 4rem;
+}
+
+h3 {
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+}
+
+h4 {
+  color: $blue;
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+}
+
+p {
+  font-size: 1.5rem;
+  margin: 0;
+}

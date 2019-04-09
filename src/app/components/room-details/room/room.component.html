@@ -17,8 +17,9 @@
     class="talk">
   </app-talk>
 
-  <div class="timeline" *ngIf="talkToShow && nextTalks">
-    <img src="../../../../assets/calendar.svg" alt="">
-    <h1>No more sessions :'(</h1>
-  </div>
+  <app-timeline class="timeline"
+                *ngIf="talkToShow && nextTalks"
+                [talks]="nextTalks">
+  </app-timeline>
+
 </div>
