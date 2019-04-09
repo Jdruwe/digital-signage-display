@@ -17,7 +17,7 @@ export class SettingsService {
   changeSettings( minutesBeforeNextSession: number, isRoomOccupancyOn: boolean) {
     const settings: Settings = {
       minutesBeforeNextSession: minutesBeforeNextSession,
-      isRoomOccupancyOn: isRoomOccupancyOn,
+      roomOccupancyOn: isRoomOccupancyOn,
     };
     console.log(settings);
     return this.http.put<Settings>(environment.apiUrl + environment.settingsEndPoint, settings);

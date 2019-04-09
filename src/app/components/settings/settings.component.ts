@@ -17,9 +17,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
     this.settingsService.getSettings()
       .subscribe(data => {
-        // TODO beautify
-        this.settings.minutesBeforeNextSession = data[0].value;
-        this.settings.isRoomOccupancyOn = data[1].value;
+        this.settings = data;
       });
   }
 

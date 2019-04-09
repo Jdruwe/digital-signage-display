@@ -94,4 +94,8 @@ export class AuthService {
       adminName: adminName
     };
   }
+
+  getToken() {
+    return this.token;
+  }
 }

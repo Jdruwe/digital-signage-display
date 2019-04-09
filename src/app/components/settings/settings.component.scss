@@ -65,8 +65,12 @@
   box-shadow: 1px 1px 1px 0 black;
 }
 
-input{
+input[type=number]{
+  border-radius: 5px;
   text-align: right;
+  min-width: 125px;
+  height: 25px;
+  font-size: large;
 }
 
 input:checked + .slider {
