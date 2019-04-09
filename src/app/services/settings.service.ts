@@ -22,5 +22,4 @@ export class SettingsService {
     console.log(settings);
     return this.http.put<Settings>(environment.apiUrl + environment.settingsEndPoint, settings);
   }
-
 }
