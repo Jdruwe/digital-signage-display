@@ -59,7 +59,6 @@ export class AuthService {
     this.authUser = null;
 
     this.clearAuthUser();
-
     this.router.navigate(['']);
   }
 
@@ -74,9 +73,14 @@ export class AuthService {
 
   autoAuthUser() {
     const storage = this.getAuthUser();
-    this.token = storage.token;
-    this.adminName = storage.adminName;
-    this.isAuthenticated = true;
+    if (storage.token != null) {
+      this.token = storage.token;
+      this.adminName = storage.adminName;
+      this.isAuthenticated = true;
+    } else {
+      this.isAuthenticated = false;
+    }
+
   }
 
   private getAuthUser() {
@@ -87,5 +91,9 @@ export class AuthService {
       token: token,
       adminName: adminName
     };
+  }
+
+  getToken() {
+    return this.token;
   }
 }
