@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SessionComponent } from './session.component';
+import {SessionComponent} from './session.component';
+import {TrimTimePipe} from '../../../pipes/trim-time.pipe';
 
 describe('SessionComponent', () => {
   let component: SessionComponent;
@@ -8,9 +9,12 @@ describe('SessionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SessionComponent ]
+      declarations: [
+        SessionComponent,
+        TrimTimePipe
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,9 +1,9 @@
-<div class="empty-state" *ngIf="talks.length <= 0">
+<div class="empty-state" *ngIf="talks?.length <= 0">
   <img src="../../../../assets/calendar.svg" alt="">
   <h1>No more sessions!</h1>
 </div>
 
-<div class="container" *ngIf="talks.length > 0">
+<div class="container" *ngIf="talks?.length > 0">
   <h1>Up next</h1>
   <app-session *ngFor="let talk of talks.slice(0, 3)" [talk]="talk"></app-session>
 </div>

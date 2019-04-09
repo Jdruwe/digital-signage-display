@@ -10,7 +10,9 @@ export class SessionComponent {
 
   @Input() talk: Talk;
 
-  getSpeakerNames(): string {
-    return this.talk.speakers.map(s => `${s.firstName} ${s.lastName}`).join(', ');
+  getSpeakerNames() {
+    if (this.talk) {
+      return this.talk.speakers.map(s => `${s.firstName} ${s.lastName}`).join(', ');
+    }
   }
 }
