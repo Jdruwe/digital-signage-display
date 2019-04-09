@@ -40,11 +40,15 @@ export class RoomScheduleService {
     }
   }
 
+  autoInitRoom(): string {
+    return this.getFromLocalStorage().room.id;
+  }
+
   private saveToLocalStorage(schedule: RoomSchedule) {
     localStorage.setItem('schedule', JSON.stringify(schedule));
   }
 
-  private getFromLocalStorage() {
+  private getFromLocalStorage(): RoomSchedule {
     return JSON.parse(localStorage.getItem('schedule'));
   }
 
