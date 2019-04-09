@@ -1,0 +1,38 @@
+@import "~src/styles";
+
+:host {
+  margin: 2rem 4rem 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.speaker {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2rem;
+  margin: 0 0 0.2rem 0;
+}
+
+small {
+  color: darken($white, 20%);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  padding-right: 0.2rem;
+
+  &:before {
+    content: '';
+    background-image: url('~src/assets/Twitter_Logo_Blue.svg');
+    width: 2rem;
+    height: 2rem;
+  }
+}

@@ -9,7 +9,7 @@
 }
 
 .card {
-  border-radius: 0.5rem;
+  border-radius: $border-radius;
   margin: 2rem;
   background-color: $foreground;
   min-width: 18rem;

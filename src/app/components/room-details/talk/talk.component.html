@@ -1,0 +1,23 @@
+<div class="container" *ngIf="talk">
+
+  <div class="header">
+    <h1>{{talk.title}}</h1>
+    <h3>{{talk.type}}</h3>
+  </div>
+
+  <div class="time">
+    <h2>{{talk.fromTime | trimTime}} - {{talk.toTime | trimTime}}</h2>
+    <span class="box" *ngIf="isNow()">NOW</span>
+  </div>
+
+  <div class="summary" id="summary-text">
+    <span>{{talk.summary}}</span>
+  </div>
+
+  <div class="speakers" #speakers [class.marquee]="enableMarquee">
+    <app-speaker *ngFor="let speaker of talk.speakers"
+                 [speaker]="speaker">
+    </app-speaker>
+  </div>
+
+</div>

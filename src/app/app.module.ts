@@ -14,6 +14,9 @@ import {LoginComponent} from './components/auth/login/login.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {TokenInterceptor} from './Interceptor/TokenInterceptor';
+import {TalkComponent} from './components/room-details/talk/talk.component';
+import {SpeakerComponent} from './components/room-details/speaker/speaker.component';
+import {TrimTimePipe} from './pipes/trim-time.pipe';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,17 @@ import {TokenInterceptor} from './Interceptor/TokenInterceptor';
     NavbarComponent,
     RegisterComponent,
     LoginComponent,
+    TalkComponent,
+    SpeakerComponent,
+    TrimTimePipe,
     SettingsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [AuthGuardService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],

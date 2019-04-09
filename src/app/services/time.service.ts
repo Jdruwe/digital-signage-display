@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import * as moment from 'moment';
 import {Moment} from 'moment';
 import {interval, Observable} from 'rxjs';
-import {map, share} from 'rxjs/operators';
+import {map, share, startWith} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +14,16 @@ export class TimeService {
   private clock: Observable<Date>;
 
   constructor() {
-    this.time = moment();
+    // todo change
+    this.time = moment('2018-11-16 10:50', 'YYYY-MM-DD HH:mm');
     this.initClock();
   }
 
   initClock() {
-    this.clock = interval(1000)
+    this.clock = interval(1000 * 30)
       .pipe(
-        map(tick => moment().toDate(), share())
+        startWith(0),
+        map(tick => this.time.add('30', 's').toDate(), share())
       );
   }
 

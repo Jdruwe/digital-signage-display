@@ -1,7 +1,9 @@
 import {Talk} from './talk';
+import {Room} from './room';
 
 export class RoomSchedule {
-  id: string;
-  name: string;
+  date: Date;
+  day: string;
+  room: Room;
   talks: Talk[];
 }
