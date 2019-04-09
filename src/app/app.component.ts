@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from './services/auth.service';
+import {RoomScheduleService} from './services/room-schedule.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +10,16 @@ import {AuthService} from './services/auth.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private roomScheduleService: RoomScheduleService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
     this.authService.autoAuthUser();
+    const roomId = this.roomScheduleService.autoInitRoom();
+    if (roomId) {
+      this.router.navigate(['room', roomId]);
+    }
   }
 }
