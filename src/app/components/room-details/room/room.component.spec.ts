@@ -59,6 +59,7 @@ describe('RoomComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('img')).toBeDefined();
   });
+
   it(`should render h1 title with 'It's a wrap!'`, function () {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;

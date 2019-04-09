@@ -10,7 +10,4 @@ export class SpeakerComponent {
 
   @Input() speaker: Speaker;
 
-  constructor() {
-  }
-
 }
