@@ -8,6 +8,8 @@ import {TalkComponent} from '../talk/talk.component';
 import {TrimTimePipe} from '../../../pipes/trim-time.pipe';
 import {SpeakerComponent} from '../speaker/speaker.component';
 import {TimeService} from '../../../services/time.service';
+import {TimelineComponent} from '../timeline/timeline.component';
+import {SessionComponent} from '../session/session.component';
 
 describe('RoomComponent', () => {
   let component: RoomComponent;
@@ -25,7 +27,9 @@ describe('RoomComponent', () => {
         RoomHeaderComponent,
         TalkComponent,
         TrimTimePipe,
-        SpeakerComponent
+        SpeakerComponent,
+        TimelineComponent,
+        SessionComponent
       ]
     })
       .compileComponents();

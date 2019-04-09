@@ -5,7 +5,7 @@ import {RoomListComponent} from './components/room-list/room-list.component';
 import {RegisterComponent} from './components/auth/register/register.component';
 import {LoginComponent} from './components/auth/login/login.component';
 import {SettingsComponent} from './components/settings/settings.component';
-import {AuthGuardService as AuthGuard} from './services/auth-guard.service';
+import {AuthGuard as AuthGuard} from './guards/auth-guard';
 
 const routes: Routes = [
   {path: '', component: RoomListComponent},
