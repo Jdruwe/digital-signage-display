@@ -25,7 +25,6 @@ export class TalkComponent implements OnInit {
   ngOnInit(): void {
     $(document).ready(function () {
       $('#summary-text').textfill({
-        debug: true,
         maxFontPixels: 32
       });
     });
@@ -37,6 +36,10 @@ export class TalkComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  checkOverflow(element) {
+    return element.offsetHeight < element.scrollHeight || element.offsetWidth < element.scrollWidth;
   }
 
 }

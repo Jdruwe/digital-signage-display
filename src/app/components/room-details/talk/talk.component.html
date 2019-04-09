@@ -1,7 +1,7 @@
 <div class="container" *ngIf="talk">
 
   <div class="header">
-    <h1><span>{{talk.title}}</span></h1>
+    <h1>{{talk.title}}</h1>
     <h3>{{talk.type}}</h3>
   </div>
 
@@ -14,8 +14,10 @@
     <span>{{talk.summary}}</span>
   </div>
 
-  <div class="speakers">
-    <app-speaker></app-speaker>
+  <div class="speakers" #speakers [ngClass]="checkOverflow(speakers) ? 'marquee' : ''">
+    <app-speaker *ngFor="let speaker of talk.speakers"
+                 [speaker]="speaker">
+    </app-speaker>
   </div>
 
 </div>

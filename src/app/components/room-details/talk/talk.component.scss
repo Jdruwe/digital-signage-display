@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
 
   & > * {
     padding: 0 1.5rem;
@@ -68,5 +69,23 @@ p {
 }
 
 .speakers {
+  display: flex;
+  flex-direction: row;
 
+  app-speaker:last-child {
+    margin-right: 0;
+  }
+}
+
+.marquee {
+  animation: marquee 16s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(-110%, 0);
+  }
 }
