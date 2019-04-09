@@ -17,7 +17,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.checkAuth();
-    console.log(this.authService.isAuth());
   }
 
   private checkAuth() {

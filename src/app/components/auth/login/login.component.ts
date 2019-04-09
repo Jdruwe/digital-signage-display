@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
         this.router.navigate(['main']);
       }, error => {
-        console.log(error.erro);
         this.isLoading = false;
         switch (error.status) {
           case 401:

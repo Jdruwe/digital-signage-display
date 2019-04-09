@@ -59,9 +59,7 @@ export class AuthService {
     this.authUser = null;
 
     this.clearAuthUser();
-    console.log('logoutlogoutlogout');
     this.router.navigate(['']);
-    console.log('qdfqdfqdfs');
   }
 
   private clearAuthUser() {

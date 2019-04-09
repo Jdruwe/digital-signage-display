@@ -6,6 +6,7 @@ import {RoomScheduleService} from '../../../services/room-schedule.service';
 import {RoomSchedule} from '../../../models/room-schedule';
 import {Talk} from '../../../models/talk';
 import * as moment from 'moment';
+import {SettingsService} from '../../../services/settings.service';
 
 @Component({
   selector: 'app-room',
@@ -18,13 +19,15 @@ export class RoomComponent implements OnInit, OnDestroy {
   talkToShow: Talk;
   nextTalks: Talk[];
   schedule: RoomSchedule;
+  timeBeforeSwitch: number;
 
   private clockSub: Subscription;
 
   constructor(private timeService: TimeService,
               private scheduleService: RoomScheduleService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private settingsService: SettingsService) {
   }
 
   ngOnInit() {
@@ -34,6 +37,12 @@ export class RoomComponent implements OnInit, OnDestroy {
         if (this.schedule) {
           this.setTalks();
         }
+      });
+
+    this.settingsService.currentTimeBefore.subscribe(time => this.timeBeforeSwitch = time);
+    this.settingsService.getSettings()
+      .subscribe(data => {
+        this.settingsService.changeTimeBefore(data.minutesBeforeNextSession);
       });
 
     this.route.paramMap
@@ -60,15 +69,12 @@ export class RoomComponent implements OnInit, OnDestroy {
     const talks = this.sortAndFilterTalks();
     this.talkToShow = talks.shift();
     this.nextTalks = talks;
-    console.log(this.talkToShow);
-    console.log(this.nextTalks);
   }
 
   private sortAndFilterTalks(): Talk[] {
-    console.log(this.schedule.talks);
     let talks = this.sortByDate(this.schedule.talks);
     // todo change 5 to minutes in settings
-    talks = talks.filter(t => moment(t.endTime).subtract('5', 'm').toDate() > new Date(this.currentTime));
+    talks = talks.filter(t => moment(t.endTime).subtract(this.timeBeforeSwitch, 'm').toDate() > new Date(this.currentTime));
     return talks;
   }
 
