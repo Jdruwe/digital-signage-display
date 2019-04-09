@@ -4,5 +4,6 @@ export const environment = {
   apiUrl: 'http://localhost:8080/api',
   roomEndPoint: '/room',
   scheduleEndPoint: '/schedule',
-  authEndPoint: '/authentication'
+  authEndPoint: '/authentication',
+  settingsEndPoint: '/settings'
 };

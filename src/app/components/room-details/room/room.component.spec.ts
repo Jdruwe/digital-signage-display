@@ -43,7 +43,7 @@ describe('RoomComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set the time', function () {
+  it('should set the timeBeforeSwitch', function () {
     component.ngOnInit();
     expect(timeService.getClock).toHaveBeenCalled();
   });
