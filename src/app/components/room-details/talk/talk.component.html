@@ -14,8 +14,9 @@
     <span>{{talk.summary}}</span>
   </div>
 
-  <div class="speakers">
-    <app-speaker *ngFor="let speaker of talk.speakers" [speaker]="speaker">
+  <div class="speakers" #speakers [ngClass]="checkOverflow(speakers) ? 'marquee' : ''">
+    <app-speaker *ngFor="let speaker of talk.speakers"
+                 [speaker]="speaker">
     </app-speaker>
   </div>
 

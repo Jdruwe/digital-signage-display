@@ -39,4 +39,8 @@ export class TalkComponent implements OnInit {
     }
   }
 
+  checkOverflow(element) {
+    return element.offsetHeight < element.scrollHeight || element.offsetWidth < element.scrollWidth;
+  }
+
 }
