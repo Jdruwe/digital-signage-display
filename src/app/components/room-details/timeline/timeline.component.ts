@@ -7,7 +7,7 @@ import {Talk} from '../../../models/talk';
   styleUrls: ['./timeline.component.scss']
 })
 export class TimelineComponent {
-  // todo fix splice for 3 in html, maybe wait for timeline to be implemented tho?
+
   @Input() talks: Talk[];
 
 }
