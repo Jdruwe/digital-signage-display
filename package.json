@@ -10,7 +10,9 @@
     "e2e": "ng e2e",
     "build-prod": "ng build --prod",
     "test-ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessNoSandbox",
-    "e2e-ci": "ng e2e --protractor-config=e2e/protractor-ci.conf.js"
+    "test-ci-coverage": "ng test --no-watch --no-progress --browsers=ChromeHeadlessNoSandbox --code-coverage",
+    "e2e-ci": "ng e2e --protractor-config=e2e/protractor-ci.conf.js",
+    "codacy": "cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +39,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "codacy-coverage": "^3.4.0",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
