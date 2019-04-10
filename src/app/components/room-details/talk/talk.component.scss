@@ -78,7 +78,8 @@ p {
 }
 
 .marquee {
-  animation: marquee 16s linear infinite;
+  transition: all 0.5s linear;
+  animation: marquee 18s linear infinite;
 }
 
 @keyframes marquee {
@@ -86,6 +87,6 @@ p {
     transform: translate(100%, 0);
   }
   100% {
-    transform: translate(-110%, 0);
+    transform: translate(-180%, 0);
   }
 }

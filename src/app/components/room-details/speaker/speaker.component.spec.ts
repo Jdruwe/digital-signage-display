@@ -44,4 +44,10 @@ describe('SpeakerComponent', () => {
     expect(compiled.querySelector('.speaker small').textContent).toContain(`@JohnDoe`);
   });
 
+  it(`should render image tag with user.svg`, function () {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.speaker .avatar').src).toContain(`user.svg`);
+  });
+
 });
