@@ -11,7 +11,7 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {RegisterComponent} from './components/auth/register/register.component';
 import {FormsModule} from '@angular/forms';
 import {LoginComponent} from './components/auth/login/login.component';
-import {TokenInterceptor} from './Interceptor/TokenInterceptor';
+import {TokenInterceptor} from './interceptors/token-interceptor';
 import {TalkComponent} from './components/room-details/talk/talk.component';
 import {SpeakerComponent} from './components/room-details/speaker/speaker.component';
 import {TrimTimePipe} from './pipes/trim-time.pipe';

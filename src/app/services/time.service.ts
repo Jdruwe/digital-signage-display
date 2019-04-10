@@ -15,7 +15,7 @@ export class TimeService {
 
   constructor() {
     // todo change
-    this.time = moment('2018-11-12 10:10', 'YYYY-MM-DD HH:mm');
+    this.time = moment('2018-11-15 10:20', 'YYYY-MM-DD HH:mm');
     this.initClock();
   }
 
