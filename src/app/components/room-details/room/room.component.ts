@@ -7,6 +7,7 @@ import {RoomSchedule} from '../../../models/room-schedule';
 import {Talk} from '../../../models/talk';
 import * as moment from 'moment';
 import {SettingsService} from '../../../services/settings.service';
+import {ClientService} from '../../../services/client.service';
 
 @Component({
   selector: 'app-room',
@@ -20,6 +21,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   nextTalks: Talk[];
   schedule: RoomSchedule;
   timeBeforeSwitch: number;
+  id: string;
 
   private clockSub: Subscription;
 
@@ -27,7 +29,8 @@ export class RoomComponent implements OnInit, OnDestroy {
               private scheduleService: RoomScheduleService,
               private route: ActivatedRoute,
               private router: Router,
-              private settingsService: SettingsService) {
+              private settingsService: SettingsService,
+              private clientService: ClientService) {
   }
 
   ngOnInit() {
@@ -48,9 +51,9 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.route.paramMap
       .subscribe((paramMap: ParamMap) => {
         if (paramMap.has('id')) {
-          const id = paramMap.get('id');
+          this.id = paramMap.get('id');
           const date = this.currentTime;
-          this.scheduleService.getSchedule(date, id)
+          this.scheduleService.getSchedule(date, this.id)
             .subscribe(response => {
               this.schedule = response;
               if (this.schedule) {
@@ -81,6 +84,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key.toUpperCase() === 'H') {
+      this.clientService.unRegisterRoom(this.id);
       this.router.navigate(['']);
     }
   }

@@ -5,5 +5,6 @@ export const environment = {
   roomEndPoint: '/room',
   scheduleEndPoint: '/schedule',
   authEndPoint: '/authentication',
-  settingsEndPoint: '/settings'
+  settingsEndPoint: '/settings',
+  clientEndPoint: '/client'
 };

@@ -43,7 +43,7 @@ export class RoomScheduleService {
   autoInitRoom() {
     const schedule = this.getFromLocalStorage();
     if (schedule) {
-      return this.getFromLocalStorage().room.id;
+      return this.getFromLocalStorage().room;
     }
   }
 
