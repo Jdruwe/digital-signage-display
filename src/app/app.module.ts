@@ -18,6 +18,7 @@ import {TrimTimePipe} from './pipes/trim-time.pipe';
 import {TimelineComponent} from './components/room-details/timeline/timeline.component';
 import {SessionComponent} from './components/room-details/session/session.component';
 import {SettingsComponent} from './components/settings/settings.component';
+import { TimeTravelComponent } from './components/time-travel/time-travel.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {SettingsComponent} from './components/settings/settings.component';
     TrimTimePipe,
     TimelineComponent,
     SessionComponent,
-    SettingsComponent
+    SettingsComponent,
+    TimeTravelComponent
   ],
   imports: [
     BrowserModule,

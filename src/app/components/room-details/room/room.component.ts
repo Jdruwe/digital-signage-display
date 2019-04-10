@@ -20,6 +20,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   nextTalks: Talk[];
   schedule: RoomSchedule;
   timeBeforeSwitch: number;
+  showTimeTravel = false;
 
   private clockSub: Subscription;
 
@@ -83,6 +84,13 @@ export class RoomComponent implements OnInit, OnDestroy {
     if (event.key.toUpperCase() === 'H') {
       this.router.navigate(['']);
     }
+    if (event.key.toUpperCase() === 'T') {
+      this.toggleTimeTravel();
+    }
+  }
+
+  private toggleTimeTravel() {
+    this.showTimeTravel = !this.showTimeTravel;
   }
 
   private sortByDate(talks: Talk[]): Talk[] {

@@ -47,7 +47,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: darken(white, 10%);
+  background-color: darken($white, 10%);
   -webkit-transition: .4s;
   transition: .3s;
 }
@@ -59,13 +59,13 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: $white;
   -webkit-transition: .3s;
   transition: .3s;
   box-shadow: 1px 1px 1px 0 black;
 }
 
-input[type=number]{
+input[type=number] {
   border-radius: 5px;
   text-align: right;
   min-width: 125px;
@@ -78,7 +78,7 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px ;
+  box-shadow: 0 0 1px;
 }
 
 input:checked + .slider:before {
@@ -104,9 +104,8 @@ button {
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  color: white;
+  color: $white;
   text-align: center;
   transition: all 0.3s;
   background-color: transparent;
@@ -114,7 +113,7 @@ button {
 }
 
 button:hover {
-  color: white;
+  color: $white;
   background-color: $foreground;
   cursor: pointer;
 }

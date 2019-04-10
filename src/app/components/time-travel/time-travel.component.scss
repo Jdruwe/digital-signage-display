@@ -1,0 +1,46 @@
+@import "~src/styles";
+
+.time-travel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.prev-buttons, .next-buttons {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.2em solid $foreground;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    color: $white;
+    text-align: center;
+    transition: all 0.3s;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:hover {
+      color: $white;
+      background-color: $foreground;
+      cursor: pointer;
+    }
+  }
+}
+
+.prev-buttons > button {
+  margin: 0.2rem 1.5rem 0.2rem 0;
+}
+
+.next-buttons > button {
+  margin: 0.2rem 0 0.2rem 1.5rem;
+}
+
+h1 {
+  white-space: nowrap;
+  font-size: 2rem;
+}
