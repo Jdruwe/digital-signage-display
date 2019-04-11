@@ -1,4 +1,12 @@
 <div class="speaker">
-  <h3>{{speaker?.firstName}} {{speaker?.lastName}}</h3>
-  <small *ngIf="speaker?.twitter">{{speaker?.twitter}}</small>
+  <img class="avatar"
+       #image
+       [src]="speaker.avatarUrl ? speaker.avatarUrl : '../../../../assets/user.svg'"
+       (error)="image.src='../../../../assets/user.svg'"
+       alt="">
+
+  <div class="speaker-info">
+    <h3>{{speaker?.firstName}} {{speaker?.lastName}}</h3>
+    <small *ngIf="speaker?.twitter">{{speaker?.twitter}}</small>
+  </div>
 </div>

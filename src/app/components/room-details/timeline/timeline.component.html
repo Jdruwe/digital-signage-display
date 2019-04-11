@@ -5,5 +5,11 @@
 
 <div class="container" *ngIf="talks?.length > 0">
   <h1>Up next</h1>
-  <app-session *ngFor="let talk of talks.slice(0, 2)" [talk]="talk"></app-session>
+  <ul [class.no-dashed-line]="talks.length === 2 || talks.length === 1">
+    <li *ngFor="let talk of talks.slice(0, 2)">
+      <span></span>
+      <app-session [talk]="talk">
+      </app-session>
+    </li>
+  </ul>
 </div>
