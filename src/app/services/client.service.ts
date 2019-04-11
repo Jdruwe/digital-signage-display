@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Client} from '../models/Client';
+import {Client} from '../models/client';
 import {environment} from '../../environments/environment.prod';
 import {Room} from '../models/room';
 
@@ -24,4 +24,10 @@ export class ClientService {
       }
     }).subscribe();
   }
+
+  getAllClients() {
+    return this.http.get(environment.apiUrl + environment.clientEndPoint);
+  }
+
+
 }

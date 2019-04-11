@@ -61,4 +61,8 @@ export class RoomListComponent implements OnInit, OnDestroy {
   getIndexOf(room: Room) {
     return this.rooms.indexOf(room);
   }
+
+  goto() {
+    this.router.navigate(['clients']);
+  }
 }

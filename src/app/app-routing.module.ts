@@ -6,6 +6,7 @@ import {RegisterComponent} from './components/auth/register/register.component';
 import {LoginComponent} from './components/auth/login/login.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import {AuthGuard as AuthGuard} from './guards/auth-guard';
+import {ClientsComponent} from './components/clients/clients.component';
 
 const routes: Routes = [
   {path: '', component: RoomListComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
+  {path: 'clients', component: ClientsComponent},
   {path: '**', component: RoomListComponent}
 ];
 

@@ -8,6 +8,7 @@ import {Talk} from '../../../models/talk';
 import * as moment from 'moment';
 import {SettingsService} from '../../../services/settings.service';
 import {ClientService} from '../../../services/client.service';
+import {$} from 'protractor';
 
 @Component({
   selector: 'app-room',
@@ -65,6 +66,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.clientService.unRegisterRoom(this.id);
     this.clockSub.unsubscribe();
   }
 

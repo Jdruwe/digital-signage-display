@@ -1,0 +1,98 @@
+@import "~src/styles";
+
+body{
+  background-color: #d9d4d1 !important;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.card {
+  margin: 50px 25px 0 25px;
+  width: 400px;
+  height: 350px;
+  //background-color: $foreground;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: $border-radius;
+  background: $blue 100% linear-gradient($foreground 0%, $foreground 56%, $blue 50%, $blue 100%);
+
+  h1 {
+    margin-left: 1.50rem;
+  }
+
+  h2 {
+    margin: 0 0 0 1.50rem;
+  }
+
+  h3 {
+    margin: 0.75rem 0 0 1.50rem;
+  }
+}
+
+.lastConnection {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.monitor {
+  padding: 0;
+  max-width: 450px;
+  border-radius: 5px;
+}
+
+.spacer {
+  flex: auto;
+}
+
+svg {
+  max-width: 470px;
+  margin-left: 20px;
+  margin-right: 20px;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+svg .ekg {
+  fill: none;
+  stroke: #00d704;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: miter;
+  opacity: 0;
+  stroke-dashoffset: 1000;
+  stroke-dasharray: 1000;
+  animation: ekg 2s linear forwards infinite;
+}
+
+.red {
+  stroke: red !important;
+}
+
+@keyframes ekg {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: 2000;
+  }
+  99% {
+    opacity: 0;
+    stroke-dashoffset: 3000;
+  }
+  100% {
+    stroke-dashoffset: 1000;
+  }
+}
+
