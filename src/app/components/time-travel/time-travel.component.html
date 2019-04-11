@@ -1,13 +1,48 @@
 <div class="time-travel">
-  <div class="prev-buttons">
-    <button>Prev day</button>
-    <button>Prev hour</button>
-    <button>Prev 15 min</button>
+  <div class="reset">
+    <button (click)="handleReset()">Reset</button>
   </div>
-  <h1>{{time | date: 'E d MMM h:mm'}}</h1>
+  <div class="prev-buttons">
+    <button (click)="handleDayChange(-1)">Prev day</button>
+    <button (click)="handleHourChange(-1)">Prev hour</button>
+    <button (click)="handleMinuteChange(-15)">Prev 15 min</button>
+  </div>
+  <!--  <h1>{{time | date: 'E d MMM y h:mm'}}</h1>-->
+  <form class="date-inputs" [formGroup]="timeForm" (change)="handleFormChange(timeForm)">
+    <input type="text"
+           class="input-sm"
+           id="day"
+           name="day"
+           formControlName="day">
+    <input type="text"
+           id="month"
+           name="month"
+           formControlName="month">
+    <input type="text"
+           id="year"
+           name="year"
+           formControlName="year"
+           [min]="0">
+    <input
+      type="text"
+      class="input-sm"
+      id="hour"
+      name="hour"
+      formControlName="hour"
+      [min]="0"
+      [max]="24">
+    <span>:</span>
+    <input type="text"
+           class="input-sm"
+           id="minute"
+           name="minute"
+           formControlName="minute"
+           [min]="0"
+           [max]="60">
+  </form>
   <div class="next-buttons">
-    <button>Next day</button>
-    <button>Next hour</button>
-    <button>Next 15 min</button>
+    <button (click)="handleDayChange(1)">Next day</button>
+    <button (click)="handleHourChange(1)">Next hour</button>
+    <button (click)="handleMinuteChange(15)">Next 15 min</button>
   </div>
 </div>

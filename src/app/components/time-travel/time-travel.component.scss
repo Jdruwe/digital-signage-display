@@ -6,30 +6,37 @@
   align-items: center;
 }
 
+button {
+  white-space: nowrap;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.2em solid $foreground;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  color: $white;
+  text-align: center;
+  transition: all 0.3s;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    color: $white;
+    background-color: $foreground;
+    cursor: pointer;
+  }
+}
+
+.reset {
+  display: flex;
+  align-self: stretch;
+  margin: 0.2rem;
+}
+
 .prev-buttons, .next-buttons {
   display: flex;
   flex-direction: column;
-
-  button {
-    display: inline-block;
-    padding: 0.35em 1.2em;
-    border: 0.2em solid $foreground;
-    border-radius: 0.12em;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-weight: 300;
-    color: $white;
-    text-align: center;
-    transition: all 0.3s;
-    background-color: transparent;
-    cursor: pointer;
-
-    &:hover {
-      color: $white;
-      background-color: $foreground;
-      cursor: pointer;
-    }
-  }
 }
 
 .prev-buttons > button {
@@ -43,4 +50,38 @@
 h1 {
   white-space: nowrap;
   font-size: 2rem;
+}
+
+.date-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .input-sm {
+    width: 4rem;
+  }
+
+  input {
+    width: 6rem;
+    color: $white;
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    text-align: center;
+    transition: 0.3s ease-in all;
+    outline: 0;
+    border-bottom: 1px solid transparent;
+
+    &:focus {
+      border-bottom: 1px solid $white;
+      transition: 0.3s ease-out all;
+    }
+  }
+
+  span {
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    color: darken($white, 20%);
+  }
 }

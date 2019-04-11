@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {Talk} from '../../../models/talk';
 import * as moment from 'moment';
 
@@ -17,7 +17,7 @@ declare global {
   templateUrl: './talk.component.html',
   styleUrls: ['./talk.component.scss']
 })
-export class TalkComponent implements OnInit, AfterViewInit {
+export class TalkComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() talk: Talk;
   @Input() time: Date;
@@ -34,6 +34,14 @@ export class TalkComponent implements OnInit, AfterViewInit {
         maxFontPixels: 32
       });
     });
+  }
+
+  // Update marquee effect when using the time travel feature
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.time && this.speakers) {
+      this.cd.detectChanges();
+      this.enableMarquee = this.checkOverflow(this.speakers.nativeElement);
+    }
   }
 
   ngAfterViewInit(): void {

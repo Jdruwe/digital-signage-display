@@ -9,7 +9,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RoomListComponent} from './components/room-list/room-list.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {RegisterComponent} from './components/auth/register/register.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './components/auth/login/login.component';
 import {TokenInterceptor} from './interceptors/token-interceptor';
 import {TalkComponent} from './components/room-details/talk/talk.component';
@@ -18,7 +18,7 @@ import {TrimTimePipe} from './pipes/trim-time.pipe';
 import {TimelineComponent} from './components/room-details/timeline/timeline.component';
 import {SessionComponent} from './components/room-details/session/session.component';
 import {SettingsComponent} from './components/settings/settings.component';
-import { TimeTravelComponent } from './components/time-travel/time-travel.component';
+import {TimeTravelComponent} from './components/time-travel/time-travel.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { TimeTravelComponent } from './components/time-travel/time-travel.compon
     HttpClientModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
