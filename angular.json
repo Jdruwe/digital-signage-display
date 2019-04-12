@@ -26,8 +26,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./src/assets/jquery.textfill.min.js"
             ]
           },
           "configurations": {

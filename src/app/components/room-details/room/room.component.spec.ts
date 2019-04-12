@@ -10,6 +10,9 @@ import {SpeakerComponent} from '../speaker/speaker.component';
 import {TimeService} from '../../../services/time.service';
 import {TimelineComponent} from '../timeline/timeline.component';
 import {SessionComponent} from '../session/session.component';
+import {TimeTravelComponent} from '../../time-travel/time-travel.component';
+import {EllipsisModule} from 'ngx-ellipsis';
+import {ReactiveFormsModule} from '@angular/forms';
 
 describe('RoomComponent', () => {
   let component: RoomComponent;
@@ -20,7 +23,9 @@ describe('RoomComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule
+        RouterTestingModule,
+        EllipsisModule,
+        ReactiveFormsModule
       ],
       declarations: [
         RoomComponent,
@@ -29,7 +34,8 @@ describe('RoomComponent', () => {
         TrimTimePipe,
         SpeakerComponent,
         TimelineComponent,
-        SessionComponent
+        SessionComponent,
+        TimeTravelComponent
       ]
     })
       .compileComponents();

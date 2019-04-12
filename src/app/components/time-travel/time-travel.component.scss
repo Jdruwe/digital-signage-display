@@ -1,0 +1,65 @@
+@import "~src/styles";
+
+.time-travel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.reset {
+  display: flex;
+  align-self: stretch;
+  margin: 0.2rem;
+}
+
+.prev-buttons, .next-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.prev-buttons > button {
+  margin: 0.2rem 1.5rem 0.2rem 0;
+}
+
+.next-buttons > button {
+  margin: 0.2rem 0 0.2rem 1.5rem;
+}
+
+h1 {
+  white-space: nowrap;
+  font-size: 2rem;
+}
+
+.date-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .input-sm {
+    width: 4rem;
+  }
+
+  input {
+    width: 6rem;
+    color: $white;
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    text-align: center;
+    transition: 0.3s ease-in all;
+    outline: 0;
+    border-bottom: 1px solid transparent;
+
+    &:focus {
+      border-bottom: 1px solid $white;
+      transition: 0.3s ease-out all;
+    }
+  }
+
+  span {
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    color: darken($white, 20%);
+  }
+}
