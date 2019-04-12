@@ -46,4 +46,11 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['settings']);
   }
 
+  heartbeat() {
+    this.router.navigate(['clients']);
+  }
+
+  home() {
+    this.router.navigate(['']);
+  }
 }

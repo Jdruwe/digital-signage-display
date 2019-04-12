@@ -8,7 +8,10 @@ export const environment = {
   apiUrl: 'http://localhost:8080/api',
   roomEndPoint: '/room',
   scheduleEndPoint: '/schedule',
-  settingsEndPoint: '/settings'
+  authEndPoint: '/authentication',
+  settingsEndPoint: '/settings',
+  clientEndPoint: '/client',
+  heartbeat: 15
 };
 
 /*

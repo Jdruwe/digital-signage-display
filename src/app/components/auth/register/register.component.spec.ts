@@ -1,12 +1,13 @@
 import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 
-import { RegisterComponent } from './register.component';
+import {RegisterComponent} from './register.component';
 import {FormsModule, NgForm} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {DebugElement} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {By} from '@angular/platform-browser';
+import {NavbarComponent} from '../../navbar/navbar.component';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -17,12 +18,15 @@ describe('RegisterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ],
+      declarations: [
+        RegisterComponent,
+        NavbarComponent
+      ],
       imports: [FormsModule,
         RouterTestingModule,
         HttpClientTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
     fixture = TestBed.createComponent(RegisterComponent);
     debugElement = fixture.debugElement;
     authService = debugElement.injector.get(AuthService);

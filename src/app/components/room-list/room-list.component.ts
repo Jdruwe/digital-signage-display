@@ -53,6 +53,7 @@ export class RoomListComponent implements OnInit, OnDestroy {
       this.clientService.registerRoom(room, new Date()).subscribe(() => {
         this.router.navigate(['room', this.rooms[index].id]);
       }, error => {
+        // TODO
         console.log(error.error);
       });
     }
@@ -60,9 +61,5 @@ export class RoomListComponent implements OnInit, OnDestroy {
 
   getIndexOf(room: Room) {
     return this.rooms.indexOf(room);
-  }
-
-  goto() {
-    this.router.navigate(['clients']);
   }
 }

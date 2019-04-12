@@ -3,6 +3,7 @@ import {ClientService} from '../../services/client.service';
 import {Client} from '../../models/client';
 import * as moment from 'moment';
 import {ClientDetails} from '../../models/client-details';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-clients',
@@ -11,7 +12,7 @@ import {ClientDetails} from '../../models/client-details';
 })
 export class ClientsComponent implements OnInit {
   clients: Client[];
-  test: ClientDetails[] = [];
+  clientsWithDetails: ClientDetails[] = [];
 
   constructor(private clientService: ClientService) {
   }
@@ -23,7 +24,10 @@ export class ClientsComponent implements OnInit {
         const days = this.getDaysSince(client);
         const hours = this.getHoursSince(client);
         const minutes = this.getMinutesSince(client);
-        this.test.push(new ClientDetails(client, days, hours - (Math.floor(days) * 24), minutes - (Math.floor(hours) * 60)));
+        const status = environment.heartbeat > minutes;
+        this.clientsWithDetails.push(
+          new ClientDetails(client, days, hours - (Math.floor(days) * 24), minutes - (Math.floor(hours) * 60), status)
+        );
       });
     });
   }

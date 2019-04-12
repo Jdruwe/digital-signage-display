@@ -6,5 +6,6 @@ export const environment = {
   scheduleEndPoint: '/schedule',
   authEndPoint: '/authentication',
   settingsEndPoint: '/settings',
-  clientEndPoint: '/client'
+  clientEndPoint: '/client',
+  heartbeat: 15
 };
