@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, HostListener, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {Talk} from '../../../models/talk';
 import * as moment from 'moment';
 
@@ -36,11 +36,17 @@ export class TalkComponent implements OnInit, AfterViewInit, OnChanges {
     });
   }
 
-  // Update marquee effect when using the time travel feature
+  // Update marquee effect and scale text when using the time travel feature
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.time && this.speakers) {
       this.cd.detectChanges();
       this.enableMarquee = this.checkOverflow(this.speakers.nativeElement);
+    }
+
+    // todo aint working yet
+    if (changes.talk) {
+      this.cd.detectChanges();
+      this.scaleSummaryText();
     }
   }
 
@@ -58,8 +64,25 @@ export class TalkComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  checkOverflow(element) {
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    switch (event.key.toUpperCase()) {
+      case 'Q':
+        this.scaleSummaryText();
+        break;
+    }
+  }
+
+  private checkOverflow(element) {
     return element.offsetHeight < element.scrollHeight || element.offsetWidth < element.scrollWidth;
   }
 
+  private scaleSummaryText() {
+    // $(document).ready(function () {
+    console.log('kek');
+    $('#summary-text').textfill({
+      maxFontPixels: 32
+    });
+    // });
+  }
 }

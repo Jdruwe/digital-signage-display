@@ -25,7 +25,7 @@ export class TimeTravelComponent implements OnInit, OnChanges {
       month: [this.getMonthName(this.time), [Validators.required]],
       year: [this.time.getFullYear(), [Validators.min(1), Validators.required]],
       hour: [this.time.getHours(), [Validators.min(0), Validators.max(24), Validators.required]],
-      minute: [this.time.getMinutes(), [Validators.min(0), Validators.max(60), Validators.required]],
+      minute: [this.getMinutes(this.time), [Validators.min(0), Validators.max(60), Validators.required]],
     });
   }
 
@@ -76,10 +76,14 @@ export class TimeTravelComponent implements OnInit, OnChanges {
     this.timeForm.controls.month.setValue(this.getMonthName(this.time));
     this.timeForm.controls.year.setValue(this.time.getFullYear());
     this.timeForm.controls.hour.setValue(this.time.getHours());
-    this.timeForm.controls.minute.setValue(this.time.getMinutes());
+    this.timeForm.controls.minute.setValue(this.getMinutes(this.time));
   }
 
   private getMonthName(date: Date): string {
     return moment(date).format('MMM');
+  }
+
+  private getMinutes(date: Date): string {
+    return moment(date).format('mm');
   }
 }

@@ -7,7 +7,6 @@
     <button (click)="handleHourChange(-1)">Prev hour</button>
     <button (click)="handleMinuteChange(-15)">Prev 15 min</button>
   </div>
-  <!--  <h1>{{time | date: 'E d MMM y h:mm'}}</h1>-->
   <form class="date-inputs" [formGroup]="timeForm" (change)="handleFormChange(timeForm)">
     <input type="text"
            class="input-sm"

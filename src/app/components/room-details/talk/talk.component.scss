@@ -66,6 +66,10 @@ p {
 
 .summary {
   flex-grow: 100;
+
+  span {
+    display: inline;
+  }
 }
 
 .speakers {
