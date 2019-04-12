@@ -3,6 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {TalkComponent} from './talk.component';
 import {TrimTimePipe} from '../../../pipes/trim-time.pipe';
 import {SpeakerComponent} from '../speaker/speaker.component';
+import {EllipsisModule} from 'ngx-ellipsis';
 
 describe('TalkComponent', () => {
   let component: TalkComponent;
@@ -14,7 +15,8 @@ describe('TalkComponent', () => {
         TalkComponent,
         SpeakerComponent,
         TrimTimePipe
-      ]
+      ],
+      imports: [EllipsisModule]
     })
       .compileComponents();
   }));

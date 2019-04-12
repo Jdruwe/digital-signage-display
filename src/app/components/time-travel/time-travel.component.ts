@@ -31,7 +31,6 @@ export class TimeTravelComponent implements OnInit, OnChanges, OnDestroy {
       hour: [this.time.getHours(), [Validators.min(0), Validators.max(24), Validators.required]],
       minute: [this.getMinutes(this.time), [Validators.min(0), Validators.max(60), Validators.required]],
     });
-
     this.timer = this.startTimer();
   }
 
