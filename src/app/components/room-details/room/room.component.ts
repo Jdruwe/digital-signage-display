@@ -78,7 +78,6 @@ export class RoomComponent implements OnInit, OnDestroy {
 
   private sortAndFilterTalks(): Talk[] {
     let talks = this.sortByDate(this.schedule.talks);
-    // todo change 5 to minutes in settings
     talks = talks.filter(t => moment(t.endTime).subtract(this.timeBeforeSwitch, 'm').toDate() > new Date(this.currentTime));
     return talks;
   }

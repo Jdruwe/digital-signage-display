@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
         this.router.navigate(['']);
       });
     }
+
     // TODO: unregister room when window or tab is closed
   }
 }
