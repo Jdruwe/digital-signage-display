@@ -24,7 +24,7 @@ export class ClientsComponent implements OnInit {
         const days = this.getDaysSince(client);
         const hours = this.getHoursSince(client);
         const minutes = this.getMinutesSince(client);
-        const status = environment.heartbeat > minutes;
+        const status = environment.heartbeat > minutes * 2;
         this.clientsWithDetails.push(
           new ClientDetails(client, days, hours - (Math.floor(days) * 24), minutes - (Math.floor(hours) * 60), status)
         );

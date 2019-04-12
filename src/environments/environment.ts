@@ -11,7 +11,7 @@ export const environment = {
   authEndPoint: '/authentication',
   settingsEndPoint: '/settings',
   clientEndPoint: '/client',
-  heartbeat: 15
+  heartbeat: 5
 };
 
 /*

@@ -48,7 +48,7 @@ export class ClientService {
   private startInterval() {
     this.timer = setInterval(() => {
       this.updateLastConnectedTime();
-    }, 3000);
+    }, environment.heartbeat * 60000);
   }
 
   private stopInterval() {
