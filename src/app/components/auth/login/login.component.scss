@@ -8,37 +8,25 @@
 
 .container {
   background-color: transparentize($foreground, 0.7);
-  border-radius: 20px;
+  border-radius: $border-radius;
   width: 350px;
   height: 400px;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
 }
 
 button {
-  display: inline-block;
-  padding: 0.35em 1.2em;
-  border: 0.2em solid $foreground;
   margin: 20% 0.3em 0.3em 0;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-weight: 300;
-  color: $white;
-  text-align: center;
-  transition: all 0.3s;
-  background-color: transparent;
 }
 
-form input{
+form input {
   margin-top: 10%;
   min-width: 125px;
   border: 1px solid #eee;
   border-left: 3px solid;
-  border-radius: 5px;
+  border-radius: $border-radius;
   transition: border-color .5s ease-out;
   height: 25px;
 }
@@ -55,14 +43,7 @@ form input:invalid {
   border-left-color: salmon;
 }
 
-
-button:hover {
-  color: $white;
-  background-color: $foreground;
-  cursor: pointer;
-}
-
-.error-message{
+.error-message {
   color: red;
   font-size: small;
   display: inline-table;
@@ -98,16 +79,21 @@ button:hover {
 }
 
 @-webkit-keyframes sk-bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0) }
-  40% { -webkit-transform: scale(1.0) }
+  0%, 80%, 100% {
+    -webkit-transform: scale(0)
+  }
+  40% {
+    -webkit-transform: scale(1.0)
+  }
 }
 
 @keyframes sk-bouncedelay {
   0%, 80%, 100% {
     -webkit-transform: scale(0);
     transform: scale(0);
-  } 40% {
-      -webkit-transform: scale(1.0);
-      transform: scale(1.0);
-    }
+  }
+  40% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
 }

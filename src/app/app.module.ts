@@ -19,6 +19,7 @@ import {TimelineComponent} from './components/room-details/timeline/timeline.com
 import {SessionComponent} from './components/room-details/session/session.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import {TimeTravelComponent} from './components/time-travel/time-travel.component';
+import {EllipsisModule} from 'ngx-ellipsis';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {TimeTravelComponent} from './components/time-travel/time-travel.componen
     HttpClientModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EllipsisModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],

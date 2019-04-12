@@ -114,7 +114,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     }
   }
 
-  private toggleTimeTravel() {
+  toggleTimeTravel() {
     this.showTimeTravel = !this.showTimeTravel;
   }
 

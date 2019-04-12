@@ -7,7 +7,8 @@
   <div class="box">
     <h1 *ngIf="!showTimeTravel">{{time | date: 'H:mm'}}</h1>
     <app-time-travel *ngIf="showTimeTravel"
-                     [time]="time">
+                     [time]="time"
+                     (hideTimeTravel)="hideTimeTravel.emit()">
     </app-time-travel>
   </div>
 

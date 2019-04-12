@@ -19,3 +19,25 @@ body, html {
   -ms-user-select: none;
   user-select: none;
 }
+
+button {
+  white-space: nowrap;
+  padding: 0.35em 1.2em;
+  border: 0.2em solid $foreground;
+  border-radius: $border-radius;
+  font-weight: 300;
+  color: $white;
+  text-align: center;
+  transition: all 0.3s;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    color: $white;
+    background-color: $foreground;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}

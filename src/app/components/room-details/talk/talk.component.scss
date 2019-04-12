@@ -39,11 +39,6 @@ h3 {
   text-transform: uppercase;
 }
 
-p {
-  margin-top: 0;
-  font-size: 1rem;
-}
-
 .time {
   margin: 4rem 0 1rem 0;
   display: flex;
@@ -67,9 +62,8 @@ p {
 .summary {
   flex-grow: 100;
 
-  span {
-    display: inline;
-  }
+  margin-top: 0;
+  font-size: 1.5rem;
 }
 
 .speakers {

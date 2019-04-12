@@ -3,6 +3,7 @@
     [roomName]="schedule?.room.name"
     [time]="currentTime"
     [showTimeTravel]="showTimeTravel"
+    (hideTimeTravel)="toggleTimeTravel()"
     class="header"></app-room-header>
 
   <div class="empty-state"

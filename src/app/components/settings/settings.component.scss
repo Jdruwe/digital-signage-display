@@ -8,7 +8,7 @@
 
 .container {
   background-color: transparentize($foreground, 0.7);
-  border-radius: 20px;
+  border-radius: $border-radius;
   width: 450px;
   height: 400px;
   position: absolute;
@@ -16,7 +16,6 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
-
 
 .title {
   font-size: 22px;
@@ -66,7 +65,7 @@
 }
 
 input[type=number] {
-  border-radius: 5px;
+  border-radius: $border-radius;
   text-align: right;
   min-width: 125px;
   height: 25px;
@@ -97,24 +96,5 @@ input:checked + .slider:before {
 }
 
 button {
-  display: inline-block;
-  padding: 0.35em 1.2em;
-  border: 0.2em solid $foreground;
   margin: 10% 0.3em 0.3em 0;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-weight: 300;
-  color: $white;
-  text-align: center;
-  transition: all 0.3s;
-  background-color: transparent;
-  cursor: pointer;
 }
-
-button:hover {
-  color: $white;
-  background-color: $foreground;
-  cursor: pointer;
-}
-

@@ -1,19 +1,23 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {TimeService} from '../../services/time.service';
 
 import * as moment from 'moment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-time-travel',
   templateUrl: './time-travel.component.html',
   styleUrls: ['./time-travel.component.scss']
 })
-export class TimeTravelComponent implements OnInit, OnChanges {
+export class TimeTravelComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() time: Date;
+  @Output() hideTimeTravel = new EventEmitter();
 
   timeForm: FormGroup;
+
+  private timer;
 
   constructor(private timeService: TimeService,
               private formBuilder: FormBuilder) {
@@ -27,12 +31,20 @@ export class TimeTravelComponent implements OnInit, OnChanges {
       hour: [this.time.getHours(), [Validators.min(0), Validators.max(24), Validators.required]],
       minute: [this.getMinutes(this.time), [Validators.min(0), Validators.max(60), Validators.required]],
     });
+
+    this.timer = this.startTimer();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.time && this.timeForm) {
-      this.updateForm();
+    if (changes.time) {
+      if (this.timeForm) {
+        this.updateForm();
+      }
     }
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.timer);
   }
 
   handleDayChange(amount: number) {
@@ -64,6 +76,9 @@ export class TimeTravelComponent implements OnInit, OnChanges {
   }
 
   private updateTime(time: Date) {
+    clearInterval(this.timer);
+    this.timer = this.startTimer();
+
     if (moment(time).isValid()) {
       this.time = time;
       this.timeService.changeTime(time);
@@ -85,5 +100,11 @@ export class TimeTravelComponent implements OnInit, OnChanges {
 
   private getMinutes(date: Date): string {
     return moment(date).format('mm');
+  }
+
+  private startTimer() {
+    return setTimeout(() => {
+      this.hideTimeTravel.emit();
+    }, environment.hideTimeTravelTimeOut);
   }
 }

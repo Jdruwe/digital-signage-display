@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-room-header',
@@ -10,5 +10,5 @@ export class RoomHeaderComponent {
   @Input() roomName = 'Exhibition hall';
   @Input() time;
   @Input() showTimeTravel = false;
-
+  @Output() hideTimeTravel = new EventEmitter();
 }

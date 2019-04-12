@@ -12,6 +12,7 @@ import {Observable, of} from 'rxjs';
 export class RoomService {
 
   private isConnected = false;
+  private rooms: Room[];
 
   constructor(private http: HttpClient,
               private connectionService: ConnectionService) {
@@ -19,6 +20,7 @@ export class RoomService {
       .subscribe(response => {
         this.isConnected = response;
       });
+    this.rooms = this.getFromLocalStorage();
   }
 
   getRooms(): Observable<Room[]> {
@@ -26,6 +28,7 @@ export class RoomService {
       return this.http.get<Room[]>(`${environment.apiUrl}${environment.roomEndPoint}`)
         .pipe(
           map((response: Room[]) => {
+            this.rooms = response;
             this.clearLocalStorage();
             this.saveToLocalStorage(response);
             return response;
@@ -38,16 +41,20 @@ export class RoomService {
     }
   }
 
+  getRoomById(roomId: string) {
+    return this.rooms.find(r => r.id === roomId);
+  }
+
   private saveToLocalStorage(rooms: Room[]) {
-    localStorage.setItem('room', JSON.stringify(rooms));
+    localStorage.setItem('rooms', JSON.stringify(rooms));
   }
 
   private getFromLocalStorage() {
-    return JSON.parse(localStorage.getItem('room'));
+    return JSON.parse(localStorage.getItem('rooms'));
   }
 
   private clearLocalStorage() {
-    return localStorage.removeItem('room');
+    return localStorage.removeItem('rooms');
   }
 
 }
