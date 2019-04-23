@@ -33,9 +33,10 @@ export class ClientsComponent implements OnInit {
     });
   }
 
-  UnregisterClient(clientId: number) {
+  UnregisterClient(clientDetails: ClientDetails) {
     console.log('close');
-    this.clientService.unRegisterRoomManually(clientId);
+    this.clientService.unRegisterRoomManually(clientDetails.client.id);
+    this.clientsWithDetails.splice(this.clientsWithDetails.indexOf(clientDetails), 1);
   }
 
   private getDaysSince(test: Client): number {
