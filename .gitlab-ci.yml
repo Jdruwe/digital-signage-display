@@ -25,7 +25,6 @@ test:
     - npm run e2e-ci
   except:
     - master
-      
 
 test-codacy:
   stage: clientsWithDetails
