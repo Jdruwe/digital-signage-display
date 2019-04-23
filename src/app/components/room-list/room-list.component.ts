@@ -48,14 +48,11 @@ export class RoomListComponent implements OnInit, OnDestroy {
   }
 
   private handleRoomChange(index: number) {
+    console.log(index);
     if (!isNaN(index)) {
       const room = new Room(this.rooms[index].id, this.rooms[index].name);
-      this.clientService.registerRoom(room, new Date()).subscribe(() => {
-        this.router.navigate(['room', this.rooms[index].id]);
-      }, error => {
-        // TODO
-        console.log(error.error);
-      });
+      this.clientService.registerRoom(room, new Date());
+      this.router.navigate(['room', this.rooms[index].id]);
     }
   }
 

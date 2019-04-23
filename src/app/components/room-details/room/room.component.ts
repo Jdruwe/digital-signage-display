@@ -8,7 +8,6 @@ import {Talk} from '../../../models/talk';
 import * as moment from 'moment';
 import {SettingsService} from '../../../services/settings.service';
 import {ClientService} from '../../../services/client.service';
-import {$} from 'protractor';
 
 @Component({
   selector: 'app-room',
@@ -66,7 +65,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.clientService.unRegisterRoom(this.id);
+    this.clientService.unRegisterRoom();
     this.clockSub.unsubscribe();
   }
 
@@ -85,7 +84,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key.toUpperCase() === 'H') {
-      this.clientService.unRegisterRoom(this.id);
+      this.clientService.unRegisterRoom();
       this.router.navigate(['']);
     }
   }
@@ -102,5 +101,10 @@ export class RoomComponent implements OnInit, OnDestroy {
       }
       return 0;
     });
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  onWindowClose(event: any): void {
+    this.clientService.unRegisterRoom();
   }
 }

@@ -4,6 +4,7 @@ import {Client} from '../../models/client';
 import * as moment from 'moment';
 import {ClientDetails} from '../../models/client-details';
 import {environment} from '../../../environments/environment';
+import {ClientWithId} from '../../models/client-with-id';
 
 @Component({
   selector: 'app-clients',
@@ -11,14 +12,14 @@ import {environment} from '../../../environments/environment';
   styleUrls: ['./clients.component.scss']
 })
 export class ClientsComponent implements OnInit {
-  clients: Client[];
+  clients: ClientWithId[];
   clientsWithDetails: ClientDetails[] = [];
 
   constructor(private clientService: ClientService) {
   }
 
   ngOnInit() {
-    this.clientService.getAllClients().subscribe((data: Client[]) => {
+    this.clientService.getAllClients().subscribe((data: ClientWithId[]) => {
       this.clients = data;
       this.clients.forEach(client => {
         const days = this.getDaysSince(client);
@@ -30,6 +31,11 @@ export class ClientsComponent implements OnInit {
         );
       });
     });
+  }
+
+  UnregisterClient(clientId: number) {
+    console.log('close');
+    this.clientService.unRegisterRoomManually(clientId);
   }
 
   private getDaysSince(test: Client): number {

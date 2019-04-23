@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {AuthService} from './services/auth.service';
 import {RoomScheduleService} from './services/room-schedule.service';
 import {Router} from '@angular/router';
@@ -23,13 +23,17 @@ export class AppComponent implements OnInit {
     this.authService.autoAuthUser();
     this.room = this.roomScheduleService.autoInitRoom();
     if (this.room.id) {
-      this.clientService.registerRoom(this.room, new Date()).subscribe(() => {
-        this.router.navigate(['room', this.room.id]);
-      }, error => {
-        this.router.navigate(['']);
-      });
+      this.clientService.registerRoom(this.room, new Date());
+      this.router.navigate(['room', this.room.id]);
     }
+  }
 
-    // TODO: unregister room when window or tab is closed
+  // TODO: unregister room when window closed
+  @HostListener('window:beforeunload', ['$event'])
+  onWindowClose(event: any): void {
+    // Do something
+    alert('qsdfqdfdfqsdf');
+    event.preventDefault();
+    event.returnValue = false;
   }
 }

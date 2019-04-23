@@ -1,14 +1,14 @@
-import {Client} from './client';
+import {ClientWithId} from './client-with-id';
 
 export class ClientDetails {
-  client: Client;
+  client: ClientWithId;
   days: number;
   hours: number;
   minutes: number;
   isAlive: boolean;
 
 
-  constructor(client: Client, days: number, hours: number, minutes: number, isAlive: boolean) {
+  constructor(client: ClientWithId, days: number, hours: number, minutes: number, isAlive: boolean) {
     this.client = client;
     this.days = days;
     this.hours = hours;

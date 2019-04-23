@@ -26,6 +26,15 @@ body{
 
   h1 {
     margin-left: 1.50rem;
+
+    img{
+      width: 20px;
+      height: 20px;
+      float: right;
+      margin: 0.56rem 1.50rem 0 0;
+      color: $white;
+      cursor: pointer;
+    }
   }
 
   h2 {

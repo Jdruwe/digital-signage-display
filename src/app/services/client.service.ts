@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Client} from '../models/client';
 import {environment} from '../../environments/environment.prod';
 import {Room} from '../models/room';
+import {ClientWithId} from '../models/client-with-id';
 
 @Injectable({
   providedIn: 'root'
@@ -20,17 +21,30 @@ export class ClientService {
     const client = new Client(room, lastConnected);
     this.room = room;
     this.startInterval();
-    return this.http.post(environment.apiUrl + environment.clientEndPoint, client);
+    return this.http.post(environment.apiUrl + environment.clientEndPoint, client).subscribe((response: ClientWithId) => {
+      this.clearLocalStorage();
+      this.saveToLocalStorage(response.id);
+    });
   }
 
-  unRegisterRoom(id: string) {
+  unRegisterRoom() {
     console.log('unregister');
     this.http.request('delete', environment.apiUrl + environment.clientEndPoint, {
       params: {
-        id: id
+        id: this.getFromLocalStorage()
+      }
+    }).subscribe(() => {
+      this.clearLocalStorage();
+    });
+    this.stopInterval();
+  }
+
+  unRegisterRoomManually(clientId: number) {
+    this.http.request('delete', environment.apiUrl + environment.clientEndPoint, {
+      params: {
+        id: clientId.toString()
       }
     }).subscribe();
-    this.stopInterval();
   }
 
   getAllClients() {
@@ -53,5 +67,17 @@ export class ClientService {
 
   private stopInterval() {
     clearInterval(this.timer);
+  }
+
+  private saveToLocalStorage(clientId: number) {
+    localStorage.setItem('clientId', JSON.stringify(clientId));
+  }
+
+  private getFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('clientId'));
+  }
+
+  private clearLocalStorage() {
+    return localStorage.removeItem('clientId');
   }
 }
