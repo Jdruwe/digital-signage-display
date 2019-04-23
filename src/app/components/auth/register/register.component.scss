@@ -8,7 +8,7 @@
 
 .container {
   background-color: transparentize($foreground, 0.7);
-  border-radius: 20px;
+  border-radius: $border-radius;
   width: 350px;
   height: 400px;
   position: absolute;
@@ -18,21 +18,8 @@
 
 }
 
-
 button {
-  display: inline-block;
-  padding: 0.35em 1.2em;
-  border: 0.2em solid $foreground;
   margin: 20% 0.3em 0.3em 0;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  color: white;
-  text-align: center;
-  transition: all 0.3s;
-  background-color: transparent;
 }
 
 form input {
@@ -40,7 +27,7 @@ form input {
   min-width: 125px;
   border: 1px solid #eee;
   border-left: 3px solid;
-  border-radius: 5px;
+  border-radius: $border-radius;
   transition: border-color .5s ease-out;
   height: 25px;
 }
@@ -55,13 +42,6 @@ form input:required {
 
 form input:invalid {
   border-left-color: salmon;
-}
-
-
-button:hover {
-  color: white;
-  background-color: $foreground;
-  cursor: pointer;
 }
 
 .error-message {
@@ -81,7 +61,7 @@ button:hover {
 .spinner > div {
   width: 10px;
   height: 10px;
-  background-color: white;
+  background-color: $white;
 
   border-radius: 100%;
   display: inline-block;

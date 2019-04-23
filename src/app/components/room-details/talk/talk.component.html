@@ -10,8 +10,7 @@
     <span class="box" *ngIf="isNow()">NOW</span>
   </div>
 
-  <div class="summary" id="summary-text">
-    <span>{{talk.summary}}</span>
+  <div class="summary" ellipsis [ellipsis-content]="talk.summary">
   </div>
 
   <div class="speakers" #speakers [class.marquee]="enableMarquee">

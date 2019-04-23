@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {catchError, map} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {RoomSchedule} from '../models/room-schedule';
+import {RoomService} from './room.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class RoomScheduleService {
   private isConnected = false;
 
   constructor(private http: HttpClient,
-              private connectionService: ConnectionService) {
+              private connectionService: ConnectionService,
+              private roomService: RoomService) {
     this.connectionService.getConnectionStatus()
       .subscribe(response => {
         this.isConnected = response;
@@ -33,6 +35,15 @@ export class RoomScheduleService {
             })
           ),
           catchError(err => {
+            // If no schedule was found allow to navigate to room anyway to use time ravel feature
+            if (err.status === 404) {
+              return of({
+                date: new Date(),
+                day: '',
+                room: {id: roomId, name: this.roomService.getRoomById(roomId).name},
+                talks: []
+              });
+            }
             return of(this.getFromLocalStorage());
           }));
     } else {

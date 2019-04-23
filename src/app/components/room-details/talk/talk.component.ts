@@ -1,23 +1,13 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {Talk} from '../../../models/talk';
 import * as moment from 'moment';
-
-declare var $: JQuery;
-
-declare global {
-  interface JQuery {
-    (selector: any): any;
-
-    textfill(a): any;
-  }
-}
 
 @Component({
   selector: 'app-talk',
   templateUrl: './talk.component.html',
   styleUrls: ['./talk.component.scss']
 })
-export class TalkComponent implements OnInit, AfterViewInit {
+export class TalkComponent implements AfterViewInit, OnChanges {
 
   @Input() talk: Talk;
   @Input() time: Date;
@@ -28,12 +18,12 @@ export class TalkComponent implements OnInit, AfterViewInit {
   constructor(private cd: ChangeDetectorRef) {
   }
 
-  ngOnInit(): void {
-    $(document).ready(function () {
-      $('#summary-text').textfill({
-        maxFontPixels: 32
-      });
-    });
+  // Updatex marquee effect when using the time travel feature
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.time && this.speakers) {
+      this.cd.detectChanges();
+      this.enableMarquee = this.checkOverflow(this.speakers.nativeElement);
+    }
   }
 
   ngAfterViewInit(): void {
@@ -50,7 +40,7 @@ export class TalkComponent implements OnInit, AfterViewInit {
     }
   }
 
-  checkOverflow(element) {
+  private checkOverflow(element) {
     return element.offsetHeight < element.scrollHeight || element.offsetWidth < element.scrollWidth;
   }
 

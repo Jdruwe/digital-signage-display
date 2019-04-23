@@ -1,19 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-room-header',
   templateUrl: './room-header.component.html',
   styleUrls: ['./room-header.component.scss']
 })
-export class RoomHeaderComponent implements OnInit {
+export class RoomHeaderComponent {
 
   @Input() roomName = 'Exhibition hall';
   @Input() time;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
+  @Input() showTimeTravel = false;
+  @Output() hideTimeTravel = new EventEmitter();
 }

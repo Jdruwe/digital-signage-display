@@ -64,7 +64,7 @@ form {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: darken(white, 10%);
+  background-color: darken($white, 10%);
   -webkit-transition: .4s;
   transition: .3s;
 }
@@ -76,14 +76,14 @@ form {
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: $white;
   -webkit-transition: .3s;
   transition: .3s;
   box-shadow: 1px 1px 1px 0 black;
 }
 
 input[type=number] {
-  border-radius: 5px;
+  border-radius: $border-radius;
   text-align: right;
   min-width: 125px;
   height: 25px;
@@ -114,25 +114,5 @@ input:checked + .slider:before {
 }
 
 button {
-  display: inline-block;
-  padding: 0.35em 1.2em;
-  border: 0.2em solid $foreground;
   margin: 10% 0.3em 0.3em 0;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  color: white;
-  text-align: center;
-  transition: all 0.3s;
-  background-color: transparent;
-  cursor: pointer;
 }
-
-button:hover {
-  color: white;
-  background-color: $foreground;
-  cursor: pointer;
-}
-

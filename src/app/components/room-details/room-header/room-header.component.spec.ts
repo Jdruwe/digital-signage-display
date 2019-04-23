@@ -1,6 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RoomHeaderComponent} from './room-header.component';
+import {TimeTravelComponent} from '../../time-travel/time-travel.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('RoomHeaderComponent', () => {
   let component: RoomHeaderComponent;
@@ -8,7 +10,11 @@ describe('RoomHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RoomHeaderComponent]
+      declarations: [
+        RoomHeaderComponent,
+        TimeTravelComponent
+      ],
+      imports: [ReactiveFormsModule]
     })
       .compileComponents();
   }));

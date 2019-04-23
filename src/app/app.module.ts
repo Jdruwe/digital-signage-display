@@ -9,7 +9,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RoomListComponent} from './components/room-list/room-list.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {RegisterComponent} from './components/auth/register/register.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './components/auth/login/login.component';
 import {TokenInterceptor} from './interceptors/token-interceptor';
 import {TalkComponent} from './components/room-details/talk/talk.component';
@@ -19,6 +19,8 @@ import {TimelineComponent} from './components/room-details/timeline/timeline.com
 import {SessionComponent} from './components/room-details/session/session.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import { ClientsComponent } from './components/clients/clients.component';
+import {TimeTravelComponent} from './components/time-travel/time-travel.component';
+import {EllipsisModule} from 'ngx-ellipsis';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ClientsComponent } from './components/clients/clients.component';
     TimelineComponent,
     SessionComponent,
     SettingsComponent,
-    ClientsComponent
+    ClientsComponent,
+    SettingsComponent,
+    TimeTravelComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,8 @@ import { ClientsComponent } from './components/clients/clients.component';
     HttpClientModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    EllipsisModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
