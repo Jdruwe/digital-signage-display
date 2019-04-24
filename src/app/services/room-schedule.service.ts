@@ -62,8 +62,6 @@ export class RoomScheduleService {
   }
 
   private saveToLocalStorage(schedule: RoomSchedule) {
-    console.log('kek');
-    console.log(schedule);
     localStorage.setItem('schedule', JSON.stringify(schedule));
   }
 
