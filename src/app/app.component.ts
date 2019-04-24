@@ -27,13 +27,4 @@ export class AppComponent implements OnInit {
       this.router.navigate(['room', this.room.id]);
     }
   }
-
-  // TODO: unregister room when window closed
-  @HostListener('window:beforeunload', ['$event'])
-  onWindowClose(event: any): void {
-    // Do something
-    alert('qsdfqdfdfqsdf');
-    event.preventDefault();
-    event.returnValue = false;
-  }
 }

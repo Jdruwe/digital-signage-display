@@ -28,7 +28,7 @@ export class ClientService {
   }
 
   unRegisterRoom() {
-    console.log('unregister');
+    console.log('Unregister room');
     this.http.request('delete', environment.apiUrl + environment.clientEndPoint, {
       params: {
         id: this.getFromLocalStorage()
@@ -52,20 +52,22 @@ export class ClientService {
   }
 
   updateLastConnectedTime() {
-    console.log('sending...');
+    console.log('Updated heartbeat');
     return this.http.patch(environment.apiUrl + environment.clientEndPoint, {
-      roomId: this.room.id,
+      clientId: this.getFromLocalStorage(),
       newDate: new Date()
     }).subscribe();
   }
 
   private startInterval() {
+    console.log('Interval started.');
     this.timer = setInterval(() => {
       this.updateLastConnectedTime();
     }, environment.heartbeat * 60000);
   }
 
   private stopInterval() {
+    console.log('Interval stopped.');
     clearInterval(this.timer);
   }
 

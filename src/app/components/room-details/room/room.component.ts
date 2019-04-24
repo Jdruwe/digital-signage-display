@@ -138,8 +138,8 @@ export class RoomComponent implements OnInit, OnDestroy {
     });
   }
 
-  @HostListener('window:beforeunload', ['$event'])
+/*  @HostListener('window:beforeunload', ['$event'])
   onWindowClose(event: any): void {
     this.clientService.unRegisterRoom();
-  }
+  }*/
 }
