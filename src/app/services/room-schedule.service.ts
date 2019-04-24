@@ -37,12 +37,15 @@ export class RoomScheduleService {
           catchError(err => {
             // If no schedule was found allow to navigate to room anyway to use time ravel feature
             if (err.status === 404) {
-              return of({
+              const roomSchedule = {
                 date: new Date(),
                 day: '',
                 room: {id: roomId, name: this.roomService.getRoomById(roomId).name},
                 talks: []
-              });
+              };
+              this.clearLocalStorage();
+              this.saveToLocalStorage(roomSchedule);
+              return of(roomSchedule);
             }
             return of(this.getFromLocalStorage());
           }));
@@ -59,6 +62,8 @@ export class RoomScheduleService {
   }
 
   private saveToLocalStorage(schedule: RoomSchedule) {
+    console.log('kek');
+    console.log(schedule);
     localStorage.setItem('schedule', JSON.stringify(schedule));
   }
 
