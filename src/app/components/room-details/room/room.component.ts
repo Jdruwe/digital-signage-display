@@ -7,6 +7,7 @@ import {RoomSchedule} from '../../../models/room-schedule';
 import {Talk} from '../../../models/talk';
 import * as moment from 'moment';
 import {SettingsService} from '../../../services/settings.service';
+import {ClientService} from '../../../services/client.service';
 
 @Component({
   selector: 'app-room',
@@ -21,6 +22,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   schedule: RoomSchedule;
   timeBeforeSwitch: number;
   showTimeTravel = false;
+  id: string;
 
   private clockSub: Subscription;
   private roomId: string;
@@ -29,7 +31,8 @@ export class RoomComponent implements OnInit, OnDestroy {
               private scheduleService: RoomScheduleService,
               private route: ActivatedRoute,
               private router: Router,
-              private settingsService: SettingsService) {
+              private settingsService: SettingsService,
+              private clientService: ClientService) {
   }
 
   ngOnInit() {
@@ -66,6 +69,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.clientService.unRegisterRoom();
     this.clockSub.unsubscribe();
   }
 
@@ -85,6 +89,7 @@ export class RoomComponent implements OnInit, OnDestroy {
         }
       });
   }
+
 
   private setTalks() {
     const talks = this.sortAndFilterTalks();
@@ -106,6 +111,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     switch (event.key.toUpperCase()) {
       case 'H':
         this.timeService.resetTime();
+        this.clientService.unRegisterRoom();
         this.router.navigate(['']);
         break;
       case'X':
@@ -130,5 +136,10 @@ export class RoomComponent implements OnInit, OnDestroy {
       }
       return 0;
     });
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  onWindowClose(event: any): void {
+    this.clientService.unRegisterRoom();
   }
 }

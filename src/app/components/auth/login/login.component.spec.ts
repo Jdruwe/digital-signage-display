@@ -7,6 +7,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {DebugElement} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {By} from '@angular/platform-browser';
+import {NavbarComponent} from '../../navbar/navbar.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -17,10 +18,15 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginComponent],
-      imports: [FormsModule,
+      declarations: [
+        LoginComponent,
+        NavbarComponent
+      ],
+      imports: [
+        FormsModule,
         RouterTestingModule,
-        HttpClientTestingModule]
+        HttpClientTestingModule
+      ]
     })
       .compileComponents();
     fixture = TestBed.createComponent(LoginComponent);

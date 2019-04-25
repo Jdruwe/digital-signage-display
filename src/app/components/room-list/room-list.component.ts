@@ -5,6 +5,7 @@ import {fromEvent, Subscription} from 'rxjs';
 import {bufferWhen, debounceTime} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {environment} from '../../../environments/environment';
+import {ClientService} from '../../services/client.service';
 
 @Component({
   selector: 'app-room-list',
@@ -18,7 +19,8 @@ export class RoomListComponent implements OnInit, OnDestroy {
   private keySub: Subscription;
 
   constructor(private roomService: RoomService,
-              private router: Router) {
+              private router: Router,
+              private clientService: ClientService) {
   }
 
   ngOnInit() {
@@ -46,7 +48,10 @@ export class RoomListComponent implements OnInit, OnDestroy {
   }
 
   private handleRoomChange(index: number) {
+    console.log(index);
     if (!isNaN(index)) {
+      const room = new Room(this.rooms[index].id, this.rooms[index].name);
+      this.clientService.registerRoom(room, new Date());
       this.router.navigate(['room', this.rooms[index].id]);
     }
   }
@@ -54,5 +59,4 @@ export class RoomListComponent implements OnInit, OnDestroy {
   getIndexOf(room: Room) {
     return this.rooms.indexOf(room);
   }
-
 }

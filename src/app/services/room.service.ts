@@ -4,7 +4,7 @@ import {environment} from '../../environments/environment';
 import {Room} from '../models/room';
 import {ConnectionService} from './connection.service';
 import {catchError, map} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
+import {interval, Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +56,4 @@ export class RoomService {
   private clearLocalStorage() {
     return localStorage.removeItem('rooms');
   }
-
 }

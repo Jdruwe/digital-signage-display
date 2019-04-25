@@ -29,6 +29,5 @@ export class SettingsService {
 
   changeTimeBefore(time: number) {
     this.timeBeforeSwitch.next(time);
-    console.log(time);
   }
 }
