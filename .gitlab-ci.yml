@@ -1,4 +1,4 @@
-image: node:lts-alpine
+image: node:10.15.3
 
 build:
   stage: build
