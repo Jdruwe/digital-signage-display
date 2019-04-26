@@ -14,6 +14,20 @@
   </div>
 
   <div class="speakers" #speakers [class.marquee]="enableMarquee">
+    <div *ngFor="let speaker of talk.speakers">
+
+      <div class="front">
+        <app-speaker [speaker]="speaker">
+        </app-speaker>
+      </div>
+
+      <div class="rear">
+        <app-speaker [speaker]="speaker">
+        </app-speaker>
+      </div>
+
+    </div>
+
     <app-speaker *ngFor="let speaker of talk.speakers"
                  [speaker]="speaker">
     </app-speaker>

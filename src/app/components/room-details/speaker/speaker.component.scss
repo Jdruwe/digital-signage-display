@@ -12,6 +12,13 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  transition: all 0.3s;
+
+  &:hover {
+    transform: rotateX(90deg);
+  }
+
 }
 
 .speaker-info {

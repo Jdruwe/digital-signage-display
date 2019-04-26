@@ -35,7 +35,7 @@ export class RoomScheduleService {
             })
           ),
           catchError(err => {
-            // If no schedule was found allow to navigate to room anyway to use time ravel feature
+            // If no schedule was found allow to navigate to room anyway to use time travel feature
             if (err.status === 404) {
               const roomSchedule = {
                 date: new Date(),
