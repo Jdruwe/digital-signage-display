@@ -18,9 +18,10 @@ import {TrimTimePipe} from './pipes/trim-time.pipe';
 import {TimelineComponent} from './components/room-details/timeline/timeline.component';
 import {SessionComponent} from './components/room-details/session/session.component';
 import {SettingsComponent} from './components/settings/settings.component';
-import { ClientsComponent } from './components/clients/clients.component';
+import {ClientsComponent} from './components/clients/clients.component';
 import {TimeTravelComponent} from './components/time-travel/time-travel.component';
 import {EllipsisModule} from 'ngx-ellipsis';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {EllipsisModule} from 'ngx-ellipsis';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

@@ -13,24 +13,19 @@
   <div class="summary" ellipsis [ellipsis-content]="talk.summary">
   </div>
 
-  <div class="speakers" #speakers [class.marquee]="enableMarquee">
-    <div *ngFor="let speaker of talk.speakers">
+  <div class="speakers" #speakers>
 
-      <div class="front">
-        <app-speaker [speaker]="speaker">
-        </app-speaker>
-      </div>
-
-      <div class="rear">
-        <app-speaker [speaker]="speaker">
-        </app-speaker>
-      </div>
-
+    <div class="front">
+      <app-speaker *ngFor="let speakerFront of speakersFront" [speaker]="speakerFront"></app-speaker>
     </div>
 
-    <app-speaker *ngFor="let speaker of talk.speakers"
-                 [speaker]="speaker">
-    </app-speaker>
+    <!--    <div class="back" [@fadeAnimation]="backAnimationState">-->
+    <!--      <app-speaker *ngFor="let speakerBack of speakersBack" [speaker]="speakerBack"></app-speaker>-->
+    <!--    </div>-->
+
+    <!--    <app-speaker *ngFor="let speaker of speakersToShow"-->
+    <!--                 [speaker]="speaker">-->
+    <!--    </app-speaker>-->
   </div>
 
 </div>

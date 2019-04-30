@@ -70,8 +70,28 @@ h3 {
   display: flex;
   flex-direction: row;
 
+  //perspective: 2000px;
+  position: relative;
+  height: 200px;
+
   app-speaker:last-child {
     margin-right: 0;
+  }
+
+  .front, .back {
+    display: flex;
+    //position: absolute;
+    //backface-visibility: hidden;
+    //transition: 1s all;
+  }
+
+  .front {
+
+  }
+
+  .back {
+    display: none;
+    //transform: rotateX(90deg);
   }
 }
 
