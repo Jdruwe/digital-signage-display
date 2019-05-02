@@ -14,18 +14,7 @@
   </div>
 
   <div class="speakers" #speakers>
-
-    <div class="front">
-      <app-speaker *ngFor="let speakerFront of speakersFront" [speaker]="speakerFront"></app-speaker>
-    </div>
-
-    <!--    <div class="back" [@fadeAnimation]="backAnimationState">-->
-    <!--      <app-speaker *ngFor="let speakerBack of speakersBack" [speaker]="speakerBack"></app-speaker>-->
-    <!--    </div>-->
-
-    <!--    <app-speaker *ngFor="let speaker of speakersToShow"-->
-    <!--                 [speaker]="speaker">-->
-    <!--    </app-speaker>-->
+    <app-speaker *ngFor="let speaker of speakersToShow" [speaker]="speaker" [@RotateInAndOut]></app-speaker>
   </div>
 
 </div>
