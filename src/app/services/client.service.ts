@@ -74,14 +74,12 @@ export class ClientService {
   }
 
   private startHeartbeatInterval() {
-    console.log('Interval started.');
     this.heartbeatTimer = setInterval(() => {
       this.updateLastConnectedTime();
     }, environment.heartbeat * 60000);
   }
 
   private stopHeartbeatInterval() {
-    console.log('Interval stopped.');
     clearInterval(this.heartbeatTimer);
   }
 
@@ -89,7 +87,6 @@ export class ClientService {
     const startTime = Date.now() - (this.offlineTimer || 0);
     this.offlineTimer = setInterval(() => {
       this.offlineCounter = Date.now() - startTime;
-      console.log(this.offlineCounter);
     });
   }
 
