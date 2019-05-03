@@ -4,6 +4,7 @@ import {Client} from '../models/client';
 import {environment} from '../../environments/environment.prod';
 import {Room} from '../models/room';
 import {ClientWithId} from '../models/client-with-id';
+import {ConnectionService} from './connection.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,29 @@ import {ClientWithId} from '../models/client-with-id';
 export class ClientService {
 
   private room: Room;
-  private timer: any;
+  private heartbeatTimer: any;
+  private offlineTimer: any;
+  private offlineCounter: number;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private connectionService: ConnectionService) {
+    this.connectionService.getConnectionStatus()
+      .subscribe(response => {
+        if (!response) {
+          this.startOfflineInterval();
+        } else {
+          this.stopOfflineInterval();
+          if (this.offlineCounter > (environment.connectionTimer * 60000)) {
+            this.updateLastConnectedTime();
+          }
+        }
+      });
   }
 
   registerRoom(room: Room, lastConnected: Date) {
     console.log('register');
     const client = new Client(room, lastConnected);
     this.room = room;
-    this.startInterval();
+    this.startHeartbeatInterval();
     return this.http.post(environment.apiUrl + environment.clientEndPoint, client).subscribe((response: ClientWithId) => {
       this.clearLocalStorage();
       this.saveToLocalStorage(response.id);
@@ -36,7 +50,7 @@ export class ClientService {
     }).subscribe(() => {
       this.clearLocalStorage();
     });
-    this.stopInterval();
+    this.stopHeartbeatInterval();
   }
 
   unRegisterRoomManually(clientId: number) {
@@ -59,16 +73,25 @@ export class ClientService {
     }).subscribe();
   }
 
-  private startInterval() {
-    console.log('Interval started.');
-    this.timer = setInterval(() => {
+  private startHeartbeatInterval() {
+    this.heartbeatTimer = setInterval(() => {
       this.updateLastConnectedTime();
     }, environment.heartbeat * 60000);
   }
 
-  private stopInterval() {
-    console.log('Interval stopped.');
-    clearInterval(this.timer);
+  private stopHeartbeatInterval() {
+    clearInterval(this.heartbeatTimer);
+  }
+
+  private startOfflineInterval() {
+    const startTime = Date.now() - (this.offlineTimer || 0);
+    this.offlineTimer = setInterval(() => {
+      this.offlineCounter = Date.now() - startTime;
+    });
+  }
+
+  private stopOfflineInterval() {
+    clearInterval(this.offlineTimer);
   }
 
   private saveToLocalStorage(clientId: number) {
