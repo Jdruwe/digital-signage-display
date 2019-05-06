@@ -69,23 +69,17 @@ h3 {
 .speakers {
   display: flex;
   flex-direction: row;
-  perspective: 2000px;
 
   app-speaker:last-child {
     margin-right: 0;
   }
-}
 
-.marquee {
-  transition: all 0.5s linear;
-  animation: marquee 18s linear infinite;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translate(100%, 0);
+  ngu-carousel {
+    width: 100%;
   }
-  100% {
-    transform: translate(-180%, 0);
+
+  ngu-tile {
+    display: flex;
+    align-items: center;
   }
 }

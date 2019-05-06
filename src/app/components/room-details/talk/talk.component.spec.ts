@@ -4,6 +4,7 @@ import {TalkComponent} from './talk.component';
 import {TrimTimePipe} from '../../../pipes/trim-time.pipe';
 import {SpeakerComponent} from '../speaker/speaker.component';
 import {EllipsisModule} from 'ngx-ellipsis';
+import {NguCarouselModule} from '@ngu/carousel';
 
 describe('TalkComponent', () => {
   let component: TalkComponent;
@@ -16,7 +17,10 @@ describe('TalkComponent', () => {
         SpeakerComponent,
         TrimTimePipe
       ],
-      imports: [EllipsisModule]
+      imports: [
+        EllipsisModule,
+        NguCarouselModule
+      ]
     })
       .compileComponents();
   }));
@@ -66,9 +70,9 @@ describe('TalkComponent', () => {
     expect(compiled.querySelectorAll('.container .speakers app-speaker').length).toBe(1);
   });
 
-  it(`should not have marquee class on speakers'`, function () {
+  it(`should render ngu-carousel'`, function () {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.container .marquee')).toBe(null);
+    expect(compiled.querySelectorAll('.container .speakers ngu-carousel').length).toBe(1);
   });
 });

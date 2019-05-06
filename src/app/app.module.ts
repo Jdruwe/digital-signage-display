@@ -22,6 +22,7 @@ import {ClientsComponent} from './components/clients/clients.component';
 import {TimeTravelComponent} from './components/time-travel/time-travel.component';
 import {EllipsisModule} from 'ngx-ellipsis';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NguCarouselModule} from '@ngu/carousel';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    EllipsisModule
+    EllipsisModule,
+    NguCarouselModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],

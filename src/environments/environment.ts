@@ -12,7 +12,9 @@ export const environment = {
   authEndPoint: '/authentication',
   settingsEndPoint: '/settings',
   clientEndPoint: '/client',
-  heartbeat: 5
+  heartbeat: 5,
+  carouselAnimationSpeed: 750,
+  carouselInterval: 3000
 };
 
 /*
