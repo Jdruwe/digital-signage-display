@@ -8,6 +8,7 @@ import {Talk} from '../../../models/talk';
 import * as moment from 'moment';
 import {SettingsService} from '../../../services/settings.service';
 import {ClientService} from '../../../services/client.service';
+import {ConnectionService} from '../../../services/connection.service';
 
 @Component({
   selector: 'app-room',
@@ -25,6 +26,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   id: string;
 
   private clockSub: Subscription;
+  private connectionSub: Subscription;
   private roomId: string;
 
   constructor(private timeService: TimeService,
@@ -32,10 +34,31 @@ export class RoomComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private router: Router,
               private settingsService: SettingsService,
-              private clientService: ClientService) {
+              private clientService: ClientService,
+              private connectionService: ConnectionService) {
   }
 
   ngOnInit() {
+    this.subscribeToTimeService();
+
+    this.settingsService.currentTimeBefore
+      .subscribe(time => this.timeBeforeSwitch = time);
+    this.settingsService.getSettings()
+      .subscribe(data => {
+        this.settingsService.changeTimeBefore(data.minutesBeforeNextSession);
+      });
+
+    this.subscribeToRoute();
+    this.subscribeToConnectionService();
+  }
+
+  ngOnDestroy(): void {
+    this.clientService.unRegisterRoom();
+    this.clockSub.unsubscribe();
+    this.connectionSub.unsubscribe();
+  }
+
+  private subscribeToTimeService() {
     this.clockSub = this.timeService.getClock()
       .subscribe(response => {
         if (this.currentTime) {
@@ -50,13 +73,9 @@ export class RoomComponent implements OnInit, OnDestroy {
           this.setTalks();
         }
       });
+  }
 
-    this.settingsService.currentTimeBefore.subscribe(time => this.timeBeforeSwitch = time);
-    this.settingsService.getSettings()
-      .subscribe(data => {
-        this.settingsService.changeTimeBefore(data.minutesBeforeNextSession);
-      });
-
+  private subscribeToRoute() {
     this.route.paramMap
       .subscribe((paramMap: ParamMap) => {
         if (paramMap.has('id')) {
@@ -68,9 +87,13 @@ export class RoomComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.clientService.unRegisterRoom();
-    this.clockSub.unsubscribe();
+  private subscribeToConnectionService() {
+    this.connectionSub = this.connectionService.getConnectionStatus()
+      .subscribe((response: Boolean) => {
+        if (this.roomId && response) {
+          this.getSchedule(this.currentTime, this.roomId);
+        }
+      });
   }
 
   private checkSameDay(date1: Date, date2: Date): boolean {
