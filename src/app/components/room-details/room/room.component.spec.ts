@@ -13,6 +13,7 @@ import {SessionComponent} from '../session/session.component';
 import {TimeTravelComponent} from '../../time-travel/time-travel.component';
 import {EllipsisModule} from 'ngx-ellipsis';
 import {ReactiveFormsModule} from '@angular/forms';
+import {NguCarouselModule} from '@ngu/carousel';
 
 describe('RoomComponent', () => {
   let component: RoomComponent;
@@ -25,7 +26,8 @@ describe('RoomComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         EllipsisModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NguCarouselModule
       ],
       declarations: [
         RoomComponent,

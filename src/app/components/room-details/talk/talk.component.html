@@ -13,10 +13,12 @@
   <div class="summary" ellipsis [ellipsis-content]="talk.summary">
   </div>
 
-  <div class="speakers" #speakers [class.marquee]="enableMarquee">
-    <app-speaker *ngFor="let speaker of talk.speakers"
-                 [speaker]="speaker">
-    </app-speaker>
+  <div class="speakers">
+    <ngu-carousel [inputs]="carouselTileConfig" [dataSource]="talk.speakers">
+      <ngu-tile *nguCarouselDef="let item">
+        <app-speaker [speaker]="item"></app-speaker>
+      </ngu-tile>
+    </ngu-carousel>
   </div>
 
 </div>

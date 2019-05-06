@@ -1,36 +1,30 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Talk} from '../../../models/talk';
 import * as moment from 'moment';
+import {NguCarouselConfig} from '@ngu/carousel';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-talk',
   templateUrl: './talk.component.html',
-  styleUrls: ['./talk.component.scss']
+  styleUrls: ['./talk.component.scss'],
 })
-export class TalkComponent implements AfterViewInit, OnChanges {
+export class TalkComponent {
 
   @Input() talk: Talk;
   @Input() time: Date;
 
-  @ViewChild('speakers') speakers;
-  enableMarquee = false;
-
-  constructor(private cd: ChangeDetectorRef) {
-  }
-
-  // Updatex marquee effect when using the time travel feature
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.time && this.speakers) {
-      this.cd.detectChanges();
-      this.enableMarquee = this.checkOverflow(this.speakers.nativeElement);
-    }
-  }
-
-  ngAfterViewInit(): void {
-    this.enableMarquee = this.checkOverflow(this.speakers.nativeElement);
-    // Detect changes to prevent expression changed after it was checked exception
-    this.cd.detectChanges();
-  }
+  carouselTileConfig: NguCarouselConfig = {
+    grid: {xs: 3, sm: 3, md: 3, lg: 3, all: 0},
+    point: {
+      visible: false
+    },
+    touch: false,
+    loop: true,
+    speed: environment.carouselAnimationSpeed,
+    interval: {timing: environment.carouselInterval},
+    animation: 'lazy'
+  };
 
   isNow() {
     if (this.talk) {
@@ -39,9 +33,4 @@ export class TalkComponent implements AfterViewInit, OnChanges {
       return false;
     }
   }
-
-  private checkOverflow(element) {
-    return element.offsetHeight < element.scrollHeight || element.offsetWidth < element.scrollWidth;
-  }
-
 }

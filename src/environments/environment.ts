@@ -13,7 +13,9 @@ export const environment = {
   settingsEndPoint: '/settings',
   clientEndPoint: '/client',
   heartbeat: 10,
-  connectionTimer: 5
+  connectionTimer: 5,
+  carouselAnimationSpeed: 750,
+  carouselInterval: 3000
 };
 
 /*
