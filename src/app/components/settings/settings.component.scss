@@ -1,6 +1,6 @@
 @import "~src/styles.scss";
 
-:host{
+:host {
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: 100%;
@@ -26,8 +26,8 @@ form {
   width: 450px;
   height: 400px;
   border-radius: $border-radius;
-  background-color: transparentize($foreground, 0.7);
-  }
+  background-color: $foreground;
+}
 
 .content {
   display: flex;
@@ -91,7 +91,7 @@ input[type=number] {
 }
 
 input:checked + .slider {
-  background-color: #bada55;
+  background-color: $green;
 }
 
 input:focus + .slider {
@@ -114,5 +114,5 @@ input:checked + .slider:before {
 }
 
 button {
-  margin: 10% 0.3em 0.3em 0;
+  margin-top: 10%;
 }

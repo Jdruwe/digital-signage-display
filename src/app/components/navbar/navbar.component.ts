@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.checkAuth();
+    console.log(this.router.url);
   }
 
   private checkAuth() {
@@ -38,19 +39,19 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  register() {
+  goToRegister() {
     this.router.navigate(['register']);
   }
 
-  settings() {
+  goToSettings() {
     this.router.navigate(['settings']);
   }
 
-  heartbeat() {
+  goToHeartbeat() {
     this.router.navigate(['clients']);
   }
 
-  home() {
+  goToHome() {
     this.router.navigate(['']);
   }
 }

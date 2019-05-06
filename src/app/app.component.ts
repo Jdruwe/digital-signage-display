@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from './services/auth.service';
 import {RoomScheduleService} from './services/room-schedule.service';
 import {Router} from '@angular/router';
@@ -22,9 +22,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.autoAuthUser();
     this.room = this.roomScheduleService.autoInitRoom();
-    if (this.room.id) {
-      this.clientService.registerRoom(this.room, new Date());
-      this.router.navigate(['room', this.room.id]);
-    }
+    // todo uncomment
+    // if (this.room.id) {
+    //   this.clientService.registerRoom(this.room, new Date());
+    //   this.router.navigate(['room', this.room.id]);
+    // }
   }
 }

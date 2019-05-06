@@ -3,6 +3,8 @@ $foreground: rgb(58, 56, 55);
 $white: #DFDFDF;
 $devoxx-orange: #dd9933;
 $blue: #3399dd;
+$red: #dd4433;
+$green: #ccdd33;
 $border-radius: 0.5rem;
 
 body, html {
@@ -22,10 +24,10 @@ body, html {
 
 button {
   white-space: nowrap;
-  padding: 0.35em 1.2em;
-  border: 0.2em solid $foreground;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 0.15rem solid $foreground;
   border-radius: $border-radius;
-  font-weight: 300;
   color: $white;
   text-align: center;
   transition: all 0.3s;
@@ -44,4 +46,14 @@ button {
 
 ngu-tile > .tile {
   box-shadow: none !important;
+}
+
+.white {
+  color: $white;
+  border-color: $white;
+
+  &:hover {
+    background-color: $white;
+    color: $foreground;
+  }
 }

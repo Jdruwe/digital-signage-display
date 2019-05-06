@@ -14,19 +14,28 @@ nav {
     margin: 0;
   }
 
-  li {
-    padding: 1rem;
-  }
-
-  li:hover {
+  li:hover, li:focus {
     background-color: lighten($foreground, 10%);
   }
 
-  li a{
+  li a {
+    display: block;
+    padding: 1rem;
     cursor: pointer;
+    color: $white;
+    text-decoration: none;
+  }
+
+  li span {
+    display: block;
+    padding: 1rem;
   }
 }
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.active {
+  background-color: lighten($foreground, 10%);
 }
