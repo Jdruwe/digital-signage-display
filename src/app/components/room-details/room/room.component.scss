@@ -19,6 +19,12 @@
 .talk {
   grid-area: talk;
   margin: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  app-talk {
+    flex-grow: 100;
+  }
 }
 
 .timeline {
@@ -47,5 +53,28 @@
   img {
     height: auto;
     width: 20rem;
+  }
+}
+
+.message {
+  overflow: hidden;
+  margin-top: 1rem;
+  padding: 1.5rem;
+  border-radius: $border-radius;
+  background-color: #dd4433;
+
+  h2 {
+    font-size: 3rem;
+    margin: 0;
+    color: $white;
+
+    &:before {
+      content: '';
+      background: url("~src/assets/exclamation-triangle-solid.svg") no-repeat;
+      height: 3rem;
+      width: 3rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 }

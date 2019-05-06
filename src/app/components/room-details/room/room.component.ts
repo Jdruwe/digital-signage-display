@@ -24,6 +24,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   timeBeforeSwitch: number;
   showTimeTravel = false;
   id: string;
+  showMessage = true;
 
   private clockSub: Subscription;
   private connectionSub: Subscription;
