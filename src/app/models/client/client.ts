@@ -1,7 +1,6 @@
-import {Room} from './room';
+import {Room} from '../room';
 
-export class ClientWithId {
-  id: number;
+export class Client {
   room: Room;
   lastConnected: Date;
 

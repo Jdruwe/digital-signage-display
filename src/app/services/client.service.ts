@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Client} from '../models/client';
+import {Client} from '../models/client/client';
 import {environment} from '../../environments/environment.prod';
 import {Room} from '../models/room';
-import {ClientWithId} from '../models/client-with-id';
+import {ClientWithId} from '../models/client/client-with-id';
 import {ConnectionService} from './connection.service';
 
 @Injectable({

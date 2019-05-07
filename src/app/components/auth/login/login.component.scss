@@ -22,25 +22,7 @@ button {
 }
 
 form input {
-  margin-top: 10%;
-  min-width: 125px;
-  border: 1px solid $white;
-  border-left: 3px solid;
-  border-radius: $border-radius;
-  transition: border-color .5s ease-out;
-  height: 25px;
-}
-
-form input:optional {
-  border-left-color: $foreground;
-}
-
-form input:required {
-  border-left-color: $green;
-}
-
-form input:invalid {
-  border-left-color: $red;
+  margin: 0.5rem;
 }
 
 .error-message {

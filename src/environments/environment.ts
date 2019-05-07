@@ -11,6 +11,7 @@ export const environment = {
   scheduleEndPoint: '/schedule',
   authEndPoint: '/authentication',
   settingsEndPoint: '/settings',
+  notificationsEndPoint: '/notifications',
   clientEndPoint: '/client',
   heartbeat: 10,
   connectionTimer: 5,

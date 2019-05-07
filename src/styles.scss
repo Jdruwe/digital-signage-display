@@ -48,12 +48,39 @@ ngu-tile > .tile {
   box-shadow: none !important;
 }
 
-.white {
+.btn-white {
   color: $white;
   border-color: $white;
 
   &:hover {
     background-color: $white;
     color: $foreground;
+  }
+}
+
+input[type=number], textarea, form input {
+  border: 2px solid $white;
+  border-radius: $border-radius;
+  min-width: 6rem;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  background-color: transparent;
+  color: $white;
+  transition: ease-out 0.5s;
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 3pt 1pt $blue;
+  }
+}
+
+form input[type=text], form input[type=password] {
+
+  &:invalid {
+    border-color: $red;
+  }
+
+  &:valid {
+    border-color: $green;
   }
 }

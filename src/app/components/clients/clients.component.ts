@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientService} from '../../services/client.service';
-import {Client} from '../../models/client';
+import {Client} from '../../models/client/client';
 import * as moment from 'moment';
-import {ClientDetails} from '../../models/client-details';
+import {ClientDetails} from '../../models/client/client-details';
 import {environment} from '../../../environments/environment';
-import {ClientWithId} from '../../models/client-with-id';
+import {ClientWithId} from '../../models/client/client-with-id';
 
 @Component({
   selector: 'app-clients',
