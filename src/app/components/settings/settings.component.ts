@@ -3,6 +3,8 @@ import {Settings} from '../../models/settings/settings';
 import {SettingsService} from '../../services/settings.service';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {NotificationSettings} from '../../models/settings/notification-settings';
+import {MainSettings} from '../../models/settings/main-settings';
 
 @Component({
   selector: 'app-settings',
@@ -43,9 +45,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
   updateSettings(form: NgForm) {
     if (form.valid) {
       this.settingsService.changeSettings(form.value.minutesBeforeNextSession, form.value.showOccupancyCounter)
-        .subscribe(response => {
+        .subscribe((response: MainSettings) => {
           this.newTime(form.value.minutesBeforeNextSession);
           this.showMessage('Settings saved!');
+          this.settings.minutesBeforeNextSession = response.minutesBeforeNextSession;
+          this.settings.roomOccupancyOn = response.roomOccupancyOn;
         }, error => {
           this.showMessage('Failed, please try again.');
         });
@@ -57,8 +61,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
       const message = form.value.message;
       const showMessage = form.value.showMessage;
       this.settingsService.changeNotificationSettings(message, showMessage)
-        .subscribe(respone => {
+        .subscribe((response: NotificationSettings) => {
           this.showMessage('Settings saved!');
+          this.settings.message = response.message;
+          this.settings.showMessage = response.showMessage;
         }, error => {
           this.showMessage('Failed, please try again.');
         });
