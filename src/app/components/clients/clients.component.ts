@@ -25,7 +25,7 @@ export class ClientsComponent implements OnInit {
         const days = this.getDaysSince(client);
         const hours = this.getHoursSince(client);
         const minutes = this.getMinutesSince(client);
-        const status = (environment.heartbeat * 2) > minutes ;
+        const status = (environment.heartbeat * 2) > minutes;
         this.clientsWithDetails.push(
           new ClientDetails(client, days, hours - (Math.floor(days) * 24), minutes - (Math.floor(hours) * 60), status)
         );
@@ -34,7 +34,6 @@ export class ClientsComponent implements OnInit {
   }
 
   UnregisterClient(clientDetails: ClientDetails) {
-    console.log('close');
     this.clientService.unRegisterRoomManually(clientDetails.client.id);
     this.clientsWithDetails.splice(this.clientsWithDetails.indexOf(clientDetails), 1);
   }

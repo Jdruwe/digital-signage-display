@@ -12,5 +12,6 @@ export const environment = {
   heartbeat: 10,
   connectionTimer: 5,
   carouselAnimationSpeed: 750,
-  carouselInterval: 3000
+  carouselInterval: 3000,
+  retrieveMessageInterval: 1
 };
