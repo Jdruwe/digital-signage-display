@@ -8,6 +8,7 @@
   <div class="time">
     <h2>{{talk.fromTime | trimTime}} - {{talk.toTime | trimTime}}</h2>
     <span class="box" *ngIf="isNow()">NOW</span>
+    <h3 class="counter" *ngIf="showRoomOccupancy">321/500</h3>
   </div>
 
   <div class="summary" ellipsis [ellipsis-content]="talk.summary">

@@ -16,6 +16,8 @@ export class TalkComponent implements AfterViewInit, OnChanges {
   @Input() time: Date;
   @ViewChild('carousel') carousel: NguCarousel<Speaker>;
 
+  // todo implement
+  showRoomOccupancy = false;
   carouselTileConfig: NguCarouselConfig = {
     grid: {xs: 3, sm: 3, md: 3, lg: 3, all: 0},
     point: {

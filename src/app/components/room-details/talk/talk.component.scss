@@ -48,6 +48,21 @@ h3 {
   h2 {
     margin: 0;
   }
+
+  .counter {
+    color: darken($white, 20%);
+    margin: auto 0 auto auto;
+
+    &:after {
+      content: '';
+      margin-left: 0.5rem;
+      background: url("~src/assets/users-solid.svg") no-repeat;
+      height: 2.5rem;
+      width: 2.5rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
 }
 
 .box {
