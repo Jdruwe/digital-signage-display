@@ -48,6 +48,9 @@ describe('RoomComponent', () => {
     component = fixture.componentInstance;
     timeService = TestBed.get(TimeService);
     spyOn(timeService, 'getClock').and.callThrough();
+    const app = fixture.debugElement.componentInstance;
+    app.message = 'Test message';
+    app.showMessage = true;
     fixture.detectChanges();
   });
 
@@ -76,5 +79,17 @@ describe('RoomComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.empty-state h1').textContent).toContain(`It's a wrap!`);
+  });
+
+  it(`should render .message`, function () {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.message')).toBeDefined();
+  });
+
+  it(`should render .message h2 with 'Test message'`, function () {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.message h2').textContent).toContain('Test message');
   });
 });
