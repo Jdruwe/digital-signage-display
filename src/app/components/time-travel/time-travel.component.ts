@@ -70,6 +70,9 @@ export class TimeTravelComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   handleReset() {
+    clearInterval(this.timer);
+    this.timer = this.startTimer();
+
     this.timeService.resetTime();
     this.updateForm();
   }

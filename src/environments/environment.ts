@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   keyPressBufferTime: 250,
-  hideTimeTravelTimeOut: 5000,
+  hideTimeTravelTimeOut: 10000,
   apiUrl: 'http://localhost:8080/api',
   roomEndPoint: '/room',
   scheduleEndPoint: '/schedule',

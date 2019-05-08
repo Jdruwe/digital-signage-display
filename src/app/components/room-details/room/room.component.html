@@ -1,4 +1,4 @@
-<div class="container" [ngClass]="!(nextTalks && talkToShow) ? 'empty-container' : 'container'">
+<div class="container" [ngClass]="!(nextTalks && talkToShow) ? 'empty-container' : ''">
   <app-room-header
     [roomName]="schedule?.room.name"
     [time]="currentTime"
@@ -18,8 +18,8 @@
       [time]="currentTime"
       *ngIf="talkToShow">
     </app-talk>
-    <div class="message" *ngIf="showMessage">
-      <h2>This is a very important message you should read! It's also very long, which means it's extra important!</h2>
+    <div class="message" *ngIf="showMessage && message">
+      <h2>{{message}}</h2>
     </div>
   </div>
 
@@ -27,5 +27,4 @@
                 *ngIf="talkToShow && nextTalks"
                 [talks]="nextTalks">
   </app-timeline>
-
 </div>

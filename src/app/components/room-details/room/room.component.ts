@@ -9,6 +9,7 @@ import * as moment from 'moment';
 import {SettingsService} from '../../../services/settings.service';
 import {ClientService} from '../../../services/client.service';
 import {ConnectionService} from '../../../services/connection.service';
+import {Settings} from '../../../models/settings/settings';
 
 @Component({
   selector: 'app-room',
@@ -24,6 +25,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   timeBeforeSwitch: number;
   showTimeTravel = false;
   id: string;
+  message = '';
   showMessage = true;
 
   private clockSub: Subscription;
@@ -45,8 +47,10 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.settingsService.currentTimeBefore
       .subscribe(time => this.timeBeforeSwitch = time);
     this.settingsService.getSettings()
-      .subscribe(data => {
+      .subscribe((data: Settings) => {
         this.settingsService.changeTimeBefore(data.minutesBeforeNextSession);
+        this.message = data.message;
+        this.showMessage = data.showMessage;
       });
 
     this.subscribeToRoute();

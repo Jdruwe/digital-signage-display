@@ -75,7 +75,6 @@ input[type=number], textarea, form input {
 }
 
 form input[type=text], form input[type=password] {
-
   &:invalid {
     border-color: $red;
   }

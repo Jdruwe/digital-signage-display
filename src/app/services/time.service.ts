@@ -15,9 +15,9 @@ export class TimeService {
   private clockSubject: BehaviorSubject<Date>;
 
   constructor() {
-    // this.time = moment();
+    this.time = moment();
     // todo remove
-    this.time = moment('2018-11-16 10:54', 'YYYY-MM-DD HH:mm');
+    // this.time = moment('2018-11-16 10:54', 'YYYY-MM-DD HH:mm');
     this.clockSubject = new BehaviorSubject(this.time.toDate());
     this.initClock();
   }

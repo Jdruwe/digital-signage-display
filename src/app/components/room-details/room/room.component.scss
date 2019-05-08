@@ -24,6 +24,7 @@
 
   app-talk {
     flex-grow: 100;
+    min-height: 0;
   }
 }
 
@@ -34,15 +35,18 @@
   background-color: $foreground;
 }
 
+.empty-container {
+  grid-template-areas: "header header" "talk talk" "empty empty";
+  grid-template-rows: 10% fit-content(800px) 1fr;
+}
+
 .empty-state {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  grid-area: empty;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
+  align-items: center;
   text-align: center;
 
   h1 {
