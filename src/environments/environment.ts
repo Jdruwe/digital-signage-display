@@ -17,7 +17,7 @@ export const environment = {
   connectionTimer: 5,
   carouselAnimationSpeed: 750,
   carouselInterval: 3000,
-  retrieveMessageInterval: 1
+  retrieveMessageInterval: 5
 };
 
 /*
