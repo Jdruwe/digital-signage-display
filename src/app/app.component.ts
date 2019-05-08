@@ -22,10 +22,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.autoAuthUser();
     this.room = this.roomScheduleService.autoInitRoom();
-    // todo uncomment
-    // if (this.room.id) {
-    //   this.clientService.registerRoom(this.room, new Date());
-    //   this.router.navigate(['room', this.room.id]);
-    // }
+    if (this.room.id) {
+      this.clientService.registerRoom(this.room, new Date());
+      this.router.navigate(['room', this.room.id]);
+    }
   }
 }
