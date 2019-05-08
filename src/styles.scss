@@ -56,6 +56,11 @@ ngu-tile > .tile {
     background-color: $white;
     color: $foreground;
   }
+
+  &:disabled {
+    color: darken($white, 20%);
+    border-color: darken($white, 20%);
+  }
 }
 
 input[type=number], textarea, form input {
@@ -74,12 +79,17 @@ input[type=number], textarea, form input {
   }
 }
 
+
 form input[type=text], form input[type=password] {
-  &:invalid {
+  &.ng-touched.ng-invalid {
     border-color: $red;
   }
 
   &:valid {
     border-color: $green;
+  }
+
+  &::placeholder {
+    color: darken($white, 20%);
   }
 }

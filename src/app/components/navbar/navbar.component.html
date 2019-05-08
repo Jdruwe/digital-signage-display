@@ -4,8 +4,11 @@
   </ul>
   <span class="spacer"></span>
   <ul *ngIf="!isAuth">
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a [routerLink]="['']">Home</a>
+    </li>
     <li>
-      <a [routerLink]="['/login']">Log in</a>
+      <a [routerLink]="['/login']" routerLinkActive="active">Log in</a>
     </li>
   </ul>
 
