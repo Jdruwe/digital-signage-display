@@ -8,7 +8,7 @@
       <a [routerLink]="['']">Home</a>
     </li>
     <li>
-      <a [routerLink]="['/login']" routerLinkActive="active">Log in</a>
+      <a [routerLink]="['/auth/login']" routerLinkActive="active">Log in</a>
     </li>
   </ul>
 
@@ -17,13 +17,13 @@
       <a [routerLink]="['']">Home</a>
     </li>
     <li routerLinkActive="active">
-      <a [routerLink]="['/settings']">Settings</a>
+      <a [routerLink]="['/admin/settings']">Settings</a>
     </li>
     <li routerLinkActive="active">
-      <a [routerLink]="['/clients']">Heartbeat</a>
+      <a [routerLink]="['/admin/clients']">Heartbeat</a>
     </li>
     <li routerLinkActive="active">
-      <a [routerLink]="['/register']">Register new admin</a>
+      <a [routerLink]="['/auth/register']">Register new admin</a>
     </li>
     <li routerLinkActive="active">
       <a (click)="logout()">Log out</a>

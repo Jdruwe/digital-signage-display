@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RoomListComponent} from './room-list.component';
-import {NavbarComponent} from '../navbar/navbar.component';
+import {NavbarComponent} from '../shared/navbar/navbar.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {RoomService} from '../../services/room.service';

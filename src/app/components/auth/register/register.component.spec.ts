@@ -7,7 +7,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {DebugElement} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {By} from '@angular/platform-browser';
-import {NavbarComponent} from '../../navbar/navbar.component';
+import {NavbarComponent} from '../../shared/navbar/navbar.component';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;

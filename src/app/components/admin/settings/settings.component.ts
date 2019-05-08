@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Settings} from '../../models/settings/settings';
-import {SettingsService} from '../../services/settings.service';
+import {Settings} from '../../../models/settings/settings';
+import {SettingsService} from '../../../services/settings.service';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {NotificationSettings} from '../../models/settings/notification-settings';
-import {MainSettings} from '../../models/settings/main-settings';
+import {NotificationSettings} from '../../../models/settings/notification-settings';
+import {MainSettings} from '../../../models/settings/main-settings';
 
 @Component({
   selector: 'app-settings',
