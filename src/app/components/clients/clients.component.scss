@@ -1,9 +1,5 @@
 @import "~src/styles";
 
-body{
-  background-color: #d9d4d1 !important;
-}
-
 .container {
   display: flex;
   flex-direction: row;
@@ -27,7 +23,7 @@ body{
   h1 {
     margin-left: 1.50rem;
 
-    img{
+    img {
       width: 20px;
       height: 20px;
       float: right;
@@ -72,7 +68,7 @@ svg {
 
 svg .ekg {
   fill: none;
-  stroke: #00d704;
+  stroke: $green;
   stroke-width: 7;
   stroke-linecap: round;
   stroke-linejoin: miter;
@@ -83,7 +79,7 @@ svg .ekg {
 }
 
 .red {
-  stroke: red !important;
+  stroke: $red !important;
 }
 
 @keyframes ekg {
