@@ -1,26 +1,29 @@
 <nav>
+  <ul>
+    <li><span>{{adminName}}</span></li>
+  </ul>
   <span class="spacer"></span>
   <ul *ngIf="!isAuth">
     <li>
-      <a (click)="login()">Log in</a>
+      <a [routerLink]="['/login']">Log in</a>
     </li>
   </ul>
 
   <ul *ngIf="isAuth">
-    <li >
-    <a (click)="logout()">{{adminName}} Log out</a>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a [routerLink]="['']">Home</a>
     </li>
-    <li>
-      <a (click)="register()">Register new</a>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/settings']">Settings</a>
     </li>
-    <li>
-      <a (click)="settings()">Settings</a>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/clients']">Heartbeat</a>
     </li>
-    <li>
-      <a (click)="heartbeat()">Heartbeat</a>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/register']">Register new admin</a>
     </li>
-    <li>
-      <a (click)="home()">Home</a>
+    <li routerLinkActive="active">
+      <a (click)="logout()">Log out</a>
     </li>
   </ul>
 </nav>

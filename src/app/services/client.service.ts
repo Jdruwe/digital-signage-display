@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Client} from '../models/client';
+import {Client} from '../models/client/client';
 import {environment} from '../../environments/environment.prod';
 import {Room} from '../models/room';
-import {ClientWithId} from '../models/client-with-id';
+import {ClientWithId} from '../models/client/client-with-id';
 import {ConnectionService} from './connection.service';
 
 @Injectable({
@@ -31,7 +31,6 @@ export class ClientService {
   }
 
   registerRoom(room: Room, lastConnected: Date) {
-    console.log('register');
     const client = new Client(room, lastConnected);
     this.room = room;
     this.startHeartbeatInterval();
@@ -42,7 +41,6 @@ export class ClientService {
   }
 
   unRegisterRoom() {
-    console.log('Unregister room');
     this.http.request('delete', environment.apiUrl + environment.clientEndPoint, {
       params: {
         id: this.getFromLocalStorage()
@@ -66,7 +64,6 @@ export class ClientService {
   }
 
   updateLastConnectedTime() {
-    console.log('Updated heartbeat');
     return this.http.patch(environment.apiUrl + environment.clientEndPoint, {
       clientId: this.getFromLocalStorage(),
       newDate: new Date()

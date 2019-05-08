@@ -7,7 +7,7 @@
 }
 
 .container {
-  background-color: transparentize($foreground, 0.7);
+  background-color: $foreground;
   border-radius: $border-radius;
   width: 350px;
   height: 400px;
@@ -23,29 +23,11 @@ button {
 }
 
 form input {
-  margin-top: 10%;
-  min-width: 125px;
-  border: 1px solid #eee;
-  border-left: 3px solid;
-  border-radius: $border-radius;
-  transition: border-color .5s ease-out;
-  height: 25px;
-}
-
-form input:optional {
-  border-left-color: #999;
-}
-
-form input:required {
-  border-left-color: palegreen;
-}
-
-form input:invalid {
-  border-left-color: salmon;
+  margin: 0.5rem;
 }
 
 .error-message {
-  color: red;
+  color: $red;
   font-size: small;
   display: inline-table;
   padding: .5rem;

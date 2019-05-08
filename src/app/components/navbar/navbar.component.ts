@@ -9,7 +9,7 @@ import {AuthService} from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   isAuth = false;
-  private adminName: string;
+  adminName: string;
 
   constructor(private router: Router,
               private authService: AuthService) {
@@ -35,22 +35,6 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.checkAuth();
-    this.router.navigate(['']);
-  }
-
-  register() {
-    this.router.navigate(['register']);
-  }
-
-  settings() {
-    this.router.navigate(['settings']);
-  }
-
-  heartbeat() {
-    this.router.navigate(['clients']);
-  }
-
-  home() {
     this.router.navigate(['']);
   }
 }

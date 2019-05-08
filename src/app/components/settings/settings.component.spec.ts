@@ -36,18 +36,29 @@ describe('SettingsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('settings should have title Settings', () => {
+  it(`should render first h1 with title 'Settings'`, () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Settings');
+    expect(compiled.querySelectorAll('h1')[0].textContent).toContain('Settings');
   });
 
-  it('should render 2 input fields ', () => {
+  it(`should render second h1 with title 'Notifications'`, () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelectorAll('input').length).toBe(2);
+    expect(compiled.querySelectorAll('h1')[1].textContent).toContain('Notifications');
   });
 
+  it('should render 4 input fields ', () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('input').length).toBe(4);
+  });
+
+  it(`should render 2 buttons`, () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('button').length).toBe(2);
+  });
 
   it('should call onSubmit method', fakeAsync(() => {
     spyOn(component, 'updateSettings');
@@ -55,4 +66,9 @@ describe('SettingsComponent', () => {
     expect(component.updateSettings).toHaveBeenCalled();
   }));
 
+  it('should not render a message', fakeAsync(() => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.message')).toBeNull();
+  }));
 });

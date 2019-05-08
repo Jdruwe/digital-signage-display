@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from './services/auth.service';
 import {RoomScheduleService} from './services/room-schedule.service';
 import {Router} from '@angular/router';

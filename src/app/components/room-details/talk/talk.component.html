@@ -14,7 +14,9 @@
   </div>
 
   <div class="speakers">
-    <ngu-carousel [inputs]="carouselTileConfig" [dataSource]="talk.speakers">
+    <ngu-carousel [inputs]="carouselTileConfig"
+                  [dataSource]="talk.speakers"
+                  #carousel>
       <ngu-tile *nguCarouselDef="let item">
         <app-speaker [speaker]="item"></app-speaker>
       </ngu-tile>

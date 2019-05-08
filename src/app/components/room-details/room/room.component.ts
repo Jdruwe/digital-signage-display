@@ -9,6 +9,8 @@ import * as moment from 'moment';
 import {SettingsService} from '../../../services/settings.service';
 import {ClientService} from '../../../services/client.service';
 import {ConnectionService} from '../../../services/connection.service';
+import {Settings} from '../../../models/settings/settings';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-room',
@@ -24,10 +26,13 @@ export class RoomComponent implements OnInit, OnDestroy {
   timeBeforeSwitch: number;
   showTimeTravel = false;
   id: string;
+  message = '';
+  showMessage = true;
 
   private clockSub: Subscription;
   private connectionSub: Subscription;
   private roomId: string;
+  private settingsInterval;
 
   constructor(private timeService: TimeService,
               private scheduleService: RoomScheduleService,
@@ -43,10 +48,8 @@ export class RoomComponent implements OnInit, OnDestroy {
 
     this.settingsService.currentTimeBefore
       .subscribe(time => this.timeBeforeSwitch = time);
-    this.settingsService.getSettings()
-      .subscribe(data => {
-        this.settingsService.changeTimeBefore(data.minutesBeforeNextSession);
-      });
+    this.retrieveSettings();
+    this.startSettingsInterval();
 
     this.subscribeToRoute();
     this.subscribeToConnectionService();
@@ -56,6 +59,22 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.clientService.unRegisterRoom();
     this.clockSub.unsubscribe();
     this.connectionSub.unsubscribe();
+    clearInterval(this.settingsInterval);
+  }
+
+  private retrieveSettings() {
+    this.settingsService.getSettings()
+      .subscribe((data: Settings) => {
+        this.settingsService.changeTimeBefore(data.minutesBeforeNextSession);
+        this.message = data.message;
+        this.showMessage = data.showMessage;
+      });
+  }
+
+  private startSettingsInterval() {
+    this.settingsInterval = setInterval(() => {
+      this.retrieveSettings();
+    }, environment.retrieveMessageInterval * 1000 * 60);
   }
 
   private subscribeToTimeService() {
