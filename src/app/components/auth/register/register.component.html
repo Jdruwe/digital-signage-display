@@ -1,56 +1,55 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <form (submit)="onRegister(registerForm)" #registerForm="ngForm" ngNativeValidate>
-    <!--TODO error message makes everything jump down -->
-    <span *ngIf="errorMessage" class="error-message">
-       {{errorMessage}}
-      </span>
-    <div class="content">
-      <h1>Register</h1>
-      <input type="text"
-             name="username"
-             id="username"
-             class="form-control"
-             placeholder="Username*"
-             required
-             [disabled]="isLoading"
-             [ngClass]="usernameForm.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && usernameForm.invalid) ? 'invalid' : ''"
-             ngModel
-             #usernameForm="ngModel">
+  <form (submit)="onRegister(registerForm)" #registerForm="ngForm">
+    <h1>Register</h1>
 
-      <input type="text"
-             name="email"
-             id="email"
-             class="form-control"
-             placeholder="Email*"
-             required
-             [disabled]="isLoading"
-             [ngClass]="emailInput.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && emailInput.invalid) ? 'invalid' : ''"
-             ngModel
-             email
-             #emailInput="ngModel">
+    <input type="text"
+           name="username"
+           id="username"
+           class="form-control"
+           placeholder="Username*"
+           required
+           [disabled]="isLoading"
+           ngModel>
 
-      <input type="password"
-             name="password"
-             id="passwordRegister"
-             class="form-control"
-             placeholder="Password*"
-             ngModel
-             [disabled]="isLoading"
-             [ngClass]="passwordInput.invalid && (!registerForm.pristine || registerForm.touched) || (registerForm.submitted && passwordInput.invalid) ? 'invalid' : ''"
-             required
-             #passwordInput="ngModel">
+    <input type="text"
+           name="email"
+           id="email"
+           class="form-control"
+           placeholder="Email*"
+           required
+           [disabled]="isLoading"
+           ngModel
+           email>
 
-      <button type="submit" class="btn-white" id="submit">
+    <input type="password"
+           name="password"
+           id="passwordRegister"
+           class="form-control"
+           placeholder="Password*"
+           ngModel
+           [disabled]="isLoading"
+           required>
+
+    <p class="error-message"
+       [style.visibility]="errorMessage ? 'visible' : 'hidden'">
+      ❗️{{errorMessage}}
+    </p>
+
+    <button type="submit"
+            class="btn-white"
+            id="submit"
+            [disabled]="registerForm.invalid">
         <span *ngIf="isLoading" role="status">
-          <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-          </div>
+          <span class="spinner">
+            <span class="bounce1"></span>
+            <span class="bounce2"></span>
+            <span class="bounce3"></span>
+          </span>
         </span>
-        {{isLoading ? '' : 'Register'}}</button>
-    </div>
+      {{isLoading ? '' : 'Register'}}
+    </button>
+
   </form>
 </div>
 

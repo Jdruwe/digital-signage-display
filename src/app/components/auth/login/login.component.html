@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <form class="login-form" (submit)="onLogin(loginForm)" #loginForm="ngForm">
+  <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
     <h1>Login</h1>
 
     <input type="text"
@@ -22,7 +22,7 @@
 
     <p class="error-message"
        [style.visibility]="errorMessage ? 'visible' : 'hidden'">
-      ❗️{{errorMessage}}
+      ❗{{errorMessage}}
     </p>
 
     <button type="submit"

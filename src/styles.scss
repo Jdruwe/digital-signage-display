@@ -52,12 +52,13 @@ ngu-tile > .tile {
   color: $white;
   border-color: $white;
 
-  &:hover {
+  &:hover:not([disabled]) {
     background-color: $white;
     color: $foreground;
   }
 
   &:disabled {
+    cursor: default;
     color: darken($white, 20%);
     border-color: darken($white, 20%);
   }
@@ -78,7 +79,6 @@ input[type=number], textarea, form input {
     box-shadow: 0 0 3pt 1pt $blue;
   }
 }
-
 
 form input[type=text], form input[type=password] {
   &.ng-touched.ng-invalid {
