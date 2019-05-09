@@ -35,9 +35,15 @@ describe('NavbarComponent', () => {
     expect(compiled.querySelector('li')).toBeDefined();
   });
 
-  it('should render \'Log in\' in li tag', () => {
+  it(`should render 'Home' in first li tag`, () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('li a').innerText).toContain('Log in');
+    expect(compiled.querySelectorAll('li a')[0].innerText).toContain('Home');
+  });
+
+  it(`should render 'Log in' in first li tag`, () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('li a')[1].innerText).toContain('Log in');
   });
 });
