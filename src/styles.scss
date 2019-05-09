@@ -33,6 +33,7 @@ button {
   transition: all 0.3s;
   background-color: transparent;
   cursor: pointer;
+  font-family: 'Roboto', sans-serif;
 
   &:hover {
     color: $white;
@@ -65,6 +66,7 @@ ngu-tile > .tile {
 }
 
 input[type=number], textarea, form input {
+  font-family: 'Roboto', sans-serif;
   border: 2px solid $white;
   border-radius: $border-radius;
   min-width: 6rem;
