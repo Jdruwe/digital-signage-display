@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment.prod';
 import {Room} from '../models/room';
 import {ClientWithId} from '../models/client/client-with-id';
 import {ConnectionService} from './connection.service';
+import * as moment from 'moment-timezone';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class ClientService {
   private offlineTimer: any;
   private offlineCounter: number;
 
-  constructor(private http: HttpClient, private connectionService: ConnectionService) {
+  constructor(private http: HttpClient,
+              private connectionService: ConnectionService) {
     this.connectionService.getConnectionStatus()
       .subscribe(response => {
         if (!response) {
@@ -31,13 +33,14 @@ export class ClientService {
   }
 
   registerRoom(room: Room, lastConnected: Date) {
-    const client = new Client(room, lastConnected);
+    const client = new Client(room, this.convertToBrusselsTimezone(lastConnected));
     this.room = room;
     this.startHeartbeatInterval();
-    return this.http.post(environment.apiUrl + environment.clientEndPoint, client).subscribe((response: ClientWithId) => {
-      this.clearLocalStorage();
-      this.saveToLocalStorage(response.id);
-    });
+    return this.http.post(environment.apiUrl + environment.clientEndPoint, client)
+      .subscribe((response: ClientWithId) => {
+        this.clearLocalStorage();
+        this.saveToLocalStorage(response.id);
+      });
   }
 
   unRegisterRoom() {
@@ -66,7 +69,7 @@ export class ClientService {
   updateLastConnectedTime() {
     return this.http.patch(environment.apiUrl + environment.clientEndPoint, {
       clientId: this.getFromLocalStorage(),
-      newDate: new Date()
+      newDate: this.convertToBrusselsTimezone(new Date())
     }).subscribe();
   }
 
@@ -101,5 +104,9 @@ export class ClientService {
 
   private clearLocalStorage() {
     return localStorage.removeItem('clientId');
+  }
+
+  private convertToBrusselsTimezone(date: Date) {
+    return moment.tz(date, 'Europe/Brussels').format();
   }
 }
