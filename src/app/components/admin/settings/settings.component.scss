@@ -1,4 +1,4 @@
-@import "~src/styles.scss";
+@import "../../../../styles";
 
 :host {
   display: grid;
@@ -21,7 +21,6 @@ app-navbar {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  border-radius: $border-radius;
 }
 
 .message {

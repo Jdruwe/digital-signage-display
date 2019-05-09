@@ -11,11 +11,26 @@ import {ClientService} from '../../../services/client.service';
 import {ConnectionService} from '../../../services/connection.service';
 import {Settings} from '../../../models/settings/settings';
 import {environment} from '../../../../environments/environment';
+import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.scss']
+  styleUrls: ['./room.component.scss'],
+  animations: [
+    trigger(
+      'SlideInOut', [
+        transition(':enter', [
+          style({transform: 'translateY(100%)', opacity: 0}),
+          animate('300ms', style({transform: 'translateY(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateY(0)', opacity: 1}),
+          animate('300ms', style({transform: 'translateY(100%)', opacity: 0}))
+        ])
+      ]
+    )
+  ]
 })
 export class RoomComponent implements OnInit, OnDestroy {
 

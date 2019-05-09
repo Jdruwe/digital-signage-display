@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
@@ -8,15 +8,12 @@ import {Router} from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   isLoading = false;
   errorMessage: string;
 
   constructor(private authService: AuthService,
               private router: Router) {
-  }
-
-  ngOnInit() {
   }
 
   onRegister(form: NgForm) {
@@ -25,20 +22,14 @@ export class RegisterComponent implements OnInit {
       this.isLoading = false;
       return;
     }
+
     this.authService.register(form.value.username, form.value.email, form.value.password)
       .subscribe(data => {
         this.isLoading = false;
         this.router.navigate(['']);
-
       }, error => {
         this.isLoading = false;
-        switch (error.status) {
-          case 409:
-            this.errorMessage = error.error;
-            break;
-          default:
-            this.errorMessage = 'Oopsie woopsie, that didn\'t work! Please try again.';
-        }
+        this.errorMessage = 'Failed, please try again.';
       });
   }
 

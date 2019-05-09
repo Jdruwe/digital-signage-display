@@ -2,7 +2,7 @@ import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing
 
 import {SettingsComponent} from './settings.component';
 import {FormsModule} from '@angular/forms';
-import {NavbarComponent} from '../navbar/navbar.component';
+import {NavbarComponent} from '../../shared/navbar/navbar.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {By} from '@angular/platform-browser';

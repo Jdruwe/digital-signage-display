@@ -1,11 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ClientsComponent} from './clients.component';
-import {NavbarComponent} from '../navbar/navbar.component';
+import {NavbarComponent} from '../../shared/navbar/navbar.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {ClientService} from '../../services/client.service';
+import {ClientService} from '../../../services/client.service';
 import {By} from '@angular/platform-browser';
+import {DateAgoPipe} from '../../../pipes/date-ago.pipe';
 
 describe('ClientsComponent', () => {
   let component: ClientsComponent;
@@ -16,7 +17,8 @@ describe('ClientsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ClientsComponent,
-        NavbarComponent
+        NavbarComponent,
+        DateAgoPipe
       ],
       imports: [
         RouterTestingModule,
@@ -34,8 +36,8 @@ describe('ClientsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('clients should be undefined before ngOnInit', () => {
-    expect(component.clients).toBeUndefined();
+  it('clients should be defined before ngOnInit', () => {
+    expect(component.clients).toBeDefined();
   });
 
   it('clients should not be undefined after ngOnInit', () => {

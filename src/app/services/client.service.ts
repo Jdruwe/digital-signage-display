@@ -55,11 +55,11 @@ export class ClientService {
   }
 
   unRegisterRoomManually(clientId: number) {
-    this.http.request('delete', environment.apiUrl + environment.clientEndPoint, {
+    return this.http.request('delete', environment.apiUrl + environment.clientEndPoint, {
       params: {
         id: clientId.toString()
       }
-    }).subscribe();
+    });
   }
 
   getAllClients() {

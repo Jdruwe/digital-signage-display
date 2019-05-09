@@ -1,0 +1,36 @@
+<nav>
+  <ul>
+    <li><span>{{adminName}}</span></li>
+    <li
+      *ngIf="amountOfOnlineClients && amountOfClients">
+      <span class="status" [ngClass]="amountOfClients === amountOfOnlineClients ? 'alive' : 'dead'">
+        {{amountOfOnlineClients}}/{{amountOfClients}} healthy clients</span></li>
+  </ul>
+  <span class="spacer"></span>
+  <ul *ngIf="!isAuth">
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a [routerLink]="['']">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/auth/login']" routerLinkActive="active">Log in</a>
+    </li>
+  </ul>
+
+  <ul *ngIf="isAuth">
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a [routerLink]="['']">Home</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/admin/settings']">Settings</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/admin/clients']">Heartbeat</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/auth/register']">Register new admin</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="logout()">Log out</a>
+    </li>
+  </ul>
+</nav>

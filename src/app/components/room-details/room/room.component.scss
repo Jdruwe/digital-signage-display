@@ -7,7 +7,7 @@
   grid-template-columns: 75% 25%;
   grid-template-areas: "header header" "talk timeline";
 
-  // todo remove comment
+  // todo remove before flight
   // cursor: none;
 }
 
@@ -23,7 +23,7 @@
   flex-direction: column;
 
   app-talk {
-    flex-grow: 100;
+    flex: 1;
     min-height: 0;
   }
 }

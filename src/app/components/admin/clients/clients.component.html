@@ -1,0 +1,28 @@
+<app-navbar [amountOfClients]="amountOfClients"
+            [amountOfOnlineClients]="amountOfOnlineClients"></app-navbar>
+<div class="container">
+  <div *ngFor="let client of clientsWithDetails">
+    <div class="brand-card">
+      <h1>
+      <img src="../../../../assets/times-solid.svg" alt="" (click)="UnregisterClient(client)">
+      </h1>
+      <div class="brand-card-header">
+        <div class="monitor">
+          <svg viewBox="0 0 500 200">
+            <!-- START_Y, START_X, END_Y, END_X, -->
+            <!-- flat line -->
+            <polyline *ngIf="!client.isAlive" class="ekg red" points="486.6,113.8 328.2,113 4.3, 113"></polyline>
+            <!-- heartbeat -->
+            <polyline *ngIf="client.isAlive" class="ekg" points="486.6,113.8 328.2,113.8 310.3,132.3 296,70.7 246.8,127.4 241.6,120.2 233.9,166.4 227,27.6
+							213.2,118.3 211.8,112.3 205.1,126.1 198.2,108.5 194.1,124.4 184.5,92.9 174.1,113 4.3,113 	"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="brand-card-body">
+        <div class="text-value">{{client.client.room.name}}</div>
+
+        <div class="text-value">{{client.client.lastConnected | dateAgo}}</div>
+      </div>
+    </div>
+  </div>
+</div>

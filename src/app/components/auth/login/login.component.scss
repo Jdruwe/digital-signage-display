@@ -1,37 +1,52 @@
 @import "~src/styles.scss";
 
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+:host {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 100%;
+  grid-template-areas: "header" "login";
+  height: 100%;
+  width: 100%;
+}
+
+app-navbar {
+  grid-area: header;
+  width: 100%;
 }
 
 .container {
-  background-color: $foreground;
+  grid-area: login;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2rem;
   border-radius: $border-radius;
-  width: 350px;
-  height: 400px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  background-color: $foreground;
+
+  h1 {
+    font-size: 3rem;
+    letter-spacing: 0.1rem;
+    margin: 2rem 0 0 0;
+  }
+}
+
+input {
+  margin: 2rem 0 0.5rem 0;
 }
 
 button {
-  margin: 20% 0.3em 0.3em 0;
-}
-
-form input {
-  margin: 0.5rem;
+  margin: 1rem 0 2rem 0;
 }
 
 .error-message {
+  margin: 1rem auto 1rem 0;
   color: $red;
-  font-size: small;
-  display: inline-table;
-  padding: .5rem;
-  text-align: left;
-  width: 100%;
 }
 
 .spinner {
@@ -39,7 +54,7 @@ form input {
   text-align: center;
 }
 
-.spinner > div {
+.spinner > span {
   width: 10px;
   height: 10px;
   background-color: $white;
