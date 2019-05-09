@@ -1,6 +1,10 @@
 <nav>
   <ul>
     <li><span>{{adminName}}</span></li>
+    <li
+      *ngIf="amountOfOnlineClients && amountOfClients">
+      <span class="status" [ngClass]="amountOfClients === amountOfOnlineClients ? 'alive' : 'dead'">
+        {{amountOfOnlineClients}}/{{amountOfClients}} healthy clients</span></li>
   </ul>
   <span class="spacer"></span>
   <ul *ngIf="!isAuth">

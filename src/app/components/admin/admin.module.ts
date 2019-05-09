@@ -5,11 +5,13 @@ import {SharedModule} from '../shared/shared.module';
 import {ClientsComponent} from './clients/clients.component';
 import {SettingsComponent} from './settings/settings.component';
 import {AdminRoutingModule} from './admin-routing.module';
+import {DateAgoPipe} from '../../pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
     ClientsComponent,
-    SettingsComponent
+    SettingsComponent,
+    DateAgoPipe
   ],
   imports: [
     CommonModule,
