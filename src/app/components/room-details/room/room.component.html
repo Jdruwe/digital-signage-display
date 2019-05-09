@@ -1,10 +1,12 @@
-<div class="container" [ngClass]="!(nextTalks && talkToShow) ? 'empty-container' : ''">
+<div class="container"
+     [ngClass]="!(nextTalks && talkToShow) ? 'empty-container' : ''">
   <app-room-header
     [roomName]="schedule?.room.name"
     [time]="currentTime"
     [showTimeTravel]="showTimeTravel"
     (hideTimeTravel)="toggleTimeTravel()"
-    class="header"></app-room-header>
+    class="header">
+  </app-room-header>
 
   <div class="empty-state"
        *ngIf="!(nextTalks && talkToShow)">
@@ -18,7 +20,9 @@
       [time]="currentTime"
       *ngIf="talkToShow">
     </app-talk>
-    <div class="message" *ngIf="showMessage && message" [@SlideInOut]>
+    <div class="message"
+         *ngIf="showMessage && message"
+         [@SlideInOut]>
       <h2>{{message}}</h2>
     </div>
   </div>

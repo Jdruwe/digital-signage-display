@@ -14,10 +14,14 @@ export class TalkComponent implements AfterViewInit, OnChanges {
 
   @Input() talk: Talk;
   @Input() time: Date;
-  @ViewChild('carousel') carousel: NguCarousel<Speaker>;
 
   // todo implement
-  showRoomOccupancy = false;
+  @Input() showRoomOccupancy = false;
+  @Input() currentOccupancy: number;
+  @Input() maxOccupancy: number;
+
+  @ViewChild('carousel') carousel: NguCarousel<Speaker>;
+
   carouselTileConfig: NguCarouselConfig = {
     grid: {xs: 3, sm: 3, md: 3, lg: 3, all: 0},
     point: {
