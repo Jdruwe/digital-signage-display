@@ -19,18 +19,19 @@ export class ClientsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.clientService.getAllClients().subscribe((data: ClientWithId[]) => {
-      this.clients = data;
-      this.clients.forEach(client => {
-        const days = this.getDaysSince(client);
-        const hours = this.getHoursSince(client);
-        const minutes = this.getMinutesSince(client);
-        const status = (environment.heartbeat * 2) > minutes;
-        this.clientsWithDetails.push(
-          new ClientDetails(client, days, hours - (Math.floor(days) * 24), minutes - (Math.floor(hours) * 60), status)
-        );
+    this.clientService.getAllClients()
+      .subscribe((data: ClientWithId[]) => {
+        this.clients = data;
+        this.clients.forEach(client => {
+          const days = this.getDaysSince(client);
+          const hours = this.getHoursSince(client);
+          const minutes = this.getMinutesSince(client);
+          const status = (environment.heartbeat * 2) > minutes;
+          this.clientsWithDetails.push(
+            new ClientDetails(client, days, hours - (Math.floor(days) * 24), minutes - (Math.floor(hours) * 60), status)
+          );
+        });
       });
-    });
   }
 
   UnregisterClient(clientDetails: ClientDetails) {
