@@ -15,8 +15,8 @@ export class TalkComponent implements AfterViewInit, OnChanges {
   @Input() talk: Talk;
   @Input() time: Date;
 
-  // todo implement
   @Input() showRoomOccupancy = false;
+  // todo implement
   @Input() currentOccupancy: number;
   @Input() maxOccupancy: number;
 
