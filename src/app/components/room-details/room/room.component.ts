@@ -41,6 +41,8 @@ export class RoomComponent implements OnInit, OnDestroy {
   timeBeforeSwitch: number;
   showTimeTravel = false;
   id: string;
+
+  showRoomOccupancy = false;
   message = '';
   showMessage = true;
 
@@ -81,6 +83,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.settingsService.getSettings()
       .subscribe((data: Settings) => {
         this.settingsService.changeTimeBefore(data.minutesBeforeNextSession);
+        this.showRoomOccupancy = data.roomOccupancyOn;
         this.message = data.message;
         this.showMessage = data.showMessage;
       });
