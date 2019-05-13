@@ -38,7 +38,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.message = '';
-    this.timeSub.unsubscribe();
+    if (this.timeSub) {
+      this.timeSub.unsubscribe();
+    }
     clearTimeout(this.messageTimer);
   }
 
