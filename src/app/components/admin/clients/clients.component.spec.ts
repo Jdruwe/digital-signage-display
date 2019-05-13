@@ -36,17 +36,17 @@ describe('ClientsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('clients should be defined before ngOnInit', () => {
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should have defined clients before ngOnInit', () => {
     expect(component.clients).toBeDefined();
   });
 
-  it('clients should not be undefined after ngOnInit', () => {
+  it('should not have undefined clients after ngOnInit', () => {
     component.ngOnInit();
     expect(component.clients !== undefined);
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should render 0 clients', () => {

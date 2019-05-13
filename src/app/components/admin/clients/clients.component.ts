@@ -24,7 +24,7 @@ export class ClientsComponent implements OnInit {
     this.updateClients();
   }
 
-  UnregisterClient(clientDetails: ClientDetails) {
+  unregisterClient(clientDetails: ClientDetails) {
     this.clientService.unRegisterRoomManually(clientDetails.client.id).subscribe(() => {
       this.clientsWithDetails.splice(this.clientsWithDetails.indexOf(clientDetails), 1);
       this.updateClients();

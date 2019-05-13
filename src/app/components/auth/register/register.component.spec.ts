@@ -22,9 +22,11 @@ describe('RegisterComponent', () => {
         RegisterComponent,
         NavbarComponent
       ],
-      imports: [FormsModule,
+      imports: [
+        FormsModule,
         RouterTestingModule,
-        HttpClientTestingModule]
+        HttpClientTestingModule
+      ]
     })
       .compileComponents();
     fixture = TestBed.createComponent(RegisterComponent);
@@ -43,11 +45,11 @@ describe('RegisterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Component variable is Loading should be false', () => {
+  it('should not be loading', () => {
     expect(fixture.componentInstance.isLoading).toBeFalsy();
   });
 
-  it('#onRegister should change IsLoading variable', () => {
+  it('should change isLoading on submitting the form', () => {
     const testForm = <NgForm>{
       value: {
         username: 'Hello',
@@ -66,7 +68,7 @@ describe('RegisterComponent', () => {
     expect(component.onRegister).toHaveBeenCalled();
   }));
 
-  it('#onRegister should call auth service method register', () => {
+  it('should call AuthService.register', () => {
     const testForm = <NgForm>{
       value: {
         username: 'Hello',
@@ -77,5 +79,17 @@ describe('RegisterComponent', () => {
     const comp = fixture.componentInstance;
     comp.onRegister(testForm);
     expect(registerSpy).toHaveBeenCalled();
+  });
+
+  it('should stop loading when form is invalid', () => {
+    const testForm = <NgForm>{
+      value: {
+        username: 'test'
+      },
+      invalid: true
+    };
+    const comp = fixture.componentInstance;
+    comp.onRegister(testForm);
+    expect(fixture.componentInstance.isLoading).toBeFalsy();
   });
 });

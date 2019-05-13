@@ -1,15 +1,20 @@
 import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 
 import {SettingsComponent} from './settings.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, NgForm} from '@angular/forms';
 import {NavbarComponent} from '../../shared/navbar/navbar.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {By} from '@angular/platform-browser';
+import {SettingsService} from '../../../services/settings.service';
+import {DebugElement} from '@angular/core';
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
   let fixture: ComponentFixture<SettingsComponent>;
+  let settingsService: SettingsService;
+  let debugElement: DebugElement;
+  let settingsSpy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -24,6 +29,10 @@ describe('SettingsComponent', () => {
       ]
     })
       .compileComponents();
+    fixture = TestBed.createComponent(SettingsComponent);
+    debugElement = fixture.debugElement;
+    settingsService = debugElement.injector.get(SettingsService);
+    settingsSpy = spyOn(settingsService, 'changeSettings').and.callThrough();
   }));
 
   beforeEach(() => {
@@ -60,15 +69,71 @@ describe('SettingsComponent', () => {
     expect(compiled.querySelectorAll('button').length).toBe(2);
   });
 
-  it('should call onSubmit method', fakeAsync(() => {
-    spyOn(component, 'updateSettings');
-    fixture.debugElement.query(By.css('form')).triggerEventHandler('submit', null);
-    expect(component.updateSettings).toHaveBeenCalled();
-  }));
-
   it('should not render a message', fakeAsync(() => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.message')).toBeNull();
   }));
+
+  describe('settingsForm', () => {
+    it('should call updateSettings()', fakeAsync(() => {
+      spyOn(component, 'updateSettings');
+      fixture.debugElement.query(By.css('form')).triggerEventHandler('submit', null);
+      expect(component.updateSettings).toHaveBeenCalled();
+    }));
+
+    it('should call settingsService.changeSettings()', () => {
+      const testForm = <NgForm>{
+        value: {
+          minutesBeforeNextSession: 5,
+          showOccupancyCounter: false,
+        },
+        valid: true
+      };
+      const comp = fixture.componentInstance;
+      comp.updateSettings(testForm);
+      expect(settingsSpy).toHaveBeenCalled();
+    });
+
+    it('should not call settingsService.changeSettings()', () => {
+      const testForm = <NgForm>{
+        valid: false
+      };
+      const comp = fixture.componentInstance;
+      comp.updateSettings(testForm);
+      expect(settingsSpy).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  describe('notificationsForm', () => {
+    it('should call updateNotifications()', fakeAsync(() => {
+      spyOn(component, 'updateNotifications');
+      fixture.debugElement.queryAll(By.css('form'))[1].triggerEventHandler('submit', null);
+      expect(component.updateNotifications).toHaveBeenCalled();
+    }));
+
+    it('should call settingsService.changeNotificationSettings()', () => {
+      settingsSpy = spyOn(settingsService, 'changeNotificationSettings').and.callThrough();
+      const testForm = <NgForm>{
+        value: {
+          message: 'Test message',
+          showMessage: false,
+        },
+        valid: true
+      };
+      const comp = fixture.componentInstance;
+      comp.updateNotifications(testForm);
+      expect(settingsSpy).toHaveBeenCalled();
+    });
+
+    it('should not call settingsService.changeNotificationSettings()', () => {
+      settingsSpy = spyOn(settingsService, 'changeNotificationSettings').and.callThrough();
+      const testForm = <NgForm>{
+        valid: false
+      };
+      const comp = fixture.componentInstance;
+      comp.updateNotifications(testForm);
+      expect(settingsSpy).toHaveBeenCalledTimes(0);
+    });
+  });
 });

@@ -45,11 +45,11 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Component variable is Loading should be false', () => {
+  it('should not be loading', () => {
     expect(fixture.componentInstance.isLoading).toBeFalsy();
   });
 
-  it('#onLogin should change IsLoading variable', () => {
+  it('should change isLoading on submitting the form', () => {
     const testForm = <NgForm>{
       value: {
         username: 'Hello',
@@ -68,7 +68,7 @@ describe('LoginComponent', () => {
     expect(component.onLogin).toHaveBeenCalled();
   }));
 
-  it('#onLogin should call auth service method login', () => {
+  it('should call AuthService.login', () => {
     const testForm = <NgForm>{
       value: {
         username: 'Hello',
@@ -79,5 +79,14 @@ describe('LoginComponent', () => {
     const comp = fixture.componentInstance;
     comp.onLogin(testForm);
     expect(loginSpy).toHaveBeenCalled();
+  });
+
+  it('should stop loading when form is invalid', () => {
+    const testForm = <NgForm>{
+      invalid: true
+    };
+    const comp = fixture.componentInstance;
+    comp.onLogin(testForm);
+    expect(fixture.componentInstance.isLoading).toBeFalsy();
   });
 });
