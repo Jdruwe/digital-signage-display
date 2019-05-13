@@ -44,7 +44,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   updateSettings(form: NgForm) {
     if (form.valid) {
-      this.settingsService.changeSettings(form.value.minutesBeforeNextSession, form.value.showOccupancyCounter)
+      this.settingsService.changeSettings(form.value.minutesBeforeNextSession, form.value.showOccupancyCounter, form.value.mailDelayForConnectionIssues)
         .subscribe((response: MainSettings) => {
           this.newTime(form.value.minutesBeforeNextSession);
           this.showMessage('Settings saved!');
