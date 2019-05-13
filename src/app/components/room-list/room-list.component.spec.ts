@@ -47,4 +47,18 @@ describe('RoomListComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelectorAll('.card').length).toBe(0);
   });
+
+  it('should return the right index', function () {
+    fixture.detectChanges();
+    const room = {
+      id: 'Room6',
+      name: 'Room 6'
+    };
+
+    component.rooms = [{
+      id: 'Room8',
+      name: 'Room 8'
+    }, room];
+    expect(component.getIndexOf(room)).toEqual(1);
+  });
 });

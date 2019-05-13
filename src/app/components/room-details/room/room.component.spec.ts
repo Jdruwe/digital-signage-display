@@ -15,11 +15,15 @@ import {EllipsisModule} from 'ngx-ellipsis';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NguCarouselModule} from '@ngu/carousel';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ClientService} from '../../../services/client.service';
+import {Router} from '@angular/router';
 
 describe('RoomComponent', () => {
   let component: RoomComponent;
   let fixture: ComponentFixture<RoomComponent>;
   let timeService: TimeService;
+  let clientService: ClientService;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -49,6 +53,8 @@ describe('RoomComponent', () => {
     fixture = TestBed.createComponent(RoomComponent);
     component = fixture.componentInstance;
     timeService = TestBed.get(TimeService);
+    clientService = TestBed.get(ClientService);
+    router = TestBed.get(Router);
     spyOn(timeService, 'getClock').and.callThrough();
     const app = fixture.debugElement.componentInstance;
     app.message = 'Test message';
@@ -93,5 +99,31 @@ describe('RoomComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.message h2').textContent).toContain('Test message');
+  });
+
+  it(`should call the right services and redirect when 'H' is pressed`, function () {
+    fixture.detectChanges();
+    const timeSpy = spyOn(timeService, 'resetTime').and.callThrough();
+    const clientSpy = spyOn(clientService, 'unRegisterRoom').and.callThrough();
+    const routerSpy = spyOn(router, 'navigate');
+
+    const event = new KeyboardEvent('keypress', {
+      'key': 'H'
+    });
+    document.dispatchEvent(event);
+
+    expect(timeSpy).toHaveBeenCalled();
+    expect(clientSpy).toHaveBeenCalled();
+    expect(routerSpy).toHaveBeenCalledWith(['']);
+  });
+
+  it(`should set showTimeTravel to true when X is pressed`, function () {
+    fixture.detectChanges();
+    const event = new KeyboardEvent('beforeunload', {
+      'key': 'X'
+    });
+    document.dispatchEvent(event);
+
+    expect(component.toggleTimeTravel).toBeTruthy();
   });
 });
