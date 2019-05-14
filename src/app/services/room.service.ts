@@ -4,7 +4,7 @@ import {environment} from '../../environments/environment';
 import {Room} from '../models/room';
 import {ConnectionService} from './connection.service';
 import {catchError, map} from 'rxjs/operators';
-import {interval, Observable, of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

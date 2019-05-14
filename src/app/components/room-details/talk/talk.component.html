@@ -9,7 +9,7 @@
     <h2>{{talk.fromTime | trimTime}} - {{talk.toTime | trimTime}}</h2>
     <span class="box" *ngIf="isNow()">NOW</span>
     <h3 class="counter"
-        *ngIf="showRoomOccupancy && currentOccupancy && maxOccupancy">
+        *ngIf="showRoomOccupancy && currentOccupancy >= 0 && maxOccupancy >= 0">
       {{currentOccupancy}}/{{maxOccupancy}}
     </h3>
   </div>

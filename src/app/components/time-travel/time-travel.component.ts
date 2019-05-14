@@ -107,6 +107,6 @@ export class TimeTravelComponent implements OnInit, OnChanges, OnDestroy {
   private startTimer() {
     return setTimeout(() => {
       this.hideTimeTravel.emit();
-    }, environment.hideTimeTravelTimeOut);
+    }, environment.hideTimeTravelTimeOutInMillis);
   }
 }
