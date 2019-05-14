@@ -16,7 +16,6 @@ export class TalkComponent implements AfterViewInit, OnChanges {
   @Input() time: Date;
 
   @Input() showRoomOccupancy = false;
-  // todo implement
   @Input() currentOccupancy: number;
   @Input() maxOccupancy: number;
 
@@ -29,8 +28,8 @@ export class TalkComponent implements AfterViewInit, OnChanges {
     },
     touch: false,
     loop: true,
-    speed: environment.carouselAnimationSpeed,
-    interval: {timing: environment.carouselInterval},
+    speed: environment.carouselAnimationSpeedInMillis,
+    interval: {timing: environment.carouselIntervalInMillis},
     animation: 'lazy'
   };
 
@@ -57,5 +56,4 @@ export class TalkComponent implements AfterViewInit, OnChanges {
       return false;
     }
   }
-
 }

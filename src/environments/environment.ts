@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  keyPressBufferTime: 250,
-  hideTimeTravelTimeOut: 10000,
+  keyPressBufferTimeInMillis: 250,
+  hideTimeTravelTimeOutInMillis: 10000,
   apiUrl: 'http://localhost:8080/api',
   roomEndPoint: '/room',
   scheduleEndPoint: '/schedule',
@@ -15,9 +15,11 @@ export const environment = {
   clientEndPoint: '/client',
   heartbeat: 10,
   connectionTimer: 5,
-  carouselAnimationSpeed: 750,
-  carouselInterval: 3000,
-  retrieveMessageInterval: 5
+  carouselAnimationSpeedInMillis: 750,
+  carouselIntervalInMillis: 3000,
+  retrieveMessageIntervalInMinutes: 1,
+  roomOccupancyApiUrl: 'http://localhost:8080/api/rooms',
+  retrieveRoomOccupancyIntervalInSeconds: 5
 };
 
 /*

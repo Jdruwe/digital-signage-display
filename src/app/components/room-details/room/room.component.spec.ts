@@ -17,12 +17,14 @@ import {NguCarouselModule} from '@ngu/carousel';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ClientService} from '../../../services/client.service';
 import {Router} from '@angular/router';
+import {SettingsService} from '../../../services/settings.service';
 
 describe('RoomComponent', () => {
   let component: RoomComponent;
   let fixture: ComponentFixture<RoomComponent>;
   let timeService: TimeService;
   let clientService: ClientService;
+  let settingsService: SettingsService;
   let router: Router;
 
   beforeEach(async(() => {
@@ -54,6 +56,7 @@ describe('RoomComponent', () => {
     component = fixture.componentInstance;
     timeService = TestBed.get(TimeService);
     clientService = TestBed.get(ClientService);
+    settingsService = TestBed.get(SettingsService);
     router = TestBed.get(Router);
     spyOn(timeService, 'getClock').and.callThrough();
     const app = fixture.debugElement.componentInstance;
@@ -119,7 +122,7 @@ describe('RoomComponent', () => {
 
   it(`should set showTimeTravel to true when X is pressed`, function () {
     fixture.detectChanges();
-    const event = new KeyboardEvent('beforeunload', {
+    const event = new KeyboardEvent('keypress', {
       'key': 'X'
     });
     document.dispatchEvent(event);

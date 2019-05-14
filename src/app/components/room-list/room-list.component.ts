@@ -40,7 +40,7 @@ export class RoomListComponent implements OnInit, OnDestroy {
     this.keySub = single$
       .pipe(
         bufferWhen(() => single$
-          .pipe(debounceTime(environment.keyPressBufferTime))),
+          .pipe(debounceTime(environment.keyPressBufferTimeInMillis))),
       ).subscribe((events: KeyboardEvent[]) => {
         const registeredKeys = events.map(e => e.key).join('');
         this.handleRoomChange(+registeredKeys);

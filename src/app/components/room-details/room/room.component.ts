@@ -12,6 +12,7 @@ import {ConnectionService} from '../../../services/connection.service';
 import {Settings} from '../../../models/settings/settings';
 import {environment} from '../../../../environments/environment';
 import {animate, style, transition, trigger} from '@angular/animations';
+import {RoomOccupancyService} from '../../../services/room-occupancy.service';
 
 @Component({
   selector: 'app-room',
@@ -43,6 +44,9 @@ export class RoomComponent implements OnInit, OnDestroy {
   id: string;
 
   showRoomOccupancy = false;
+  currentOccupancy: number;
+  maxOccupancy: number;
+
   message = '';
   showMessage = true;
 
@@ -50,6 +54,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   private connectionSub: Subscription;
   private roomId: string;
   private settingsInterval;
+  private occupancyInterval;
 
   constructor(private timeService: TimeService,
               private scheduleService: RoomScheduleService,
@@ -57,7 +62,8 @@ export class RoomComponent implements OnInit, OnDestroy {
               private router: Router,
               private settingsService: SettingsService,
               private clientService: ClientService,
-              private connectionService: ConnectionService) {
+              private connectionService: ConnectionService,
+              private roomOccupancyService: RoomOccupancyService) {
   }
 
   ngOnInit() {
@@ -77,6 +83,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.clockSub.unsubscribe();
     this.connectionSub.unsubscribe();
     clearInterval(this.settingsInterval);
+    clearInterval(this.occupancyInterval);
   }
 
   private retrieveSettings() {
@@ -86,13 +93,32 @@ export class RoomComponent implements OnInit, OnDestroy {
         this.showRoomOccupancy = data.roomOccupancyOn;
         this.message = data.message;
         this.showMessage = data.showMessage;
+
+        this.getRoomOccupancy();
       });
+  }
+
+  private getRoomOccupancy() {
+    clearInterval(this.occupancyInterval);
+
+    if (this.showRoomOccupancy && this.talkToShow) {
+      this.occupancyInterval = setInterval(() => {
+        if (!this.talkToShow) {
+          clearInterval(this.occupancyInterval);
+        }
+        this.roomOccupancyService.getRoomOccupancy(this.roomId)
+          .subscribe(response => {
+            this.currentOccupancy = response.occupancy;
+            this.maxOccupancy = response.capacity;
+          });
+      }, environment.retrieveRoomOccupancyIntervalInSeconds * 1000);
+    }
   }
 
   private startSettingsInterval() {
     this.settingsInterval = setInterval(() => {
       this.retrieveSettings();
-    }, environment.retrieveMessageInterval * 1000 * 60);
+    }, environment.retrieveMessageIntervalInMinutes * 1000 * 60);
   }
 
   private subscribeToTimeService() {
@@ -150,11 +176,11 @@ export class RoomComponent implements OnInit, OnDestroy {
       });
   }
 
-
   private setTalks() {
     const talks = this.sortAndFilterTalks();
     this.talkToShow = talks.shift();
     this.nextTalks = talks;
+    this.getRoomOccupancy();
   }
 
   private sortAndFilterTalks(): Talk[] {
