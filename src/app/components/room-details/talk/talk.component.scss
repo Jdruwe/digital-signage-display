@@ -15,9 +15,14 @@
 
 .header {
   display: block;
-  background-color: $devoxx-orange;
+  background-color: #f6ae31;
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
+  background-image: url("../../../../assets/orangebanner.png");
+  background-repeat: no-repeat;
+  background-size: 25%;
+  background-position: 40% 0;
+
 }
 
 h1 {
