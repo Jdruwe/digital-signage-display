@@ -16,12 +16,14 @@ export class ClientsComponent implements OnInit {
 
   amountOfClients = 0;
   amountOfOnlineClients = 0;
+  private updateClientTimer: any;
 
   constructor(private clientService: ClientService) {
   }
 
   ngOnInit() {
     this.updateClients();
+    this.UpdateClientsEvery30Sec();
   }
 
   unregisterClient(clientDetails: ClientDetails) {
@@ -29,6 +31,13 @@ export class ClientsComponent implements OnInit {
       this.clientsWithDetails.splice(this.clientsWithDetails.indexOf(clientDetails), 1);
       this.updateClients();
     });
+  }
+
+  private UpdateClientsEvery30Sec() {
+    this.updateClientTimer = setInterval(() => {
+      console.log('update!!!');
+      this.updateClients();
+    }, 30000);
   }
 
   private updateClients() {
