@@ -44,8 +44,8 @@ export class RoomComponent implements OnInit, OnDestroy {
   id: string;
 
   showRoomOccupancy = true;
-  currentOccupancy = 50;
-  maxOccupancy = 450;
+  currentOccupancy: number;
+  maxOccupancy: number;
 
   message = '';
   showMessage = true;
