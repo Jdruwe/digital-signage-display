@@ -41,3 +41,16 @@ test-codacy:
   only:
     - master
 
+deploy:
+  stage: deploy
+  image: "ruby:2.5"
+  script:
+    # install dpl:
+    - apt-get update -qy
+    - apt-get install rubygems ruby-dev -y
+    - gem install dpl
+    # deploy to heroku:
+    - dpl --provider=heroku --app=digital-signage-display --api-key=$HEROKU_API_KEY --skip_cleanup
+  environment:
+    name: develop
+    url: https://digital-signage-display.herokuapp.com
