@@ -1,4 +1,4 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ClientService} from '../../../services/client.service';
 import * as moment from 'moment';
 import {ClientDetails} from '../../../models/client/client-details';
@@ -27,7 +27,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log("end interval!");
+    console.log('end interval!');
     clearInterval(this.updateClientTimer);
   }
 
