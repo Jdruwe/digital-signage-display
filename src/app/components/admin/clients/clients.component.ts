@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ClientService} from '../../../services/client.service';
 import * as moment from 'moment';
 import {ClientDetails} from '../../../models/client/client-details';
@@ -10,18 +10,25 @@ import {ClientWithId} from '../../../models/client/client-with-id';
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.scss']
 })
-export class ClientsComponent implements OnInit {
+export class ClientsComponent implements OnInit, OnDestroy {
   clients: ClientWithId[];
   clientsWithDetails: ClientDetails[];
 
   amountOfClients = 0;
   amountOfOnlineClients = 0;
+  private updateClientTimer: any;
 
   constructor(private clientService: ClientService) {
   }
 
   ngOnInit() {
     this.updateClients();
+    this.UpdateClientsEvery30Sec();
+  }
+
+  ngOnDestroy(): void {
+    console.log('end interval!');
+    clearInterval(this.updateClientTimer);
   }
 
   unregisterClient(clientDetails: ClientDetails) {
@@ -31,7 +38,14 @@ export class ClientsComponent implements OnInit {
     });
   }
 
+  private UpdateClientsEvery30Sec() {
+    this.updateClientTimer = setInterval(() => {
+      this.updateClients();
+    }, 10000);
+  }
+
   private updateClients() {
+    console.log('update!!');
     this.clients = [];
     this.clientsWithDetails = [];
     this.amountOfClients = 0;

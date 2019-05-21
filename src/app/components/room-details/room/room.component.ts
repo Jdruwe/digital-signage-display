@@ -43,12 +43,12 @@ export class RoomComponent implements OnInit, OnDestroy {
   showTimeTravel = false;
   id: string;
 
-  showRoomOccupancy = true;
-  currentOccupancy = 50;
-  maxOccupancy = 450;
+  showRoomOccupancy = false;
+  currentOccupancy: number;
+  maxOccupancy: number;
 
   message = '';
-  showMessage = true;
+  showMessage = false;
 
   private clockSub: Subscription;
   private connectionSub: Subscription;
