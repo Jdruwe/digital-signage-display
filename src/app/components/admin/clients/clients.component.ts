@@ -40,7 +40,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
   private UpdateClientsEvery30Sec() {
     this.updateClientTimer = setInterval(() => {
       this.updateClients();
-    }, 30000);
+    }, environment.heartbeatRefreshRateInSeconds);
   }
 
   private updateClients() {
