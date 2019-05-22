@@ -19,7 +19,8 @@ export const environment = {
   carouselIntervalInMillis: 3000,
   retrieveMessageIntervalInMinutes: 1,
   roomOccupancyApiUrl: 'http://localhost:8080/api/rooms',
-  retrieveRoomOccupancyIntervalInSeconds: 5
+  retrieveRoomOccupancyIntervalInSeconds: 5,
+  heartbeatRefreshRateInSeconds: 30000
 };
 
 /*
