@@ -27,7 +27,6 @@ export class ClientsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('end interval!');
     clearInterval(this.updateClientTimer);
   }
 
@@ -41,11 +40,10 @@ export class ClientsComponent implements OnInit, OnDestroy {
   private UpdateClientsEvery30Sec() {
     this.updateClientTimer = setInterval(() => {
       this.updateClients();
-    }, 10000);
+    }, 30000);
   }
 
   private updateClients() {
-    console.log('update!!');
     this.clients = [];
     this.clientsWithDetails = [];
     this.amountOfClients = 0;
