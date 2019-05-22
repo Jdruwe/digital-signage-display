@@ -98,7 +98,7 @@ export class ClientService {
     localStorage.setItem('clientId', JSON.stringify(clientId));
   }
 
-  private getFromLocalStorage() {
+  getFromLocalStorage() {
     return JSON.parse(localStorage.getItem('clientId'));
   }
 
