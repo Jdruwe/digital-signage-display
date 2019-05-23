@@ -1,15 +1,3 @@
-/*const express = require('express');
-const serveStatic = require('serve-static');
-let app = express();
-
-app.use(serveStatic(__dirname + "/dist"));
-
-const port = process.env.PORT || 4200;
-app.listen(port, () => {
-  console.log('Listening on port ' + port)
-});*/
-
-
 //Install express server
 const express = require('express');
 const path = require('path');
