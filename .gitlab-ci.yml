@@ -54,5 +54,4 @@ deploy:
   environment:
     name: develop
     url: https://digital-signage-display.herokuapp.com
-  only:
-    - master
+
