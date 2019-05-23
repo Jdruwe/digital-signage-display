@@ -6,9 +6,7 @@
   grid-template-rows: 10% 90%;
   grid-template-columns: 75% 25%;
   grid-template-areas: "header header" "talk timeline";
-
-  // todo remove before flight
-  // cursor: none;
+  cursor: none;
 }
 
 .header {

@@ -3,7 +3,7 @@ import {TestBed} from '@angular/core/testing';
 import {AuthService} from './auth.service';
 import {Admin} from '../models/admin';
 import {RouterTestingModule} from '@angular/router/testing';
-import {environment} from '../../environments/environment';
+import {environment} from '../../environments/environment.prod';
 import {Router} from '@angular/router';
 
 describe('AuthService', () => {

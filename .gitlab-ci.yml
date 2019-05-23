@@ -56,3 +56,4 @@ deploy:
     url: https://digital-signage-display.herokuapp.com
   only:
     - master
+
