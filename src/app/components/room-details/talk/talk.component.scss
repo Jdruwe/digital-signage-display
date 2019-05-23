@@ -18,6 +18,10 @@
   background-color: $devoxx-orange;
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
+  background-image: url("~src/assets/gradient.png");
+  background-repeat: no-repeat;
+  background-size: 25%;
+  background-position: 40% 0;
 }
 
 h1 {
