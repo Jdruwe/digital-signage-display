@@ -11,7 +11,7 @@
 
 .brand-card {
   margin: 50px 25px 0 25px;
-  width: 400px;
+  width: 425px;
   height: 250px;
   background-color: $foreground;
   position: relative;
@@ -19,7 +19,7 @@
   flex-direction: column;
   border-radius: $border-radius;
 
-  h1 {
+  span {
     margin: 10px 0 0 0;
 
     img {
@@ -63,9 +63,8 @@
   align-items: center;
 }
 
-.text-value {
-  font-size: 1.3rem;
-  font-weight: 600;
+p {
+  font-size: 1.5rem;
 }
 
 .border-line {

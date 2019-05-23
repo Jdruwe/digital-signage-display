@@ -1,11 +1,13 @@
 <app-navbar [amountOfClients]="amountOfClients"
-            [amountOfOnlineClients]="amountOfOnlineClients"></app-navbar>
+            [amountOfOnlineClients]="amountOfOnlineClients">
+</app-navbar>
+
 <div class="container">
   <div *ngFor="let client of clientsWithDetails">
     <div class="brand-card">
-      <h1>
-      <img src="../../../../assets/times-solid.svg" alt="" (click)="unregisterClient(client)">
-      </h1>
+      <span>
+        <img src="../../../../assets/times-solid.svg" alt="" (click)="unregisterClient(client)">
+      </span>
       <div class="brand-card-header">
         <div class="monitor">
           <svg viewBox="0 0 500 200">
@@ -19,9 +21,8 @@
         </div>
       </div>
       <div class="brand-card-body">
-        <div class="text-value">{{client.client.room.name}}</div>
-
-        <div class="text-value">{{client.client.lastConnected | dateAgo}}</div>
+        <p>{{client.client.room.name}}</p>
+        <p>{{client.client.lastConnected | dateAgo}}</p>
       </div>
     </div>
   </div>

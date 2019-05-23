@@ -15,5 +15,6 @@ export const environment = {
   carouselIntervalInMillis: 3000,
   retrieveMessageIntervalInMinutes: 1,
   roomOccupancyApiUrl: 'https://conference-service.herokuapp.com/api/rooms',
-  retrieveRoomOccupancyIntervalInSeconds: 5
+  retrieveRoomOccupancyIntervalInSeconds: 5,
+  heartbeatRefreshRateInSeconds: 30000
 };
