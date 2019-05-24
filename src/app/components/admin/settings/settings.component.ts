@@ -26,7 +26,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.settingsService.getSettings()
       .subscribe(data => {
         this.settings = data;
-        console.log(this.settings);
         this.newTime(this.settings.minutesBeforeNextSession);
       });
     this.timeSub = this.settingsService.currentTimeBefore
