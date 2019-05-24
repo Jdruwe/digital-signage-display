@@ -29,14 +29,16 @@
       <span class="slider round"></span>
     </label>
 
-    <label for="mailDelay" class="label">
+    <label for="mailDelayForConnectionIssues" class="label">
       Send mail with issues after
     </label>
     <div class="input-group">
       <input type="number"
-             id="mailDelay"
-             name="mailDelay">
-      <label for="mailDelay" class="attached-label label">minutes</label>
+             id="mailDelayForConnectionIssues"
+             name="mailDelayForConnectionIssues"
+             [(ngModel)]="settings.mailDelayForConnectionIssues"
+             ngModel>
+      <label for="mailDelayForConnectionIssues" class="attached-label label">minutes</label>
     </div>
 
     <button type="submit" id="submit" class="btn-white">Save</button>

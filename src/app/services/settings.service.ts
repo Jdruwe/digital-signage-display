@@ -20,10 +20,11 @@ export class SettingsService {
     return this.http.get<Settings>(environment.apiUrl + environment.settingsEndPoint);
   }
 
-  changeSettings(minutesBeforeNextSession: number, isRoomOccupancyOn: boolean) {
+  changeSettings(minutesBeforeNextSession: number, mailDelayForConnectionIssues: number, isRoomOccupancyOn: boolean) {
     const settings: MainSettings = {
       minutesBeforeNextSession: minutesBeforeNextSession,
       roomOccupancyOn: isRoomOccupancyOn,
+      mailDelayForConnectionIssues: mailDelayForConnectionIssues
     };
     return this.http.put<MainSettings>(environment.apiUrl + environment.settingsEndPoint, settings);
   }
