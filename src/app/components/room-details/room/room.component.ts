@@ -118,7 +118,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   private startSettingsInterval() {
     this.settingsInterval = setInterval(() => {
       this.retrieveSettings();
-    }, environment.retrieveMessageIntervalInMinutes * 1000 * 60);
+    }, environment.retrieveSettingsIntervalInMinutes * 1000 * 60);
   }
 
   private subscribeToTimeService() {

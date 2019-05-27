@@ -17,8 +17,8 @@ export const environment = {
   connectionTimer: 5,
   carouselAnimationSpeedInMillis: 750,
   carouselIntervalInMillis: 3000,
-  retrieveMessageIntervalInMinutes: 1,
-  roomOccupancyApiUrl: 'http://localhost:8080/api/rooms',
+  retrieveSettingsIntervalInMinutes: 1,
+  roomOccupancyApiUrl: 'http://localhost:9090/api/rooms',
   retrieveRoomOccupancyIntervalInSeconds: 5,
   heartbeatRefreshRateInSeconds: 30000
 };
