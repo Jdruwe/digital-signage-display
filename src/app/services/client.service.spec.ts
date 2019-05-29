@@ -2,7 +2,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ClientService} from './client.service';
-import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
 
 describe('ClientService', () => {
   let httpTestingController: HttpTestingController;
